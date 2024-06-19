@@ -1,0 +1,123 @@
+.content_menu div a.active {
+  font-weight: bold;
+  color: #000;
+}
+.content_date {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  gap: 20px;
+}
+.content_date_left,
+.content_date_right {
+  cursor: pointer;
+}
+.content_chart {
+  width: 80%;
+  height: auto;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#calendar {
+  width: 100%;
+  border-collapse: collapse;
+}
+#calendar th,
+#calendar td {
+  width: 14.28%;
+  height: 100px;
+  text-align: center;
+  cursor: pointer;
+}
+#calendar th {
+  background-color: #fff;
+}
+.content_stat {
+  width: 100%;
+  height: 600px;
+  margin-top: 70px;
+}
+.content_stat_tab {
+  display: flex;
+}
+.content_stat_tab div {
+  width: 100px;
+  height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: white;
+  text-align: center;
+  line-height: 25px;
+}
+.content_stat_tab div:nth-child(1) {
+  border-top-left-radius: 5px;
+}
+.content_stat_tab div:nth-child(2) {
+  border-top-right-radius: 5px;
+}
+.content_stat_body {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 50px;
+}
+.content_stat_body_top {
+  width: 100%;
+  height: 200px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.content_stat_body_bottom {
+  width: 100%;
+  height: 200px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-top: 20px;
+}
+.content_comment {
+  width: 100%;
+  height: 400px;
+  margin-top: 70px;
+}
+.content_comment_tab div {
+  width: 100px;
+  height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: white;
+  text-align: center;
+  line-height: 25px;
+}
+.content_comment_body {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 50px;
+}
+.comment_textarea {
+  width: 100%;
+  height: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-top: 10px;
+  resize: none;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.content_comment_body_bottom {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+.content_comment_body_bottom div {
+  width: 60px;
+  text-align: center;
+  cursor: pointer;
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/record.css" />
+    <title>PTR</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <div class="logo">
+          <h1>PTR</h1>
+        </div>
+        <div class="top_menu">
+          <div><a href="main.html">메인</a></div>
+          <div><a href="lecture.html">교육</a></div>
+          <div><a href="record.html">관리 및 기록</a></div>
+          <div><a href="community.html">커뮤니티</a></div>
+          <div><a href="feed.html">피드</a></div>
+          <div><a href="mypage.html">마이페이지</a></div>
+          <div><a href="customerService.html">고객센터</a></div>
+          <div><a href="login.html">로그인</a></div>
+        </div>
+        <div class="login_box">로그인 / 회원가입</div>
+      </div>
+      <div class="heading">
+        <div class="head_title">Management</div>
+        <div class="head_subtitle">홈 > 관리 및 기록 > 기록 및 통계</div>
+      </div>
+      <div class="content">
+        <div class="content_menu">
+          <div><a href="record.html" class="active">기록 및 통계</a></div>
+          <div><a href="recordFood.html">식단</a></div>
+          <div><a href="recordExercise.html">운동</a></div>
+        </div>
+        <div class="content_body">
+          <div class="content_date">
+            <div class="content_date_left" onclick="prevMonth()">&lt;</div>
+            <div class="content_date_year">2024.</div>
+            <div class="content_date_month">06</div>
+            <div class="content_date_right" onclick="nextMonth()">&gt;</div>
+          </div>
+          <div class="content_chart">
+            <table id="calendar">
+              <thead>
+                <tr>
+                  <th>일</th>
+                  <th>월</th>
+                  <th>화</th>
+                  <th>수</th>
+                  <th>목</th>
+                  <th>금</th>
+                  <th>토</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="content_stat">
+            <div class="content_stat_tab">
+              <div>섭취량</div>
+              <div>운동량</div>
+            </div>
+            <div class="content_stat_body">
+              <div class="content_stat_body_top"></div>
+              <div class="content_stat_body_bottom"></div>
+            </div>
+          </div>
+          <div class="content_comment">
+            <div class="content_comment_tab">
+              <div>Comment</div>
+            </div>
+            <div class="content_comment_body">
+              <textarea class="comment_textarea"></textarea>
+              <div class="content_comment_body_bottom">
+                <div class="register_btn">등록</div>
+                <div class="update_btn">수정</div>
+                <div class="delete_btn">삭제</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/record.js"></script>
+  </body>
+</html>

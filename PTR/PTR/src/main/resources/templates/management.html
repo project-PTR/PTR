@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/management.css" />
+    <title>PTR</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <div class="logo">
+          <h1>PTR</h1>
+        </div>
+        <div class="top_menu">
+          <div><a href="main.html">메인</a></div>
+          <div><a href="lecture.html">교육</a></div>
+          <div><a href="record.html">관리 및 기록</a></div>
+          <div><a href="community.html">커뮤니티</a></div>
+          <div><a href="feed.html">피드</a></div>
+          <div><a href="mypage.html">마이페이지</a></div>
+          <div><a href="customerService.html">고객센터</a></div>
+          <div><a href="login.html">로그인</a></div>
+        </div>
+        <div class="login_box">로그인 / 회원가입</div>
+      </div>
+      <div class="heading">
+        <div class="head_title">Management</div>
+        <div class="head_subtitle">홈 &gt; 관리 및 기록 &gt; 기록 및 통계</div>
+      </div>
+      <div class="content">
+        <div class="content_menu">
+          <div><a href="record.html" class="active">기록 및 통계</a></div>
+          <div><a href="recordFood.html">식단</a></div>
+          <div><a href="recordExercise.html">운동</a></div>
+        </div>
+        <div class="content_date">
+          <div class="content_date_left">&lt;</div>
+          <div class="content_date_text">2024. 06. 04</div>
+          <div class="content_date_right">&gt;</div>
+        </div>
+        <div class="content_body">
+          <div class="content_plan_summary">
+            <div class="plan_summary_title">오늘 하루 누적 기록</div>
+            <div class="plan_summary">
+              <div class="plan_summary_item">
+                <div>섭취량</div>
+                <div class="plan_value">0 kcal</div>
+              </div>
+              <div class="plan_summary_item">
+                <div>소모량</div>
+                <div class="plan_value">0 kcal</div>
+              </div>
+              <div class="plan_summary_item">
+                <div>물</div>
+                <div class="plan_value">0 L</div>
+              </div>
+              <div class="plan_summary_item">
+                <div>체중</div>
+                <div class="plan_value">0 kg</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content_detail">
+            <div class="detail_title">
+              <div class="tabs">
+                <ul>
+                  <li class="active">섭취량</li>
+                  <li>운동량</li>
+                </ul>
+              </div>
+            </div>
+            <div class="detail_section">
+              <div class="meal">
+                <div class="meal_time">
+                  <div class="circle"></div>
+                  <div>탄수화물</div>
+                </div>
+                <div class="meal_controls">
+                  <button>등록</button> | <button>수정</button> |
+                  <button>삭제</button>
+                </div>
+              </div>
+              <div class="meal">
+                <div class="meal_time">
+                  <div class="circle"></div>
+                  <div>단백질</div>
+                </div>
+                <div class="meal_items">
+                  <div class="meal_item">Text <button>X</button></div>
+                  <div class="meal_item">Text <button>X</button></div>
+                  <div class="meal_item">Text <button>X</button></div>
+                </div>
+                <div class="meal_controls">
+                  <button>등록</button> | <button>수정</button> |
+                  <button>삭제</button>
+                </div>
+              </div>
+              <div class="meal">
+                <div class="meal_time">
+                  <div class="circle"></div>
+                  <div>지방</div>
+                </div>
+                <div class="meal_items">
+                  <div class="meal_item">Text <button>X</button></div>
+                </div>
+                <div class="meal_controls">
+                  <button>등록</button> | <button>수정</button> |
+                  <button>삭제</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content_footer">
+            <div class="water_intake">
+              <div class="footer_title">물 섭취량</div>
+              <div class="footer_body">
+                <div class="water_circle"></div>
+                <div class="water_amount">
+                  <button id="minus">-</button>
+                  <span id="waterAmount">0.00</span> L
+                  <button id="plus">+</button>
+                </div>
+                <button>기록하기</button>
+              </div>
+            </div>
+            <div class="weight">
+              <div class="footer_title">체중</div>
+              <div class="footer_body">
+                <div class="water_circle"></div>
+                <div class="weight_value"><input type="text" /> kg</div>
+                <button>기록하기</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/management.js"></script>
+  </body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/signUp.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <div class="logo">
+          <h1>PTR</h1>
+        </div>
+        <div class="top_menu">
+          <div><a href="main.html">메인</a></div>
+          <div><a href="lecture.html">교육</a></div>
+          <div><a href="record.html">관리 및 기록</a></div>
+          <div><a href="community.html">커뮤니티</a></div>
+          <div><a href="feed.html">피드</a></div>
+          <div><a href="mypage.html">마이페이지</a></div>
+          <div><a href="customerService.html">고객센터</a></div>
+          <div><a href="login.html">로그인</a></div>
+        </div>
+        <div class="login_box">로그인 / 회원가입</div>
+      </div>
+      <div class="heading">
+        <div class="head_title">SignUp</div>
+      </div>
+      <div class="content">
+        <div class="content_body">
+          <form>
+            <div class="profile_image">
+              <label for="profileImageInput">이미지 업로드</label>
+              <input type="file" id="profileImageInput" accept="image/*" />
+            </div>
+            <div class="form_group">
+              <label for="name">name :</label>
+              <input type="text" id="name" required />
+            </div>
+            <div class="form_group">
+              <label for="email">email :</label>
+              <input type="email" id="email" required />
+            </div>
+            <div class="form_group">
+              <label for="password">password :</label>
+              <input type="password" id="password" required />
+            </div>
+            <div class="form_group">
+              <label>gender :</label>
+              <div class="radio_group">
+                <label
+                  ><input
+                    type="radio"
+                    name="gender"
+                    value="M"
+                    required
+                  />M</label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="gender"
+                    value="W"
+                    required
+                  />W</label
+                >
+              </div>
+            </div>
+            <div class="form_group">
+              <label>Position :</label>
+              <div class="radio_group">
+                <label
+                  ><input
+                    type="radio"
+                    name="position"
+                    value="student"
+                    required
+                  />학생</label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="position"
+                    value="teacher"
+                    required
+                  />강사</label
+                >
+              </div>
+            </div>
+            <div class="customization_setting">
+              <h1>Customization Setting</h1>
+              <div class="subheading">평소 활동량</div>
+              <div class="form_group">
+                <div class="checkbox_group">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="activity1"
+                      name="activity"
+                      value="text1"
+                    />
+                    <label for="activity1">Text1</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="activity2"
+                      name="activity"
+                      value="text2"
+                    />
+                    <label for="activity2">Text2</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="activity3"
+                      name="activity"
+                      value="text3"
+                    />
+                    <label for="activity3">Text3</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="activity4"
+                      name="activity"
+                      value="text4"
+                    />
+                    <label for="activity4">Text4</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="activity5"
+                      name="activity"
+                      value="text5"
+                    />
+                    <label for="activity5">Text5</label>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="activity6"
+                      name="activity"
+                      value="text6"
+                    />
+                    <label for="activity6">Text6</label>
+                  </div>
+                </div>
+              </div>
+              <div class="subheading">식단 모드</div>
+              <div class="form_group">
+                <div class="checkbox_group">
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="diet1"
+                      name="diet_mode"
+                      value="text1"
+                    />
+                    <lavel for="diet1">Text1</lavel>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="diet2"
+                      name="diet_mode"
+                      value="text2"
+                    />
+                    <lavel for="diet2">Text2</lavel>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="diet2"
+                      name="diet_mode"
+                      value="text3"
+                    />
+                    <lavel for="diet3">Text3</lavel>
+                  </div>
+                </div>
+              </div>
+              <div class="subheading">체중</div>
+              <div class="form_group">
+                <div class="weight_group">
+                  <div>
+                    <label for="start_weight">시작 체중</label>
+                    <input type="number" id="start_weight" /> kg
+                  </div>
+                  <div>
+                    <label for="target_weight">목표 체중</label>
+                    <input type="number" id="target_weight" /> kg
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="submit">JOIN</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="/js/signUp.js"></script>
+  </body>
+</html>

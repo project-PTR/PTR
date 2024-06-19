@@ -1,0 +1,284 @@
+.content_menu div a.active {
+  font-weight: bold;
+  color: #000;
+}
+
+.content_date {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.content_date_left,
+.content_date_right {
+  cursor: pointer;
+}
+
+.content_plan_summary {
+  width: 100%;
+  max-width: 800px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+.plan_summary_title {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.plan_summary {
+  display: flex;
+  justify-content: space-around;
+}
+
+.plan_summary_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.plan_value {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.content_detail {
+  width: 100%;
+  max-width: 800px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.tabs {
+  position: absolute;
+  top: -43px;
+  left: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.tabs ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.tabs ul li {
+  cursor: pointer;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px 10px 0 0;
+  background-color: white;
+}
+
+.tabs ul li + li {
+  margin-left: -21px;
+}
+
+.tabs ul li.active {
+  background-color: #f9f9f9;
+  font-weight: bold;
+}
+
+.detail_section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.meal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px dashed #ccc;
+}
+
+.meal:last-child {
+  border-bottom: none;
+}
+
+.meal_time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.meal_items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-grow: 1;
+  margin-left: 50px;
+}
+
+.meal_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 200px;
+  padding: 10px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+}
+
+.meal_item button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #f00;
+}
+
+.meal_controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 100px;
+}
+
+.meal_controls button {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.meal_controls span {
+  margin: 0 5px;
+}
+
+.meal_controls button:hover {
+  background-color: white;
+}
+
+.content_footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.water_intake,
+.weight {
+  width: 375px;
+  height: 350px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.footer_title {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.footer_body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.water_circle {
+  width: 60px;
+  height: 60px;
+  background-color: #e0e0e0;
+  border-radius: 50%;
+  margin-top: 50px;
+}
+
+.water_amount {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  gap: 20px;
+}
+
+.water_amount button {
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  color: white;
+  margin-top: -10px;
+}
+
+.water_amount button:hover {
+  background-color: white;
+  color: black;
+}
+
+.weight_value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+.weight_value input {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.footer_body button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.footer_body button:hover {
+  background-color: white;
+  color: black;
+}

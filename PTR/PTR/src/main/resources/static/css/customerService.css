@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: inherit;
+}
+.container {
+  width: 100%;
+}
+.top {
+  width: 100%;
+  height: 70px;
+  background-color: #fec009;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+}
+.top_menu {
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.top_menu div {
+  width: 130px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+.heading {
+  width: 100%;
+  height: 300px;
+  background-color: #2c394a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.head_title {
+  font-size: 3rem;
+}
+.head_subtitle {
+  margin-top: 30px;
+  font-size: 1.2rem;
+}
+.content {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.content_menu {
+  width: 100%;
+  height: 60px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  position: relative;
+  top: -30px;
+  background-color: white;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 20px;
+}
+.content_menu div {
+  margin-right: 30px;
+}
+.content_body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.content_body_search {
+  width: 700px;
+  display: grid;
+  grid-template-columns: 2fr 7fr 2fr;
+  column-gap: 3px;
+}
+.content_body_search select,
+.content_body_search input,
+.content_body_search div {
+  width: 100%;
+  height: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  margin: 50px 0;
+}
+.content_body_search input {
+  padding-left: 10px;
+}
+.search_btn {
+  text-align: center;
+  font-size: 2rem;
+  line-height: 40px;
+}
+.content_body_table {
+  width: 100%;
+  height: 400px;
+  border-spacing: 0;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+  text-align: center;
+  margin: 20px 0;
+}
+.content_body_table th {
+  height: 50px;
+  border-top: 2px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+}
+.content_body_table td {
+  height: 50px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+.content_body_table th:nth-child(2) {
+  width: 60%;
+}
+.content_body_table th:not(:nth-child(2)) {
+  width: auto;
+}
+.content_body_page {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  column-gap: 20px;
+  font-size: 1.5rem;
+  margin-bottom: 100px;
+}
+.content_body_page_num {
+  display: flex;
+  column-gap: 20px;
+}

@@ -1,0 +1,41 @@
+.content_body_manager{
+    width: 100%;
+    margin-top: 50px;
+}
+
+
+
+.content_body_manager_user{
+    width: 100%;
+    margin-top: 50px;
+}
+
+.content_body_menu{
+    margin-left: 0;
+    display: flex;
+}
+
+.content_body_menu > div{
+    border: 1px solid black;
+    padding: 10px;
+    text-align: start;
+    margin-bottom: -1px;
+    margin-right: -1px;
+}
+
+
+.content_body_manager_box{
+    width: 100%;
+    border: 1px solid black;
+    padding: 50px;
+}
+
+.user_search{
+    width: 95%;
+    font-size: 15px;
+    padding: 5px;
+}
+
+.hiden{
+    display: none;
+}

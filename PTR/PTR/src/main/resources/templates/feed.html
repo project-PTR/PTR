@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/feed.css">
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <div class="logo">
+          <h1>PTR</h1>
+        </div>
+        <div class="top_menu">
+          <div><a href="main.html">메인</a></div>
+          <div><a href="lecture.html">교육</a></div>
+          <div><a href="record.html">관리 및 기록</a></div>
+          <div><a href="community.html">커뮤니티</a></div>
+          <div><a href="feed.html">피드</a></div>
+          <div><a href="mypage.html">마이페이지</a></div>
+          <div><a href="customerService.html">고객센터</a></div>
+          <div><a href="login.html">로그인</a></div>
+        </div>
+        <div class="login_box">로그인 / 회원가입</div>
+      </div>
+      <div class="heading">
+        <div class="head_title">Feed</div>
+        <div class="head_subtitle">홈 > 피드</div>
+      </div>      
+      <div class="content">
+        <div class="content_body">
+          <!-- 여기서 작업해야 함 -->
+          <div class="content_feed">
+            <div class="content_feedheader">
+              <div class="content_feedheader_left">
+                <div class="content_feedheader_userPhoto"></div>
+                <div>
+                <div class="content_feedheader_userId">FeedId</div>
+                <div class="content_feedheader_date">2024-06-14</div>
+                </div>
+              </div>
+              <div class="content_feedheader_moreBtn">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+            </div>
+            <div class="content_feedPhoto"></div>
+            <div class="content_feedfooter">
+              <div class="content_feedfooter_left">
+                <div class="content_feedfooter_text">text</div>
+              </div>
+              <div class="content_feedfooter_right">
+                <div class="content_feedfooter_likeBtn"></div>
+                <div class="content_feedfooter_like">10</div>
+                <div class="content_feedfooter_commentBtn"></div>
+                <div class="content_feedfooter_comment">10</div>
+                <div class="content_feedfooter_scrapBtn"></div>
+              </div>
+            </div>
+            
+            <div class="content_feedMore">
+              <div class="content_feedMore_changeBtn">수정</div>
+              <div class="content_feedMore_delete">삭제</div>
+              <div class="content_feedMore_likeCheck">좋아요 확인</div>
+            </div>
+            <!--<div class="content_feedcommentbox">
+              <div class="content_feedcomment">
+                <div class="content_feedcomment_UserPhoto"></div>
+                <div class="content_feedcomment_UserId"></div>
+                <div class="content_feedcomment_text"></div>
+              </div>
+            </div>-->
+          </div>
+          <div class="content_createFeed hiden">
+            <div class="content_createFeed_header">
+              <div class="content_createFeed_left">
+                <div class="content_feedheader_userPhoto"></div>
+                <div class="content_createFeed_myId">MyId</div>
+              </div>
+              <div class="content_createFeed_right">
+                <div class="content_createFeed_add"></div>
+                <div class="content_createFeed_create">등록</div>
+              </div>
+            </div>
+            <div class="content_createFeed_body">text 입력</div>
+          </div>
+          <!--내 피드-->
+          <div class="content_myFeed hiden">
+            <div class="content_myFeed_profile">
+              <div class="content_myFeed_profile_left">
+                <div class="content_myFeed_profile_left_box">
+                  <div class="content_myFeed_profile_img"></div>
+                  <div class="content_myFeed_profile_id">@피드아이디</div>
+                </div>
+              </div>
+              <div class="content_myFeed_profile_right">
+                <div class="content_myFeed_profile_box">
+                  <div>피드</div>
+                  <div>팔로워</div>
+                  <div>팔로잉</div>
+                  <div>11</div>
+                  <div>0</div>
+                  <div>0</div>
+                </div>
+                <div class="content_myFeed_profile_butten_box">
+                  <div class="content_myFeed_profile_butten">프로필 편집</div>
+                  <div class="content_myFeed_profile_butten">프로필 공유</div>
+                </div>
+                <div class="content_myFeed_profile_text">안녕하세요.</div>
+              </div>
+            </div>
+            <div class="content_myFeed_myfeeds">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+          <!--다른 유저 피드-->
+          <div class="content_otherFeed hiden">
+            <div class="content_otherFeed_profile">
+              <div class="content_otherFeed_profile_left">
+                <div class="content_otherFeed_profile_left_box">
+                  <div class="content_otherFeed_profile_img"></div>
+                  <div class="content_otherFeed_profile_id">@피드아이디</div>
+                </div>
+              </div>
+              <div class="content_otherFeed_profile_right">
+                <div class="content_otherFeed_profile_box">
+                  <div>피드</div>
+                  <div>팔로워</div>
+                  <div>팔로잉</div>
+                  <div>11</div>
+                  <div>0</div>
+                  <div>0</div>
+                </div>
+                <div class="content_otherFeed_profile_text">안녕하세요.</div>
+              </div>
+            </div>
+            <div class="content_otherFeed_feeds">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+          <!--팔로우,필로잉 확인-->
+          <div class="content_follow hiden">
+            <div class="content_follow_header">
+              <div class="content_follow_backBtn"></div>
+              <div class="content_follow_Id">@feedId</div>
+            </div>
+            <div class="content_follow_choose">
+              <div class="content_follow_followerBtn">팔로우</div>
+              <div class="content_follow_followingBtn">팔로잉</div>
+            </div>
+            <div class="content_follow_follower">
+              <div class="content_follower_left">
+                <div class="content_follower_userPhoto"></div>
+                <div class="content_follower_user">
+                  <div class="content_follower_userId">userId</div>
+                  <div class="content_follower_userName">userName</div>
+                </div>
+              </div>
+                <div class="content_follower_right">
+                  <div class="content_follower_deleteFollower">삭제</div>
+                </div>
+            </div>
+            <div class="content_follow_following hiden">
+              <div class="content_following_left">
+                <div class="content_following_userPhoto"></div>
+                <div class="content_following_user">
+                  <div class="content_following_userId">userId</div>
+                  <div class="content_following_userName">userName</div>
+                </div>
+              </div>
+              <div class="content_following_right">
+                <div class="content_following_deleteFollowing">삭제</div>
+              </div>
+            </div>
+          </div>
+          <!--csrap-->
+          <div class="content_scrapFeed hiden">
+            <div class="content_scrapFeed_header">Scrap</div>
+            <div class="content_scrapFeed_feeds">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="blank"></div>
+      <div class="footer_feedMenu">
+        <div class="footer_feedMenu_feedHomeBtn"></div>
+        <div class="footer_feedMenu_createFeedBtn"></div>
+        <div class="footer_feedMenu_myFeedBtn"></div>
+        <div class="footer_feedMenu_scrapFeedBtn"></div>
+      </div>
+    </div>
+    <script src="/js/feed.js"></script>
+  </body>
+</html>
