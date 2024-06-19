@@ -479,18 +479,18 @@
 }
 /*scrap*/
 .content_scrapFeed{
-    border: 1px solid #000;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 50px;
 }
 .content_scrapFeed_header{
     color: #000;
     font-size: 2rem;
 }
 .content_scrapFeed_feeds{
-    margin-top: 50px;
+    margin-top: 80px;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
