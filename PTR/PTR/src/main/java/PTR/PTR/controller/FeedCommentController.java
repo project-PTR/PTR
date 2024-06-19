@@ -31,4 +31,9 @@ public class FeedCommentController {
     public FeedComment updateFeedComment(@RequestBody FeedComment feedComment){
         return feedCommentService.updateFeedComment(feedComment);
     }
+
+    @PostMapping("/numberOfFeedComment")
+    public int getNumberOfFeedComment(@RequestBody Feed feed){
+        return feedCommentService.getNumberOfFeedComment(feed);
+    }
 }

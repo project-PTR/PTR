@@ -35,4 +35,9 @@ public class FeedLikeService {
         return feedLikeRepository.findByFeed(feed);
     }
 
+    //좋아요 개수
+    public int getNumberOfFeedLike(Feed feed){
+        return feedLikeRepository.findByFeed(feed).size();
+    }
+
 }

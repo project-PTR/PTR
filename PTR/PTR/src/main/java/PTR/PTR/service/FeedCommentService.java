@@ -50,4 +50,9 @@ public class FeedCommentService {
             return temp;
         }
     }
+
+    //댓글 개수
+    public int getNumberOfFeedComment(Feed feed){
+        return feedCommentRepository.findByFeed(feed).size();
+    }
 }

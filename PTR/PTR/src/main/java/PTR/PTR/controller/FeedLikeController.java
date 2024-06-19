@@ -30,4 +30,9 @@ public class FeedLikeController {
         return feedLikeService.getFeedLike(feed);
     }
 
+    @PostMapping("/numberOfFeedLike")
+    public int getNumberOfFeedLike(@RequestBody Feed feed){
+        return feedLikeService.getNumberOfFeedLike(feed);
+    }
+
 }
