@@ -56,7 +56,6 @@ public class FeedService {
         }else {
             Feed temp = feedOptional.get();
             feedOptional.get().setText(feed.getText());
-            feedOptional.get().setTitle(feed.getTitle());
             feedOptional.get().setImage(feed.getImage());
             feedOptional.get().setUpdateTime(LocalDateTime.now());
             feedRepository.save(temp);

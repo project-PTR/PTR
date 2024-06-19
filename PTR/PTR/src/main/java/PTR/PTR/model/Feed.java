@@ -19,8 +19,6 @@ public class Feed {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column
-    private String title;
-    @Column
     private String text;
     @Column
     private String image;
