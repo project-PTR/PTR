@@ -114,8 +114,34 @@
   justify-content: space-around;
 }
 .meal_item {
-  width: 120px;
-  height: 60px;
-  background-color: #e0e0e0;
+  width: 100px;
+  height: 120px;
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 5px;
+  text-align: center;
+}
+
+.meal_image {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.meal_item img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.meal_text {
+  font-size: 0.8rem;
+  margin-top: 5px;
+  white-space: nowrap;
 }

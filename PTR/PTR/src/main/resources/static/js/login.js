@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   signupButton.addEventListener("click", function () {
-    window.location.href = "signUp.html"; // 회원가입 페이지로 이동
+    window.location.href = "/PTR/PTR/src/main/resources/templates/signUp.html";
   });
 
   function validateEmail(email) {

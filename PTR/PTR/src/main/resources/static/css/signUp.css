@@ -16,9 +16,12 @@
 
 .profile_image {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   margin-bottom: 70px;
   margin-top: 70px;
+  cursor: pointer;
 }
 
 .profile_image img {
@@ -26,20 +29,11 @@
   height: 200px;
   border-radius: 50%;
   background: #ccc;
+  margin-bottom: 20px;
 }
 
 .profile_image input[type="file"] {
   display: none;
-}
-
-.profile_image label {
-  cursor: pointer;
-  color: #2c394a;
-  background: #f9f9f9;
-  padding: 10px 20px;
-  border-radius: 50px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transition: background 0.3s, color 0.3s;
 }
 
 .profile_image label:hover {
@@ -79,17 +73,22 @@
   display: none;
 }
 
-.radio_group input[type="radio"] + label {
-  background: #2c394a;
+.radio_group label {
   padding: 10px 20px;
+  border: 1px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
-  transition: bakground 0.3s, color 0.3s;
+  transition: background 0.3s, color 0.3s;
 }
 
 .radio_group input[type="radio"]:checked + label {
-  background: #333;
+  background: #2c394a;
   color: white;
+}
+
+.radio_group input[type="radio"] + label {
+  background: #f9f9f9;
+  color: #000;
 }
 
 .checkbox_label {
@@ -161,7 +160,7 @@
   content: "";
   position: absolute;
   top: 50%;
-  width: 30%;
+  width: 25%;
   height: 1px;
   background: #ccc;
 }

@@ -48,17 +48,50 @@
 }
 
 .circle {
-  width: 40px;
-  height: 40px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  background-color: #e0e0e0;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   margin-bottom: 5px;
 }
 
+#carbs_circle {
+  background-image: url("https://img.icons8.com/?size=100&id=gGw7tcwnwkKR&format=png&color=000000"); /* 탄수화물 이미지 경로 */
+}
+
+#proteins_circle {
+  background-image: url("https://img.icons8.com/?size=100&id=JLFDGhX8rC2G&format=png&color=000000"); /* 단백질 이미지 경로 */
+}
+
+#fats_circle {
+  background-image: url("https://img.icons8.com/?size=100&id=9oyfAy0SEhKe&format=png&color=000000"); /* 지방 이미지 경로 */
+}
+
+#water_circle {
+  background-image: url("https://img.icons8.com/?size=100&id=pwe1Tt4dpUpI&format=png&color=000000"); /* 물 이미지 경로 */
+}
+
+#weight_circle {
+  background-image: url("https://img.icons8.com/?size=100&id=WxYRlDHVxbXD&format=png&color=000000"); /* 체중 이미지 경로 */
+}
+
+#exercise1_circle {
+  background-image: url(https://img.icons8.com/?size=100&id=2244&format=png&color=000000);
+}
+
+#exercise2_circle {
+  background-image: url(https://img.icons8.com/?size=100&id=1784&format=png&color=000000);
+}
+
+#exercise3_circle {
+  background-image: url(https://img.icons8.com/?size=100&id=vrGJofysKMo_&format=png&color=000000);
+}
+
+#exercise4_circle {
+  background-image: url(https://img.icons8.com/?size=100&id=946&format=png&color=000000);
+}
 .plan_value {
   font-size: 1rem;
   font-weight: bold;
@@ -77,11 +110,10 @@
 }
 
 .tabs {
-  position: absolute;
-  top: -43px;
-  left: 10px;
   display: flex;
-  gap: 10px;
+  justify-content: center;
+  background-color: #fff;
+  z-index: 10;
 }
 
 .tabs ul {
@@ -116,11 +148,14 @@
   gap: 20px;
 }
 
+.detail_section.active {
+  display: block;
+}
+
 .meal {
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   padding: 20px 0;
   border-bottom: 1px dashed #ccc;
 }
@@ -137,32 +172,6 @@
   font-weight: bold;
   margin-bottom: 10px;
   margin-left: 20px;
-}
-
-.meal_items {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex-grow: 1;
-  margin-left: 50px;
-}
-
-.meal_item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 200px;
-  padding: 10px;
-  background-color: #e0e0e0;
-  border-radius: 5px;
-}
-
-.meal_item button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  color: #f00;
 }
 
 .meal_controls {
@@ -186,6 +195,40 @@
 
 .meal_controls button:hover {
   background-color: white;
+}
+.meal_items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-grow: 1;
+  margin-left: 50px;
+  text-align: center;
+}
+
+.meal_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  margin-top: 10px;
+  width: 150px;
+}
+
+.meal_item button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #f00;
+}
+
+.detail_section {
+  display: none;
+}
+
+.detail_section.active {
+  display: block;
 }
 
 .content_footer {
@@ -221,11 +264,13 @@
 }
 
 .water_circle {
-  width: 60px;
-  height: 60px;
-  background-color: #e0e0e0;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  margin-top: 50px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 5px;
 }
 
 .water_amount {

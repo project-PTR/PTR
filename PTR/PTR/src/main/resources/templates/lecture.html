@@ -1,9 +1,16 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/lecture.css" />
+    <link
+      rel="stylesheet"
+      href="/PTR/PTR/src/main/resources/static/css/style.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/PTR/PTR/src/main/resources/static/css/lecture.css"
+    />
     <title>Personal Training</title>
   </head>
   <body>
@@ -22,7 +29,7 @@
           <div><a href="customerService.html">고객센터</a></div>
           <div><a href="login.html">로그인</a></div>
         </div>
-        <div class="login_box">로그인 / 회원가입</div>
+        <div class="login_box"><a href="login.html">로그인 / 회원가입</a></div>
       </div>
       <div class="heading">
         <div class="head_title">Personal Training</div>
@@ -50,16 +57,37 @@
             <h2>강사 소개</h2>
             <div class="instructors">
               <div class="instructor">
-                <div class="profile_pic"></div>
-                <div class="name">NAME</div>
+                <div class="profile_pic">
+                  <img src="profile_palceholder.png" />
+                </div>
+                <div class="name">Steve</div>
+                <button class="notify_button">
+                  <img
+                    src="https://img.icons8.com/?size=100&id=LtAJg62rZRtw&format=png&color=000000"
+                  />
+                </button>
               </div>
               <div class="instructor">
-                <div class="profile_pic"></div>
-                <div class="name">NAME</div>
+                <div class="profile_pic">
+                  <img src="profile_palceholder.png" />
+                </div>
+                <div class="name">Tom</div>
+                <button class="notify_button">
+                  <img
+                    src="https://img.icons8.com/?size=100&id=LtAJg62rZRtw&format=png&color=000000"
+                  />
+                </button>
               </div>
               <div class="instructor">
-                <div class="profile_pic"></div>
+                <div class="profile_pic">
+                  <img src="profile_palceholder.png" />
+                </div>
                 <div class="name">NAME</div>
+                <button class="notify_button">
+                  <img
+                    src="https://img.icons8.com/?size=100&id=LtAJg62rZRtw&format=png&color=000000"
+                  />
+                </button>
               </div>
             </div>
           </div>
@@ -74,6 +102,6 @@
         </div>
       </div>
     </div>
-    <script src="/js/lecture.js"></script>
+    <script src="/PTR/PTR/src/main/resources/static/js/lecture.js"></script>
   </body>
 </html>

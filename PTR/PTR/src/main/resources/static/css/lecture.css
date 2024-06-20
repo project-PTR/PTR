@@ -101,6 +101,7 @@
 .related_videos_section h2 {
   text-align: center;
   margin-bottom: 70px;
+  margin-top: 70px;
 }
 
 .videos,
@@ -114,20 +115,52 @@
 .video,
 .instructor,
 .related_video {
-  width: 350px;
-  height: 350px;
-  background-color: #ccc;
+  width: 200px;
+  height: 250px;
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  overflow: hidden;
 }
 
 .profile_pic {
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   background-color: #bbb;
   border-radius: 50%;
   margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.profile_pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.name {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.notify_button {
+  width: 40px;
+  height: 40px;
+  background-color: #eee;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notify_button img {
+  width: 20px;
+  height: 20px;
 }

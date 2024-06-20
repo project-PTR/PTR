@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/signUp.css" />
+    <link
+      rel="stylesheet"
+      href="/PTR/PTR/src/main/resources/static/css/style.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/PTR/PTR/src/main/resources/static/css/signUp.css"
+    />
     <title>Document</title>
   </head>
   <body>
@@ -23,7 +29,7 @@
           <div><a href="customerService.html">고객센터</a></div>
           <div><a href="login.html">로그인</a></div>
         </div>
-        <div class="login_box">로그인 / 회원가입</div>
+        <div class="login_box"><a href="login.html">로그인 / 회원가입</a></div>
       </div>
       <div class="heading">
         <div class="head_title">SignUp</div>
@@ -31,9 +37,14 @@
       <div class="content">
         <div class="content_body">
           <form>
-            <div class="profile_image">
-              <label for="profileImageInput">이미지 업로드</label>
-              <input type="file" id="profileImageInput" accept="image/*" />
+            <div class="profile_image" id="profileImageContainer">
+              <img id="profileImage" src="profile_palceholder.png" />
+              <input
+                type="file"
+                id="profileImageInput"
+                accept="image/*"
+                style="display: none"
+              />
             </div>
             <div class="form_group">
               <label for="name">name :</label>
@@ -50,50 +61,50 @@
             <div class="form_group">
               <label>gender :</label>
               <div class="radio_group">
-                <label
-                  ><input
-                    type="radio"
-                    name="gender"
-                    value="M"
-                    required
-                  />M</label
-                >
-                <label
-                  ><input
-                    type="radio"
-                    name="gender"
-                    value="W"
-                    required
-                  />W</label
-                >
+                <input
+                  type="radio"
+                  id="genderM"
+                  name="gender"
+                  value="M"
+                  required
+                />
+                <label for="genderM">M</label>
+                <input
+                  type="radio"
+                  id="genderW"
+                  name="gender"
+                  value="W"
+                  required
+                />
+                <label for="genderW">W</label>
               </div>
             </div>
             <div class="form_group">
               <label>Position :</label>
               <div class="radio_group">
-                <label
-                  ><input
-                    type="radio"
-                    name="position"
-                    value="student"
-                    required
-                  />학생</label
-                >
-                <label
-                  ><input
-                    type="radio"
-                    name="position"
-                    value="teacher"
-                    required
-                  />강사</label
-                >
+                <input
+                  type="radio"
+                  id="positionS"
+                  name="position"
+                  value="student"
+                  required
+                />
+                <label for="positionS">학생</label>
+                <input
+                  type="radio"
+                  id="positionT"
+                  name="position"
+                  value="teacher"
+                  required
+                />
+                <label for="positionT">강사</label>
               </div>
             </div>
             <div class="customization_setting">
               <h1>Customization Setting</h1>
               <div class="subheading">평소 활동량</div>
               <div class="form_group">
-                <div class="checkbox_group">
+                <div class="checkbox_group horizontal">
                   <div>
                     <input
                       type="checkbox"
@@ -101,7 +112,7 @@
                       name="activity"
                       value="text1"
                     />
-                    <label for="activity1">Text1</label>
+                    <label for="activity1">적음</label>
                   </div>
                   <div>
                     <input
@@ -110,7 +121,7 @@
                       name="activity"
                       value="text2"
                     />
-                    <label for="activity2">Text2</label>
+                    <label for="activity2">보통</label>
                   </div>
                   <div>
                     <input
@@ -119,7 +130,7 @@
                       name="activity"
                       value="text3"
                     />
-                    <label for="activity3">Text3</label>
+                    <label for="activity3">많음</label>
                   </div>
                   <div>
                     <input
@@ -128,31 +139,13 @@
                       name="activity"
                       value="text4"
                     />
-                    <label for="activity4">Text4</label>
-                  </div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="activity5"
-                      name="activity"
-                      value="text5"
-                    />
-                    <label for="activity5">Text5</label>
-                  </div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="activity6"
-                      name="activity"
-                      value="text6"
-                    />
-                    <label for="activity6">Text6</label>
+                    <label for="activity4">매우 많음</label>
                   </div>
                 </div>
               </div>
               <div class="subheading">식단 모드</div>
               <div class="form_group">
-                <div class="checkbox_group">
+                <div class="checkbox_group horizontal">
                   <div>
                     <input
                       type="checkbox"
@@ -160,7 +153,7 @@
                       name="diet_mode"
                       value="text1"
                     />
-                    <lavel for="diet1">Text1</lavel>
+                    <lavel for="diet1">일반</lavel>
                   </div>
                   <div>
                     <input
@@ -169,16 +162,25 @@
                       name="diet_mode"
                       value="text2"
                     />
-                    <lavel for="diet2">Text2</lavel>
+                    <lavel for="diet2">운동</lavel>
                   </div>
                   <div>
                     <input
                       type="checkbox"
-                      id="diet2"
+                      id="diet3"
                       name="diet_mode"
                       value="text3"
                     />
-                    <lavel for="diet3">Text3</lavel>
+                    <lavel for="diet3">키토</lavel>
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="diet4"
+                      name="diet_mode"
+                      value="text4"
+                    />
+                    <lavel for="diet3">비건</lavel>
                   </div>
                 </div>
               </div>
@@ -201,6 +203,6 @@
         </div>
       </div>
     </div>
-    <script src="/js/signUp.js"></script>
+    <script src="/PTR/PTR/src/main/resources/static/js/signUp.js"></script>
   </body>
 </html>
