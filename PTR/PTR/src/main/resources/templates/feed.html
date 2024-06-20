@@ -34,7 +34,7 @@
         <div class="content_body">
           <!-- 여기서 작업해야 함 -->
           <div class="content_feed">
-            <div class="content_feedheader">
+            <!--<div class="content_feedheader">
               <div class="content_feedheader_left">
                 <div class="content_feedheader_userPhoto"></div>
                 <div>
@@ -66,7 +66,7 @@
               <div class="content_feedMore_changeBtn">수정</div>
               <div class="content_feedMore_delete">삭제</div>
               <div class="content_feedMore_likeCheck">좋아요 확인</div>
-            </div>
+            </div>-->
             <!--<div class="content_feedcommentbox">
               <div class="content_feedcomment">
                 <div class="content_feedcomment_UserPhoto"></div>
@@ -82,11 +82,13 @@
                 <div class="content_createFeed_myId">MyId</div>
               </div>
               <div class="content_createFeed_right">
-                <div class="content_createFeed_add"></div>
-                <div class="content_createFeed_create">등록</div>
+                <div class="content_createFeed_add">
+                  <img src = "/img/attach_file.png" width="35" height="35">
+                </div>
+                <div class="content_createFeed_createBtn">등록</div>
               </div>
             </div>
-            <div class="content_createFeed_body">text 입력</div>
+            <input type="text" id="text-large" class="input-large"><br>
           </div>
           <!--내 피드-->
           <div class="content_myFeed hiden">
@@ -207,10 +209,18 @@
       </div>
       <div class="blank"></div>
       <div class="footer_feedMenu">
-        <div class="footer_feedMenu_feedHomeBtn"></div>
-        <div class="footer_feedMenu_createFeedBtn"></div>
-        <div class="footer_feedMenu_myFeedBtn"></div>
-        <div class="footer_feedMenu_scrapFeedBtn"></div>
+        <div class="footer_feedMenu_feedHomeBtn">
+          <img src = "/img/home.png" width="70" height="70">
+        </div>
+        <div class="footer_feedMenu_createFeedBtn">
+          <img src = "/img/add_box.png" width="70" height="70">
+        </div>
+        <div class="footer_feedMenu_scrapFeedBtn">
+          <img src = "/img/book.png" width="70" height="70">
+        </div>
+        <div class="footer_feedMenu_myFeedBtn">
+          <img src = "/img/account_circle.png" width="70" height="70">
+        </div>
       </div>
     </div>
     <script src="/js/feed.js"></script>
