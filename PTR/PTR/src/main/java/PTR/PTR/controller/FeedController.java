@@ -16,8 +16,9 @@ public class FeedController {
     }
 
     @PostMapping("/feed")
-    public Feed saveFeed(@RequestBody Feed feed){
-        return feedService.saveFeed(feed);
+    public String saveFeed(@RequestBody Feed feed){
+        feedService.saveFeed(feed);
+        return "정상작동";
     }
 
     @GetMapping("/feed")

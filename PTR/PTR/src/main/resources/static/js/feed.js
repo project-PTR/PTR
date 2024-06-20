@@ -156,18 +156,16 @@ let user = {
     userId: "cake"
 }
 let text = "";
-/*
-document.querySelector("#text-large").addEventListener("change",(e)=>{
-    console.log(e.target.value);
-    user = e.target.value;
-})*/
 document.querySelector("#text-large").addEventListener("change",(e)=>{
     console.log(e.target.value);
     text = e.target.value;
 })
+
 document.querySelector(".content_createFeed_createBtn").addEventListener("click",()=>{
     const data = {
-        userId: user,
+        user : {
+            userId: user.userId
+        },
         text:text
     }
     axios
