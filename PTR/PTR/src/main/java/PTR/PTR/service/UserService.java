@@ -83,4 +83,36 @@ public class UserService {
         changeUser.setProfileText(user.getProfileText());
         return userRepository.save(changeUser);
     }
+
+    public int findCoin(User user){
+        return userRepository.findById(user.getUserId()).get().getCoin();
+    }
+
+    public User changeCoin(User user){
+        User changeUser = userRepository.findByUserId(user.getUserId()).get();
+        changeUser.setCoin(user.getCoin());
+        return userRepository.save(changeUser);
+    }
+
+    public User sendUser(User user){
+        return userRepository.findById(user.getUserId()).get();
+    }
+
+    public User changeUserName(User user){
+        User changeUser = userRepository.findByUserId(user.getUserId()).get();
+        changeUser.setUserName(user.getUserName());
+        return userRepository.save(changeUser);
+    }
+
+    public User changeUserEmail(User user){
+        User changeUser = userRepository.findByUserId(user.getUserId()).get();
+        changeUser.setEmail(user.getEmail());
+        return userRepository.save(changeUser);
+    }
+
+    public User changeUserBirthday(User user){
+        User changeUser = userRepository.findByUserId(user.getUserId()).get();
+        changeUser.setBirthday(user.getBirthday());
+        return userRepository.save(changeUser);
+    }
 }

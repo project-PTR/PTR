@@ -123,16 +123,16 @@
 .content_body_myrecord_move > div{
   font-weight: bold;
   font-size: 20px;
-  background-color: gray;
-  color: white;
+  background-color: #2C394A;
+  color: #FEC009;
   padding: 20px;
   margin: 30px 30px 100px 30px;
   cursor: pointer;
 }
 
 .content_body_myrecord_move > div:hover{
-  background-color: yellow;
-  color: black;
+  background-color: #FEC009;
+  color: #2C394A;
 }
 
 .content_body_myrecord_box_title{
@@ -255,9 +255,13 @@
 }
 
 .content_body_cash_box_img{
-  width: 200px;
-  height: 70px;
-  background-color: gray;
+  overflow: hidden;
+}
+
+.content_body_cash_box_img > img{
+  max-width: 100%; /* 이미지가 컨테이너 너비를 넘지 않도록 설정 */
+  max-height: 100%;
+  object-fit: cover;
 }
 
 .content_body_cash_box_text{
@@ -386,6 +390,22 @@
 
 .myid_tap3_value_text{
   width: 80%;
+}
+
+.myid_tap3_butten{
+  margin: 50px 40%;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.myid_tap3_butten:hover{
+  background-color: #FEC009;
+  color: #2C394A;
+  border: none;
 }
 
 .hiden{

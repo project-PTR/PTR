@@ -82,7 +82,7 @@ public class UserController {
         return new ResponseEntity<>(userService.deleteUserCategory(user), HttpStatus.OK);
     }
     // 유저 카테고리 조회
-    @GetMapping("findUserCategory")
+    @PostMapping("findUserCategory")
     public ResponseEntity<List<UserCategory>> findUserCategory(@RequestBody User user){
         return new ResponseEntity<>(userService.findUserCategory(user), HttpStatus.OK);
     }
@@ -100,5 +100,31 @@ public class UserController {
     @PostMapping("changeProfileText")
     public ResponseEntity<User> changeProfileText(@RequestBody User user){
         return new ResponseEntity<>(userService.changeProfileText(user), HttpStatus.OK);
+    }
+
+    @PostMapping("findCoin")
+    public ResponseEntity<Integer> findCoin(@RequestBody User user){
+        return new ResponseEntity<>(userService.findCoin(user), HttpStatus.OK);
+    }
+    @PostMapping("changeCoin")
+    public ResponseEntity<User> changeCoin(@RequestBody User user){
+        return new ResponseEntity<>(userService.changeCoin(user), HttpStatus.OK);
+    }
+
+    @PostMapping("sendUser")
+    public ResponseEntity<User> sendUser(@RequestBody User user){
+        return new ResponseEntity<>(userService.sendUser(user), HttpStatus.OK);
+    }
+    @PostMapping("changeUserName")
+    public ResponseEntity<User> changeUserName(@RequestBody User user){
+        return new ResponseEntity<>(userService.changeUserName(user), HttpStatus.OK);
+    }
+    @PostMapping("changeUserEmail")
+    public ResponseEntity<User> changeUserEmail(@RequestBody User user){
+        return new ResponseEntity<>(userService.changeUserEmail(user), HttpStatus.OK);
+    }
+    @PostMapping("changeUserBirthday")
+    public ResponseEntity<User> changeUserBirthday(@RequestBody User user){
+        return new ResponseEntity<>(userService.changeUserBirthday(user), HttpStatus.OK);
     }
 }
