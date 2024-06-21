@@ -63,4 +63,7 @@ public class FeedService {
         }
     }
 
+    public Optional<Feed> getFeedByFeedId(Feed feed) {
+        return feedRepository.findById(feed.getId());
+    }
 }
