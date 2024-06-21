@@ -22,12 +22,12 @@ public class FeedScrapController {
         return feedScrapService.saveFeedScrap(feedScrap);
     }
 
-    @GetMapping("/feedScrap/feed")
+    @PostMapping("/feedScrap/feed")
     public List<FeedScrap> getFeedScrapByFeed(@RequestBody Feed feed){
         return feedScrapService.getFeedScrapByFeed(feed);
     }
 
-    @GetMapping("/feedScrap/user")
+    @PostMapping("/feedScrap/user")
     public List<FeedScrap> getFeedScrapByUser(@RequestBody User user){
         return feedScrapService.getFeedScrapByUser(user);
     }

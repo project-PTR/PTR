@@ -26,12 +26,12 @@ public class FeedController {
         return feedService.getFeed();
     }
 
-    @GetMapping("/feed/id")
+    @PostMapping("/feed/id")
     public List<Feed> getFeedById(@RequestBody User user){
         return feedService.getFeedById(user);
     }
 
-    @GetMapping("/feed/name")
+    @PostMapping("/feed/name")
     public List<Feed> getFeedByName(@RequestBody User user){
         return feedService.getFeedByName(user);
     }
