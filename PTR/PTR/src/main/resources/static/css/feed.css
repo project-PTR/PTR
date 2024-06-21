@@ -5,6 +5,13 @@
     align-items: center;  
     position: relative;
 }
+.content_feed2{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+    position: relative;
+}
 .content_feedheader{
     width: 70%;
     height: 60px;
@@ -229,7 +236,7 @@
   width: 300px;
 }
 
-.content_myFeed_profile_img{
+#content_myFeed_profile_img{
   height: 300px;
   width: 300px;
   margin-bottom: 20px;
@@ -239,6 +246,7 @@
 
 .content_myFeed_profile_id{
   font-weight: bold;
+  font-size: 1.5rem;
 }
 
 .content_myFeed_profile_right{
@@ -291,9 +299,9 @@
   gap: 20px;
 }
 
-.content_myFeed_myfeeds > div{
+.content_myFeed_feed{
   background-color: gray;
-  width: auto;
+  width: 100%;;
   height: 300px;
 }
 
@@ -380,9 +388,9 @@
     gap: 20px;
   }
   
-  .content_otherFeed_feeds > div{
+  .content_otherFeed_feed > div{
     background-color: gray;
-    width: auto;
+    width: 100%;
     height: 300px;
   }
 
@@ -499,10 +507,10 @@
     gap: 20px;
 }
   
-.content_scrapFeed_feeds > div{
+.content_scrapFeed_feed{
     background-color: gray;
-    width: auto;
-    height: 300px;
+    width: 100%;
+    height: 200px;
 }
 
 /*하단 고정*/
