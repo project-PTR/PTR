@@ -1,9 +1,13 @@
 package PTR.PTR.controller;
 
 import PTR.PTR.model.Calendar;
+import PTR.PTR.model.User;
 import PTR.PTR.service.CalendarService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -32,5 +36,10 @@ public class CalendarController {
     @PutMapping("/calendar")
     public Calendar updatecalendar(@RequestBody Calendar calendar){
         return calendarService.updateCalendar(calendar);
+    }
+
+    @PostMapping("/findCalendarDay5")
+    public ResponseEntity<List<Calendar>> findCalendarDay5(@RequestBody User user){
+        return new ResponseEntity<>(calendarService.findCalendarDay5(user), HttpStatus.OK);
     }
 }

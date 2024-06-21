@@ -2,9 +2,13 @@ package PTR.PTR.service;
 
 import PTR.PTR.exception.ResourceNotFoundException;
 import PTR.PTR.model.Calendar;
+import PTR.PTR.model.User;
 import PTR.PTR.repository.CalendarRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,5 +47,16 @@ public class CalendarService {
             calendarRepository.save(temp);
             return temp;
         }
+    }
+
+    public List<Calendar> findCalendarDay5(User user){
+        LocalDate now = LocalDate.now();
+        List<Calendar> calendars = new ArrayList<>();
+        calendars.add(calendarRepository.findByDateAndUser(now, user));
+        for (int i=1; i<5; i++){
+            now = now.minusDays(1);
+            calendars.add(calendarRepository.findByDateAndUser(now, user));
+        }
+        return calendars;
     }
 }

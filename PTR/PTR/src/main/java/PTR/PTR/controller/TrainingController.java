@@ -65,4 +65,14 @@ public class TrainingController {
     public ResponseEntity<List<Training>> noStudents(@RequestBody Teacher teacher){
         return new ResponseEntity<>(trainingService.noStudents(teacher),HttpStatus.OK);
     }
+
+    // 유저가 자신의 1:1 훈련 조회
+    @PostMapping("myCallTraining")
+    public ResponseEntity<List<Training>> myCallTraining(@RequestBody User user){
+        return new ResponseEntity<>(trainingService.myCallTraining(user), HttpStatus.OK);
+    }
+    @PostMapping("deleteCallTraining")
+    public ResponseEntity<Training> deleteCallTraining(@RequestBody Training training){
+        return new ResponseEntity<>(trainingService.deleteCallTraining(training), HttpStatus.OK);
+    }
 }

@@ -61,4 +61,13 @@ public class TrainingService {
     public List<Training> noStudents(Teacher teacher){
         return trainingRepository.findByTeacherAndStatus(teacher,Status.REJECT);
     }
+
+    public List<Training> myCallTraining(User user){
+        return trainingRepository.findByUser(user);
+    }
+
+    public Training deleteCallTraining(Training training){
+        trainingRepository.delete(training);
+        return training;
+    }
 }

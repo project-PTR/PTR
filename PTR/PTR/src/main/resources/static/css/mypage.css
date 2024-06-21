@@ -74,6 +74,53 @@
   background-color: #2C394A;
   color: #FEC009;
 }
+
+
+
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5); /* 배경 어둡게 */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
 .content_body_favoriteLecture{
   width: 100%;
   display: grid;
@@ -104,6 +151,154 @@
   font-size: 20px;
   padding: 20px;
 }
+
+
+
+
+
+
+.content_body_scrapLecture{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.content_body_scrapLecture_box{
+  background-color: #FEC009;
+  color: black;
+  cursor: pointer;
+}
+.content_body_scrapLecture_box_img{
+  height: 250px;
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: yellow;
+  overflow: hidden;
+}
+.content_body_scrapLecture_box_img > video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content_body_scrapLecture_box_title{
+  font-size: 20px;
+  padding: 20px;
+}
+
+/* 1:1훈련 */
+.content_body_traning{
+  width: 100%;
+  text-align: center;
+}
+
+.content_body_traning_status_grid{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  margin-top: 20px;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.content_body_traning_status{
+  color: rgb(179, 179, 179);
+}
+
+.statuscheck{
+  color: black;
+}
+
+.content_body_traning_box{
+  border: 1px solid black;
+  margin-top: -1px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 50px;
+}
+
+.content_body_traning_box_flex{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  text-align: start;
+}
+
+.content_body_traning_img{
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  background-color: yellow;
+  margin-bottom: 30px;
+  margin-right: 50px;
+  margin-left: 50px;
+  overflow: hidden;
+}
+
+.content_body_traning_img > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content_body_traning_name{
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.content_body_traning_profileText{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.content_body_traning_price{
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.content_body_traning_Btn_box{
+  display: flex;
+}
+
+.content_body_traning_cansleBtn1{
+  padding: 10px;
+  margin: auto;
+  width: 200px;
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.content_body_traning_cansleBtn1:hover{
+  background-color: #2C394A;
+  color: #FEC009;
+  border: 0;
+}
+
+.content_body_traning_Btn2{
+  padding: 10px;
+  margin: auto;
+  width: 200px;
+  background-color: #FEC009;
+  color: #2C394A;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.content_body_traning_Btn2:hover{
+  background-color: #2C394A;
+  color: #FEC009;
+}
+
+
+
+
+
+
+
+
 
 /* 기록 및 통계 부분 */
 
@@ -155,29 +350,17 @@
 }
 
 .weight{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
+  padding-top: 50px;
+  padding-bottom: 100px;
 }
 
-.circle{
-  width: 20px;
-  height: 20px;
-  border-radius: 100%;
-  background-color: #2C394A;
-}
-.circlelast{
-  width: 20px;
-  height: 20px;
-  border-radius: 100%;
-  background-color: #FEC009;
+.content_body_myrecord_weight_chart_box{
+  width: 80%;
+  margin: auto;
 }
 
-.line{
-  width: 200px;
-  border: 1px solid #2C394A;
-}
+
+
 
 /* 기록 및 통계 > 식단 & 운동 */
 .content_body_myrecord_box2{
