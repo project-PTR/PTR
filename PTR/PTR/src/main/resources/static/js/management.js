@@ -1,6 +1,49 @@
 document.addEventListener("DOMContentLoaded", function () {
   let currentYear, currentMonth, currentDate;
 
+  async function fetchEvents(date) {
+    const response = await fetch(`/api/calendar/${date}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  }
+
+  async function createEvent(event) {
+    const response = await fetch('/api/calendar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(event)
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  }
+
+  async function deleteEvent(id) {
+    const response = await fetch(`/api/calendar/${id}`, {
+      method: 'DELETE'
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  }
+
+  async function loadEvents(year, month, date) {
+    const dateString = `${year}-${padZero(month)}-${padZero(date)}`;
+    try {
+      const events = await fetchEvents(dateString);
+      console.log(events);
+      // Display the events on the frontend as needed
+    } catch (error) {
+      console.error('Failed to fetch events:', error);
+    }
+  }
+  
   function getQueryParams() {
     const params = new URLSearchParams(window.location.search);
     return {
@@ -15,73 +58,66 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function updateDateDisplay(year, month, date) {
-    document.querySelector(
-      ".content_date_text"
-    ).textContent = `${year}. ${padZero(month)}. ${padZero(date)}`;
+    document.querySelector(".content_date_text").textContent = `${year}. ${padZero(month)}. ${padZero(date)}`;
   }
 
-  async function saveData() {
+  function saveData() {
     const data = {
-      intake: document.querySelectorAll(".plan_summary_item .plan_value")[0]
-        .textContent,
-      consumption: document.querySelectorAll(
-        ".plan_summary_item .plan_value"
-      )[1].textContent,
-      water: document.querySelectorAll(".plan_summary_item .plan_value")[2]
-        .textContent,
-      weight: document.querySelectorAll(".plan_summary_item .plan_value")[3]
-        .textContent,
+      intake: document.querySelectorAll(".plan_summary_item .plan_value")[0].textContent,
+      consumption: document.querySelectorAll(".plan_summary_item .plan_value")[1].textContent,
+      water: document.querySelectorAll(".plan_summary_item .plan_value")[2].textContent,
+      weight: document.querySelectorAll(".plan_summary_item .plan_value")[3].textContent,
       carbs: getItems("carbs"),
       proteins: getItems("proteins"),
       fats: getItems("fats"),
+      exercise1: getItems("exercise1"),
+      exercise2: getItems("exercise2"),
+      exercise3: getItems("exercise3"),
+      exercise4: getItems("exercise4"),
     };
 
-    const response = await fetch("/saveData", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        year: currentYear,
-        month: padZero(currentMonth),
-        date: padZero(currentDate),
-        data,
-      }),
-    });
-
-    if (!response.ok) {
-      alert("Failed to save data.");
-    }
+    const dateKey = `${currentYear}-${padZero(currentMonth)}-${padZero(currentDate)}`;
+    localStorage.setItem(dateKey, JSON.stringify(data));
   }
 
-  async function loadData(year, month, date) {
-    const response = await fetch(
-      `/loadData?year=${year}&month=${padZero(month)}&date=${padZero(date)}`
-    );
-    const data = await response.json();
+  function loadData(year, month, date) {
+    const dateKey = `${year}-${padZero(month)}-${padZero(date)}`;
+    const data = JSON.parse(localStorage.getItem(dateKey));
 
     if (data) {
-      document.querySelectorAll(
-        ".plan_summary_item .plan_value"
-      )[0].textContent = data.intake || "0 kcal";
-      document.querySelectorAll(
-        ".plan_summary_item .plan_value"
-      )[1].textContent = data.consumption || "0 kcal";
-      document.querySelectorAll(
-        ".plan_summary_item .plan_value"
-      )[2].textContent = data.water || "0 L";
-      document.querySelectorAll(
-        ".plan_summary_item .plan_value"
-      )[3].textContent = data.weight || "0 kg";
+      document.querySelectorAll(".plan_summary_item .plan_value")[0].textContent = data.intake || "0 kcal";
+      document.querySelectorAll(".plan_summary_item .plan_value")[1].textContent = data.consumption || "0 kcal";
+      document.querySelectorAll(".plan_summary_item .plan_value")[2].textContent = data.water || "0 L";
+      document.querySelectorAll(".plan_summary_item .plan_value")[3].textContent = data.weight || "0 kg";
       setItems("carbs", data.carbs || []);
       setItems("proteins", data.proteins || []);
       setItems("fats", data.fats || []);
+      setItems("exercise1", data.exercise1 || []);
+      setItems("exercise2", data.exercise2 || []);
+      setItems("exercise3", data.exercise3 || []);
+      setItems("exercise4", data.exercise4 || []);
+      updateSummaryValues(); // Load 후 섭취량 및 소모량 계산
+    } else {
+      // 기록이 없는 경우 초기화
+      document.querySelectorAll(".plan_summary_item .plan_value")[0].textContent = "0 kcal";
+      document.querySelectorAll(".plan_summary_item .plan_value")[1].textContent = "0 kcal";
+      document.querySelectorAll(".plan_summary_item .plan_value")[2].textContent = "0 L";
+      document.querySelectorAll(".plan_summary_item .plan_value")[3].textContent = "0 kg";
+      setItems("carbs", []);
+      setItems("proteins", []);
+      setItems("fats", []);
+      setItems("exercise1", []);
+      setItems("exercise2", []);
+      setItems("exercise3", []);
+      setItems("exercise4", []);
+      updateSummaryValues();
     }
   }
 
   function navigateToDate(year, month, date) {
     saveData();
-    window.location.href = "management.html?" + year + month + date;
+    updateDateDisplay(year, month, date);
+    loadData(year, month, date);
   }
 
   function prevDay() {
@@ -92,8 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
     currentMonth = currentDateObj.getMonth() + 1;
     currentDate = currentDateObj.getDate();
 
-    updateDateDisplay(currentYear, currentMonth, currentDate);
-    loadData(currentYear, currentMonth, currentDate);
+    navigateToDate(currentYear, currentMonth, currentDate);
   }
 
   function nextDay() {
@@ -104,8 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
     currentMonth = currentDateObj.getMonth() + 1;
     currentDate = currentDateObj.getDate();
 
-    updateDateDisplay(currentYear, currentMonth, currentDate);
-    loadData(currentYear, currentMonth, currentDate);
+    navigateToDate(currentYear, currentMonth, currentDate);
   }
 
   function registerItem(category) {
@@ -120,13 +154,13 @@ document.addEventListener("DOMContentLoaded", function () {
       removeButton.textContent = "X";
       removeButton.onclick = function () {
         itemElement.remove();
-        updateSummaryValues(category);
+        updateSummaryValues();
         saveData();
       };
       itemElement.appendChild(itemTextElement);
       itemElement.appendChild(removeButton);
       container.appendChild(itemElement);
-      updateSummaryValues(category);
+      updateSummaryValues();
       saveData();
     }
   }
@@ -135,9 +169,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const waterAmountElement = document.getElementById("waterAmount");
     const waterValue = waterAmountElement.textContent;
 
-    const summaryWaterElement = document.querySelectorAll(
-      ".plan_summary_item .plan_value"
-    )[2];
+    // Update the summary water value
+    const summaryWaterElement = document.querySelectorAll(".plan_summary_item .plan_value")[2];
     summaryWaterElement.textContent = `${waterValue} L`;
 
     saveData();
@@ -146,9 +179,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateWeight() {
     const weightInput = document.getElementById("weightInput").value;
 
-    const summaryWeightElement = document.querySelectorAll(
-      ".plan_summary_item .plan_value"
-    )[3];
+    const summaryWeightElement = document.querySelectorAll(".plan_summary_item .plan_value")[3];
     summaryWeightElement.textContent = `${weightInput} kg`;
 
     saveData();
@@ -156,11 +187,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function getItems(category) {
     const items = [];
-    document
-      .querySelectorAll(`#${category}_items .meal_item`)
-      .forEach((item) => {
-        items.push(item.querySelector("span").textContent.trim());
-      });
+    document.querySelectorAll(`#${category}_items .meal_item`).forEach((item) => {
+      items.push(item.querySelector("span").textContent.trim());
+    });
     return items;
   }
 
@@ -176,88 +205,30 @@ document.addEventListener("DOMContentLoaded", function () {
       removeButton.textContent = "X";
       removeButton.onclick = function () {
         itemElement.remove();
-        updateSummaryValues(category);
+        updateSummaryValues();
         saveData();
       };
       itemElement.appendChild(itemTextElement);
       itemElement.appendChild(removeButton);
       container.appendChild(itemElement);
     });
+    updateSummaryValues(); // SetItems 후 섭취량 및 소모량 계산
   }
 
-  function clearItems(category) {
-    const container = document.getElementById(`${category}_items`);
-    container.innerHTML = "";
-  }
+  function updateSummaryValues() {
+    const carbs = getItems("carbs").reduce((total, item) => total + parseFloat(item), 0);
+    const proteins = getItems("proteins").reduce((total, item) => total + parseFloat(item), 0);
+    const fats = getItems("fats").reduce((total, item) => total + parseFloat(item), 0);
+    const totalIntake = carbs + proteins + fats;
 
-  function modifyItem(category) {
-    const container = document.getElementById(`${category}_items`);
-    const items = container.querySelectorAll(".meal_item");
-    if (items.length > 0) {
-      const itemToModify = prompt(
-        "수정할 항목 번호를 입력하세요 (1부터 시작):"
-      );
-      const index = parseInt(itemToModify) - 1;
-      if (index >= 0 && index < items.length) {
-        const newItemText = prompt(
-          "새 항목을 입력하세요:",
-          items[index].querySelector("span").textContent.trim()
-        );
-        if (newItemText) {
-          items[index].querySelector("span").textContent = newItemText;
-          updateSummaryValues(category);
-          saveData();
-        }
-      } else {
-        alert("잘못된 번호입니다.");
-      }
-    } else {
-      alert("수정할 항목이 없습니다.");
-    }
-  }
+    const exercise1 = getItems("exercise1").reduce((total, item) => total + parseFloat(item), 0);
+    const exercise2 = getItems("exercise2").reduce((total, item) => total + parseFloat(item), 0);
+    const exercise3 = getItems("exercise3").reduce((total, item) => total + parseFloat(item), 0);
+    const exercise4 = getItems("exercise4").reduce((total, item) => total + parseFloat(item), 0);
+    const totalConsumption = exercise1 + exercise2 + exercise3 + exercise4;
 
-  function deleteItem(category) {
-    const container = document.getElementById(`${category}_items`);
-    const items = container.querySelectorAll(".meal_item");
-    if (items.length > 0) {
-      const itemToDelete = prompt(
-        "삭제할 항목 번호를 입력하세요 (1부터 시작):"
-      );
-      const index = parseInt(itemToDelete) - 1;
-      if (index >= 0 && index < items.length) {
-        items[index].remove();
-        updateSummaryValues(category);
-        saveData();
-      } else {
-        alert("잘못된 번호입니다.");
-      }
-    } else {
-      alert("삭제할 항목이 없습니다.");
-    }
-  }
-
-  function updateSummaryValues(category) {
-    const items = getItems(category);
-    const totalValue = items.reduce((total, item) => {
-      // Assuming each item represents a numeric value
-      // Update this logic based on how each item should contribute to the total
-      const value = parseFloat(item) || 0;
-      return total + value;
-    }, 0);
-
-    if (category === "carbs") {
-      document.querySelectorAll(
-        ".plan_summary_item .plan_value"
-      )[0].textContent = `${totalValue} kcal`;
-    } else if (category === "proteins") {
-      document.querySelectorAll(
-        ".plan_summary_item .plan_value"
-      )[1].textContent = `${totalValue} kcal`;
-    } else if (category === "fats") {
-      document.querySelectorAll(
-        ".plan_summary_item .plan_value"
-      )[1].textContent = `${totalValue} kcal`;
-    }
+    document.querySelectorAll(".plan_summary_item .plan_value")[0].textContent = `${totalIntake} kcal`;
+    document.querySelectorAll(".plan_summary_item .plan_value")[1].textContent = `${totalConsumption} kcal`;
   }
 
   const queryParams = getQueryParams();
@@ -269,12 +240,8 @@ document.addEventListener("DOMContentLoaded", function () {
     updateDateDisplay(currentYear, currentMonth, currentDate);
     loadData(currentYear, currentMonth, currentDate);
 
-    document
-      .querySelector(".content_date_left")
-      .addEventListener("click", prevDay);
-    document
-      .querySelector(".content_date_right")
-      .addEventListener("click", nextDay);
+    document.querySelector(".content_date_left").addEventListener("click", prevDay);
+    document.querySelector(".content_date_right").addEventListener("click", nextDay);
   } else {
     const today = new Date();
     currentYear = today.getFullYear();
@@ -286,25 +253,21 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   document.getElementById("decrease").addEventListener("click", function () {
-    var waterAmountElement = document.getElementById("waterAmount");
-    var currentValue = parseFloat(waterAmountElement.textContent);
+    const waterAmountElement = document.getElementById("waterAmount");
+    let currentValue = parseFloat(waterAmountElement.textContent);
     if (currentValue > 0) {
       waterAmountElement.textContent = (currentValue - 0.25).toFixed(2);
     }
   });
 
   document.getElementById("increase").addEventListener("click", function () {
-    var waterAmountElement = document.getElementById("waterAmount");
-    var currentValue = parseFloat(waterAmountElement.textContent);
+    const waterAmountElement = document.getElementById("waterAmount");
+    let currentValue = parseFloat(waterAmountElement.textContent);
     waterAmountElement.textContent = (currentValue + 0.25).toFixed(2);
   });
 
-  document
-    .querySelector(".water_intake button")
-    .addEventListener("click", updateWaterIntake);
-  document
-    .querySelector(".weight button")
-    .addEventListener("click", updateWeight);
+  document.querySelector(".water_intake button").addEventListener("click", updateWaterIntake);
+  document.querySelector(".weight button").addEventListener("click", updateWeight);
 
   // 등록 버튼 이벤트 리스너 추가
   document.querySelectorAll(".meal_controls button").forEach((button) => {
@@ -317,18 +280,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // 탭 클릭 이벤트 리스너 추가
   document.querySelectorAll(".tabs ul li").forEach((tab) => {
     tab.addEventListener("click", function () {
-      // 모든 탭에서 active 클래스 제거
       document.querySelectorAll(".tabs ul li").forEach((tab) => {
         tab.classList.remove("active");
       });
-      // 클릭된 탭에 active 클래스 추가
       this.classList.add("active");
 
-      // 모든 detail_section에서 active 클래스 제거
       document.querySelectorAll(".detail_section").forEach((section) => {
         section.classList.remove("active");
       });
-      // 클릭된 탭의 data-target과 일치하는 detail_section에 active 클래스 추가
       const target = this.getAttribute("data-target");
       document.getElementById(target).classList.add("active");
     });

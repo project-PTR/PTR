@@ -37,8 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
   function selectDate(cell, year, month, date) {
     clearSelectedDate();
     cell.classList.add("selected");
-    selectedDateEl.innerText = `선택된 날짜: ${year}-${month}-${date}`;
     recordButton.style.display = "block";
+    cell.appendChild(recordButton);
     recordButton.onclick = function () {
       window.location.href = `management.html?year=${year}&month=${month}&date=${date}`;
     };

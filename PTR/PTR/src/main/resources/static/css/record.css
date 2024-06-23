@@ -39,6 +39,12 @@
 #calendar td.selected {
   background-color: #d0eaff;
 }
+#calendar td.selected .record-button {
+  display: block;
+  margin-top: 30px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+}
 .content_stat {
   width: 100%;
   height: 600px;
