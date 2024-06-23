@@ -1,6 +1,7 @@
 package PTR.PTR.service;
 
 import PTR.PTR.exception.ResourceNotFoundException;
+import PTR.PTR.model.Calendar;
 import PTR.PTR.model.CalendarDietPlan;
 import PTR.PTR.repository.CalendarDietPlanRepository;
 import org.springframework.stereotype.Service;
@@ -44,5 +45,9 @@ public class CalendarDietPlanService {
             calendarDietPlanRepository.save(temp);
             return temp;
         }
+    }
+
+    public CalendarDietPlan findCalendarDietPlanByCalendar(Calendar calendar){
+        return calendarDietPlanRepository.findByCalendar(calendar);
     }
 }

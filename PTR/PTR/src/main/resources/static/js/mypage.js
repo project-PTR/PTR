@@ -148,7 +148,7 @@ function createMyLecturescrap(data){
 
 
 
-
+// 1:1 트레이닝
 
 axios
 .post("http://localhost:8080/myCallTraining", user)
@@ -323,21 +323,19 @@ function createmyCallTraining(data){
 
 
 
-
-
-
-
-
-
-
-
-
+// 기록 및 통계
 
 axios
 .post("http://localhost:8080/findCalendarDay5", user)
 .then((response)=>{
-    console.log("데이터: ", response.data)
+    console.log("ㅎㅎ: ", response.data[0])
     findCalendarDay5(response.data)
+    if(response.data[0]!=null){
+        const calendar = {
+            id: response.data[0].id
+        }
+        calendarChartTData(calendar)
+    }
 })
 .catch((error)=>{
     console.log("에러: ", error)
@@ -535,19 +533,140 @@ function findCalendarDay5(data){
 }
 
 
+function calendarChartTData(data) {
+    let carbohydrateGoal = ""
+    let proteinGoal = ""
+    let fatGoal = ""
+
+    let carbohydrateRecord = ""
+    let proteinRecord = ""
+    let fatRecord = ""
+    
+    let aerobicGoal = ""
+    let muscleGoal = ""
+    let stretchGoal = ""
+    let yogaGoal = ""
+
+    let aerobicRecord = ""
+    let muscleRecord = ""
+    let stretchRecord = ""
+    let yogaRecord = ""
+
+    axios.post("http://localhost:8080/findCalendarDietPlanByCalendar", data)
+        .then((response) => {
+            carbohydrateGoal = response.data.carbohydrate;
+            proteinGoal = response.data.protein;
+            fatGoal = response.data.fat;
+
+            return axios.post("http://localhost:8080/findCalendarDietRecordByCalendar", data);
+        })
+        .then((response) => {
+            carbohydrateRecord = response.data.carbohydrate;
+            proteinRecord = response.data.protein;
+            fatRecord = response.data.fat;
+
+            return axios.post("http://localhost:8080/findCalendarExercisePlanByCalendar", data);
+        })
+        .then((response) => {
+            aerobicGoal = response.data.aerobic;
+            muscleGoal = response.data.muscle;
+            stretchGoal = response.data.stretch;
+            yogaGoal = response.data.yoga;
+
+            return axios.post("http://localhost:8080/findCalendarExerciseRecordByCalendar", data);
+        })
+        .then((response) => {
+            aerobicRecord = response.data.aerobic;
+            muscleRecord = response.data.muscle;
+            stretchRecord = response.data.stretch;
+            yogaRecord = response.data.yoga;
+
+            diet_chart(carbohydrateGoal, proteinGoal, fatGoal, carbohydrateRecord, proteinRecord, fatRecord);
+            exercise_chart(aerobicGoal, muscleGoal, stretchGoal, yogaGoal, aerobicRecord, muscleRecord, stretchRecord, yogaRecord);
+        })
+        .catch((error) => {
+            console.log("에러: ", error);
+        });
+}
+
+function diet_chart(carbohydrateGoal, proteinGoal, fatGoal, carbohydrateRecord, proteinRecord, fatRecord) {
+    const diet_chart_class = document.getElementById('diet_chart').getContext('2d');
+    const diet_chart = new Chart(diet_chart_class, {
+        type: 'bar',
+        data: {
+            labels: ["탄수화물", "지방", "단백질"],
+            datasets: [{
+                label: '목표 칼로리(kcal)',
+                backgroundColor: 'rgba(254, 192, 9, 0.5)',
+                borderColor: 'rgb(254, 192, 9)',
+                data: [carbohydrateGoal, fatGoal, proteinGoal],
+                barThickness: 20,
+                categoryPercentage: 0.6,
+                barPercentage: 0.8,
+            }, {
+                label: '달성 칼로리(kcal)',
+                backgroundColor: 'rgba(44, 57, 74, 0.5)',
+                borderColor: 'rgb(44, 57, 74)',
+                data: [carbohydrateRecord, fatRecord, proteinRecord],
+                barThickness: 20,
+                categoryPercentage: 0.6,
+                barPercentage: 0.8,
+            }]
+        },
+        options: {
+            indexAxis: 'y', // y축을 기준으로 데이터 나열
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1,
+                    }
+                }
+            }
+        }
+    });
+}
+
+function exercise_chart(aerobicGoal, muscleGoal, stretchGoal, yogaGoal, aerobicRecord, muscleRecord, stretchRecord, yogaRecord) {
+    const exercise_chart_class = document.getElementById('exercise_chart').getContext('2d');
+    const exercise_chart = new Chart(exercise_chart_class, {
+        type: 'bar',
+        data: {
+            labels: ["유산소", "근력운동", "스트레칭", "요가"],
+            datasets: [{
+                label: '목표 운동량(분)',
+                backgroundColor: 'rgba(254, 192, 9, 0.5)',
+                borderColor: 'rgb(254, 192, 9)',
+                data: [aerobicGoal, muscleGoal, stretchGoal, yogaGoal],
+                barThickness: 20,
+                categoryPercentage: 0.6,
+                barPercentage: 0.8,
+            }, {
+                label: '달성 운동량(분)',
+                backgroundColor: 'rgba(44, 57, 74, 0.5)',
+                borderColor: 'rgb(44, 57, 74)',
+                data: [aerobicRecord, muscleRecord, stretchRecord, yogaRecord],
+                barThickness: 20,
+                categoryPercentage: 0.6,
+                barPercentage: 0.8,
+            }]
+        },
+        options: {
+            indexAxis: 'y', // y축을 기준으로 데이터 나열
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1,
+                    }
+                }
+            }
+        }
+    });
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
+// 코인충전소
 
 axios
 .post("http://localhost:8080/findCoin", user)
@@ -634,15 +753,7 @@ function cash(data){
 
 
 
-
-
-
-
-
-
-
-
-
+// 계정관리
 
 axios
 .post("http://localhost:8080/sendUser", user)
@@ -700,9 +811,6 @@ function myid11(data){
     })
     myid_value_category.textContent = categorys;
 }
-
-
-
             
 let changename = "";
 let changepassword = "";
@@ -1045,4 +1153,229 @@ document.querySelectorAll(".myid_tap3")[2].addEventListener("click", ()=>{
     document.querySelector(".content_body_myid_tap3").classList.remove("hiden")
     document.querySelector(".content_body_myid_tap1").classList.add("hiden")
     document.querySelector(".content_body_myid_tap2").classList.add("hiden")
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.querySelectorAll(".content_body_subscription_menu1")[0].addEventListener("click", ()=>{
+    console.log("1")
+    document.querySelector(".content_body_subscription_box1").classList.remove("hiden")
+    document.querySelector(".content_body_subscription_box2").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box3").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box4").classList.add("hiden")
+
+    document.querySelector(".content_body_subscription_menu1").classList.add("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+})
+
+document.querySelectorAll(".content_body_subscription_menu2")[0].addEventListener("click", ()=>{
+    console.log("2")
+    document.querySelector(".content_body_subscription_box2").classList.remove("hiden")
+    document.querySelector(".content_body_subscription_box1").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box3").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box4").classList.add("hiden")
+
+    document.querySelector(".content_body_subscription_menu2").classList.add("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+})
+
+document.querySelectorAll(".content_body_subscription_menu3")[0].addEventListener("click", ()=>{
+    console.log("3")
+    document.querySelector(".content_body_subscription_box3").classList.remove("hiden")
+    document.querySelector(".content_body_subscription_box1").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box2").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box4").classList.add("hiden")
+
+    document.querySelector(".content_body_subscription_menu3").classList.add("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+})
+
+document.querySelectorAll(".content_body_subscription_menu4")[0].addEventListener("click", ()=>{
+    console.log("3")
+    document.querySelector(".content_body_subscription_box4").classList.remove("hiden")
+    document.querySelector(".content_body_subscription_box1").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box2").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box3").classList.add("hiden")
+
+    document.querySelector(".content_body_subscription_menu4").classList.add("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
+})
+
+document.querySelectorAll(".content_body_subscription_menu1")[1].addEventListener("click", ()=>{
+    console.log("1")
+    document.querySelector(".content_body_subscription_box1").classList.remove("hiden")
+    document.querySelector(".content_body_subscription_box2").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box3").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box4").classList.add("hiden")
+
+    document.querySelector(".content_body_subscription_menu1").classList.add("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+})
+
+document.querySelectorAll(".content_body_subscription_menu2")[1].addEventListener("click", ()=>{
+    console.log("2")
+    document.querySelector(".content_body_subscription_box2").classList.remove("hiden")
+    document.querySelector(".content_body_subscription_box1").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box3").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box4").classList.add("hiden")
+
+    document.querySelector(".content_body_subscription_menu2").classList.add("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+})
+
+document.querySelectorAll(".content_body_subscription_menu3")[1].addEventListener("click", ()=>{
+    console.log("3")
+    document.querySelector(".content_body_subscription_box3").classList.remove("hiden")
+    document.querySelector(".content_body_subscription_box1").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box2").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box4").classList.add("hiden")
+
+    document.querySelector(".content_body_subscription_menu3").classList.add("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+})
+
+document.querySelectorAll(".content_body_subscription_menu4")[1].addEventListener("click", ()=>{
+    console.log("3")
+    document.querySelector(".content_body_subscription_box4").classList.remove("hiden")
+    document.querySelector(".content_body_subscription_box1").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box2").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box3").classList.add("hiden")
+
+    document.querySelector(".content_body_subscription_menu4").classList.add("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
+})
+
+document.querySelectorAll(".content_body_subscription_menu1")[2].addEventListener("click", ()=>{
+    console.log("1")
+    document.querySelector(".content_body_subscription_box1").classList.remove("hiden")
+    document.querySelector(".content_body_subscription_box2").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box3").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box4").classList.add("hiden")
+
+    document.querySelector(".content_body_subscription_menu1").classList.add("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+})
+
+document.querySelectorAll(".content_body_subscription_menu2")[2].addEventListener("click", ()=>{
+    console.log("2")
+    document.querySelector(".content_body_subscription_box2").classList.remove("hiden")
+    document.querySelector(".content_body_subscription_box1").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box3").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box4").classList.add("hiden")
+
+    document.querySelector(".content_body_subscription_menu2").classList.add("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+})
+
+document.querySelectorAll(".content_body_subscription_menu3")[2].addEventListener("click", ()=>{
+    console.log("3")
+    document.querySelector(".content_body_subscription_box3").classList.remove("hiden")
+    document.querySelector(".content_body_subscription_box1").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box2").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box4").classList.add("hiden")
+
+    document.querySelector(".content_body_subscription_menu3").classList.add("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+})
+
+document.querySelectorAll(".content_body_subscription_menu4")[2].addEventListener("click", ()=>{
+    console.log("3")
+    document.querySelector(".content_body_subscription_box4").classList.remove("hiden")
+    document.querySelector(".content_body_subscription_box1").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box2").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box3").classList.add("hiden")
+
+    document.querySelector(".content_body_subscription_menu4").classList.add("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
+})
+
+document.querySelectorAll(".content_body_subscription_menu1")[3].addEventListener("click", ()=>{
+    console.log("1")
+    document.querySelector(".content_body_subscription_box1").classList.remove("hiden")
+    document.querySelector(".content_body_subscription_box2").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box3").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box4").classList.add("hiden")
+
+    document.querySelector(".content_body_subscription_menu1").classList.add("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+})
+
+document.querySelectorAll(".content_body_subscription_menu2")[3].addEventListener("click", ()=>{
+    console.log("2")
+    document.querySelector(".content_body_subscription_box2").classList.remove("hiden")
+    document.querySelector(".content_body_subscription_box1").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box3").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box4").classList.add("hiden")
+
+    document.querySelector(".content_body_subscription_menu2").classList.add("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+})
+
+document.querySelectorAll(".content_body_subscription_menu3")[3].addEventListener("click", ()=>{
+    console.log("3")
+    document.querySelector(".content_body_subscription_box3").classList.remove("hiden")
+    document.querySelector(".content_body_subscription_box1").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box2").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box4").classList.add("hiden")
+
+    document.querySelector(".content_body_subscription_menu3").classList.add("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+})
+
+document.querySelectorAll(".content_body_subscription_menu4")[3].addEventListener("click", ()=>{
+    console.log("3")
+    document.querySelector(".content_body_subscription_box4").classList.remove("hiden")
+    document.querySelector(".content_body_subscription_box1").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box2").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box3").classList.add("hiden")
+
+    document.querySelector(".content_body_subscription_menu4").classList.add("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
 })

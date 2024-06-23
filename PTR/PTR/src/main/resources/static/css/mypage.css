@@ -12,10 +12,56 @@
   font-weight: bold;
   font-size: 20px;
 }
+
+
+
+.content_body_subscription_menu_box{
+  display: flex;
+  margin-top: 20px;
+  font-weight: lighter;
+}
+
+.content_body_subscription_menu_box > div{
+  width: 150px;
+  padding: 5px;
+  border: 1px solid black;
+  text-align: center;
+  margin-right: -1px;
+  font-size: 1.1rem;
+}
+
+.content_body_subscription_menu_box > div:hover{
+  font-weight: bold;
+}
+
+.content_body_subscription_menu1{
+  border-top-left-radius: 10px;
+}
+
+.content_body_subscription_menu4{
+  border-top-right-radius: 10px;
+}
+
+.content_body_subscription_box{
+  border: 1px solid black;
+  padding: 20px;
+  margin-top: -1px;
+}
+
+
+
+
+
+
+
+
+
+
+
 .content_body_title{
   font-weight: bold;
-  font-size: 30px;
-  margin: 70px;
+  font-size: 25px;
+  margin: 30px;
 }
 .content_body_subscription{
   text-align: center;
@@ -294,13 +340,7 @@
 
 
 
-
-
-
-
-
-
-/* 기록 및 통계 부분 */
+/* 기록 및 통계 */
 
 .content_body_myrecord{
   text-align: center;
@@ -347,14 +387,11 @@
   border: 1px solid black;
   border-radius: 10px;
   margin-bottom: 100px;
-}
-
-.weight{
   padding-top: 50px;
   padding-bottom: 100px;
 }
 
-.content_body_myrecord_weight_chart_box{
+.content_body_myrecord_chart_box{
   width: 80%;
   margin: auto;
 }
@@ -362,37 +399,7 @@
 
 
 
-/* 기록 및 통계 > 식단 & 운동 */
-.content_body_myrecord_box2{
-  margin: 100px;
-  text-align: start;
-  display: grid;
-  grid-template-columns: 1fr 7fr;
-  align-items: center;
-  gap: 40px;
-}
-.content_body_myrecord_box_value{
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  gap: 10px;
-}
-.value{
-  font-size: 15px;
-}
-.goalbar{
-  width: 100px;
-  height: 20px;
-  background-color: #2C394A;
-}
-.recordbar{
-  width: 100px;
-  height: 20px;
-  background-color: #FEC009;
-}
-
-
-
-
+/* 캐쉬 충전소 */
 
 .content_body_cash{
   width: 100%;
@@ -589,6 +596,10 @@
   background-color: #FEC009;
   color: #2C394A;
   border: none;
+}
+
+.cursor_pointer{
+  cursor: pointer;
 }
 
 .hiden{

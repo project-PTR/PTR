@@ -1,7 +1,11 @@
 package PTR.PTR.controller;
 
+import PTR.PTR.model.Calendar;
+import PTR.PTR.model.CalendarDietPlan;
 import PTR.PTR.model.CalendarDietRecord;
 import PTR.PTR.service.CalendarDietRecordService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -32,5 +36,10 @@ public class CalendarDietRecordController {
     @PutMapping("/calendarDietRecord")
     public CalendarDietRecord updateCalendarDietRecord(@RequestBody CalendarDietRecord calendarDietRecord){
         return calendarDietRecordService.updateCalendarDietRecord(calendarDietRecord);
+    }
+
+    @PostMapping("/findCalendarDietRecordByCalendar")
+    public ResponseEntity<CalendarDietRecord> findCalendarDietRecordByCalendar(@RequestBody Calendar calendar){
+        return new ResponseEntity<>(calendarDietRecordService.findCalendarDietRecordByCalendar(calendar), HttpStatus.OK);
     }
 }

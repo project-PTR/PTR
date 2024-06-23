@@ -39,31 +39,49 @@
       </div>      
       <div class="content">
         <div class="content_menu">
-          <div class="subscription content_menu_bold">구독 및 영상</div>
-          <div class="traning">1:1 트레이닝</div>
-          <div class="myrecord">기록 및 통계</div>
-          <div class="cash">캐시 충전</div>
-          <div class="myid">계정관리</div>
+          <div class="subscription cursor_pointer content_menu_bold">구독 및 영상</div>
+          <div class="traning cursor_pointer">1:1 트레이닝</div>
+          <div class="myrecord cursor_pointer">기록 및 통계</div>
+          <div class="cash cursor_pointer">캐시 충전</div>
+          <div class="myid cursor_pointer">계정관리</div>
         </div>
         <div class="content_body">
           <div class="content_body_subscription">
-            <div class="content_body_title">현재 구독중인 강사 목록</div>
+            <div class="content_body_subscription_menu_box">
+              <div class="content_body_subscription_menu1 cursor_pointer content_menu_bold">구독한 강사</div>
+              <div class="content_body_subscription_menu2 cursor_pointer">구매한 영상</div>
+              <div class="content_body_subscription_menu3 cursor_pointer">스크랩한 영상</div>
+              <div class="content_body_subscription_menu4 cursor_pointer">리뷰관리</div>
+            </div>
+            <div class="content_body_subscription_box">
+              <div class="content_body_subscription_box1">
+                <div class="content_body_title">현재 구독중인 강사 목록</div>
 
-            <!-- 모달 팝업 -->
-            <div id="myModal" class="modal">
-              <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <div>여기 입력</div>
+                <!-- 모달 팝업 -->
+                <div id="myModal" class="modal">
+                  <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <div>여기 입력</div>
+                  </div>
+                </div>
+  
+                <div class="content_body_subscriptionlist"></div>
+              </div>
+
+              <div class="content_body_subscription_box2 hiden">
+                <div class="content_body_title">구매한 영상</div>
+                <div class="content_body_favoriteLecture"></div>
+              </div>
+
+              <div class="content_body_subscription_box3 hiden">
+                <div class="content_body_title">나중에 볼 영상</div>
+                <div class="content_body_scrapLecture"></div>
+              </div>
+
+              <div class="content_body_subscription_box4 hiden">
+                <div class="content_body_title">리뷰관리</div>
               </div>
             </div>
-
-            <div class="content_body_subscriptionlist"></div>
-
-            <div class="content_body_title">구매한 영상</div>
-            <div class="content_body_favoriteLecture"></div>
-            
-            <div class="content_body_title">나중에 볼 영상</div>
-            <div class="content_body_scrapLecture"></div>
           </div>
 
           <div class="content_body_traning hiden"></div>
@@ -75,67 +93,20 @@
             </div>
             <div class="content_body_myrecord_box_title">몸무게</div>
             <div class="content_body_myrecord_box weight">
-              <div class="content_body_myrecord_weight_chart_box">
+              <div class="content_body_myrecord_chart_box">
                 <canvas id="weight_chart"></canvas>
               </div>
             </div>
             <div class="content_body_myrecord_box_title">식단</div>
             <div class="content_body_myrecord_box diet">
-              <div class="content_body_myrecord_box2">
-                <div class="content_body_myrecord_box_title_value">탄수화물</div>
-                <div class="content_body_myrecord_box_value">
-                  <div class="goalbar"></div>
-                  <div class="value">0 kcal</div>
-                  <div class="recordbar"></div>
-                  <div class="value">0 kcal</div>
-                </div>
-                <div class="content_body_myrecord_box_title_value">단백질</div>
-                <div class="content_body_myrecord_box_value">
-                  <div class="goalbar"></div>
-                  <div class="value">0 kcal</div>
-                  <div class="recordbar"></div>
-                  <div class="value">0 kcal</div>
-                </div>
-                <div class="content_body_myrecord_box_title_value">지방</div>
-                <div class="content_body_myrecord_box_value">
-                  <div class="goalbar"></div>
-                  <div class="value">0 kcal</div>
-                  <div class="recordbar"></div>
-                  <div class="value">0 kcal</div>
-                </div>
+              <div class="content_body_myrecord_chart_box">
+                <canvas id="diet_chart"></canvas>
               </div>
             </div>
             <div class="content_body_myrecord_box_title">운동</div>
             <div class="content_body_myrecord_box exercise">
-              <div class="content_body_myrecord_box2">
-                <div class="content_body_myrecord_box_title_value">유산소</div>
-                <div class="content_body_myrecord_box_value">
-                  <div class="goalbar"></div>
-                  <div class="value">0 분</div>
-                  <div class="recordbar"></div>
-                  <div class="value">0 분</div>
-                </div>
-                <div class="content_body_myrecord_box_title_value">근력운동</div>
-                <div class="content_body_myrecord_box_value">
-                  <div class="goalbar"></div>
-                  <div class="value">0 분</div>
-                  <div class="recordbar"></div>
-                  <div class="value">0 분</div>
-                </div>
-                <div class="content_body_myrecord_box_title_value">스트레칭</div>
-                <div class="content_body_myrecord_box_value">
-                  <div class="goalbar"></div>
-                  <div class="value">0 분</div>
-                  <div class="recordbar"></div>
-                  <div class="value">0 분</div>
-                </div>
-                <div class="content_body_myrecord_box_title_value">요가</div>
-                <div class="content_body_myrecord_box_value">
-                  <div class="goalbar"></div>
-                  <div class="value">0 분</div>
-                  <div class="recordbar"></div>
-                  <div class="value">0 분</div>
-                </div>
+              <div class="content_body_myrecord_chart_box">
+                <canvas id="exercise_chart"></canvas>
               </div>
             </div>
           </div>

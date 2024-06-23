@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="/PTR/PTR/PTR/src/main/resources/static/css/style.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/PTR/PTR/PTR/src/main/resources/static/css/lecture.css"
+      href="/css/lecture.css"
     />
     <title>Personal Training</title>
   </head>
@@ -36,7 +32,7 @@
         <div class="head_subtitle">홈 > 교육</div>
       </div>
       <div class="content">
-        <div class="content_body">
+        <div class="content_menu">
           <div class="search_bar">
             <select name="lecture">
               <option value="lecture1">강의명</option>
@@ -44,6 +40,154 @@
             </select>
             <input type="text" placeholder="검색어를 입력하세요" />
             <button type="submit">🔍</button>
+            <div class="cursor_pointer search_filter">필터</div>
+            <div class="cursor_pointer search_filter_close hiden">필터</div>
+          </div>
+          <div class="search_box hiden">
+            <div class="search_title">카테고리</div>
+            <div class="search_detail_box">
+              <input type="checkbox" name="interest" value="유산소"> 유산소
+              <input type="checkbox" name="interest" value="근력운동"> 근력운동
+              <input type="checkbox" name="interest" value="필라테스"> 필라테스
+              <input type="checkbox" name="interest" value="스트레칭"> 스트레칭
+              <input type="checkbox" name="interest" value="식단"> 식단
+            </div>
+            <div class="search_line"></div>
+            <div class="search_title">업로드 날짜</div>
+            <div class="search_detail_box">
+              <input type="radio" name="upload_date" value="전체"> 전체
+              <input type="radio" name="upload_date" value="오늘"> 오늘
+              <input type="radio" name="upload_date" value="이번 주"> 이번 주
+              <input type="radio" name="upload_date" value="이번 달"> 이번 달
+              <input type="radio" name="upload_date" value="올해"> 올해
+              <input type="radio" name="upload_date" value="직접 선택"> 직접 선택 <br>
+              <div class="search_detail_flex">
+                <div>시작일: </div>
+                <input type="date" id="start-date" name="start-date">
+                <div>    </div>
+                <div>종료일: </div>
+                <input type="date" id="end-date" name="end-date">
+              </div>
+            </div>
+            <div class="search_line"></div>
+            <div class="search_title">가격대</div>
+            <div class="search_detail_box">
+              <input type="radio" name="buy" value="전체"> 전체
+              <input type="radio" name="buy" value="구매"> 구매
+              <input type="radio" name="buy" value="미구매"> 미구매
+            </div>
+            <div class="search_line"></div>
+            <div class="search_title">가격대</div>
+            <div class="search_detail_box">
+              <input type="radio" name="price" value="전체"> 전체
+              <input type="radio" name="price" value="무료"> 무료
+              <input type="radio" name="price" value="1"> 1개 이하
+              <input type="radio" name="price" value="2"> 2개 이하
+              <input type="radio" name="price" value="3"> 3개 이하
+              <input type="radio" name="price" value="4"> 4개 이하
+              <input type="radio" name="price" value="5"> 5개 이상
+            </div>
+            <div class="search_line"></div>
+            <div class="search_title">정렬기준</div>
+            <div class="search_detail_box">
+              <input type="radio" name="order" value="최신순"> 최신순
+              <input type="radio" name="order" value="조회수"> 조회수
+              <input type="radio" name="order" value="평점"> 평점순
+              <input type="radio" name="order" value="리뷰"> 리뷰수
+              <input type="radio" name="order" value="가격"> 낮은 가격순
+            </div>
+            <div class="searchBtn cursor_pointer">검색</div>
+          </div>
+        </div>
+        <div class="content_body">
+          <div class="interest_lecture">
+            <h2>맞춤 교육 영상</h2>
+            <div class="content_body_interestLecture">
+              <div class="content_body_interestLecture_box box">
+                <div class="content_body_interestLecture_box_img"></div>
+                <div>
+                  <div class="lecture_flex">
+                    <div class="lecture_teacher_profile"></div>
+                    <div>
+                      <div class="lecture_title">제목</div>
+                      <div class="lecture_teacher_name">steve</div>
+                      <div class="lecture_updateTime">2024년 1월 1일</div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+              <div class="content_body_interestLecture_box box">
+                <div class="content_body_interestLecture_box_img"></div>
+                <div>
+                  <div class="lecture_flex">
+                    <div class="lecture_teacher_profile"></div>
+                    <div>
+                      <div class="lecture_title">제목</div>
+                      <div class="lecture_teacher_name">steve</div>
+                      <div class="lecture_updateTime">2024년 1월 1일</div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+              <div class="content_body_interestLecture_box box">
+                <div class="content_body_interestLecture_box_img"></div>
+                <div>
+                  <div class="lecture_flex">
+                    <div class="lecture_teacher_profile"></div>
+                    <div>
+                      <div class="lecture_title">제목</div>
+                      <div class="lecture_teacher_name">steve</div>
+                      <div class="lecture_updateTime">2024년 1월 1일</div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+              <div class="content_body_interestLecture_box box">
+                <div class="content_body_interestLecture_box_img"></div>
+                <div>
+                  <div class="lecture_flex">
+                    <div class="lecture_teacher_profile"></div>
+                    <div>
+                      <div class="lecture_title">제목</div>
+                      <div class="lecture_teacher_name">steve</div>
+                      <div class="lecture_updateTime">2024년 1월 1일</div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+              <div class="content_body_interestLecture_box box">
+                <div class="content_body_interestLecture_box_img"></div>
+                <div>
+                  <div class="lecture_flex">
+                    <div class="lecture_teacher_profile"></div>
+                    <div>
+                      <div class="lecture_title">제목</div>
+                      <div class="lecture_teacher_name">steve</div>
+                      <div class="lecture_updateTime">2024년 1월 1일</div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+              <div class="content_body_interestLecture_box box">
+                <div class="content_body_interestLecture_box_img"></div>
+                <div>
+                  <div class="lecture_flex">
+                    <div class="lecture_teacher_profile"></div>
+                    <div>
+                      <div class="lecture_title">제목</div>
+                      <div class="lecture_teacher_name">steve</div>
+                      <div class="lecture_updateTime">2024년 1월 1일</div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
           </div>
           <div class="video_section">
             <h2>맞춤 교육 영상</h2>
@@ -102,6 +246,6 @@
         </div>
       </div>
     </div>
-    <script src="/PTR/PTR/PTR/src/main/resources/static/js/lecture.js"></script>
+    <script src="/js/lecture.js"></script>
   </body>
 </html>

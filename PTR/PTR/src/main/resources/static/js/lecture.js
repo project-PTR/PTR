@@ -13,3 +13,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+
+document.querySelector(".search_filter").addEventListener("click", ()=>{
+  document.querySelector(".search_filter").classList.add("hiden")
+  document.querySelector(".search_filter_close").classList.remove("hiden")
+  document.querySelector(".search_box").classList.remove("hiden")
+})
+
+document.querySelector(".search_filter_close").addEventListener("click", ()=>{
+  document.querySelector(".search_filter").classList.remove("hiden")
+  document.querySelector(".search_filter_close").classList.add("hiden")
+  document.querySelector(".search_box").classList.add("hiden")
+})
