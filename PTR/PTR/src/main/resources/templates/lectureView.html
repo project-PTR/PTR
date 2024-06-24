@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/lectureView.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <div class="logo">
+          <h1>PTR</h1>
+        </div>
+        <div class="top_menu">
+          <div><a href="main.html">메인</a></div>
+          <div><a href="lecture.html">교육</a></div>
+          <div><a href="record.html">관리 및 기록</a></div>
+          <div><a href="community.html">커뮤니티</a></div>
+          <div><a href="feed.html">피드</a></div>
+          <div><a href="mypage.html">마이페이지</a></div>
+          <div><a href="customerService.html">고객센터</a></div>
+          <div><a href="login.html">로그인</a></div>
+        </div>
+        <div class="login_box">로그인 / 회원가입</div>
+      </div>
+      <div class="content">
+        <div class="content_body">
+          <div class="content_body_box">
+            <div class="lecture_title">10분 유산소</div>
+            <div class="lecture_flex_box">
+              <div class="lecture_img cursor_pointer"></div>
+              <div class="lecture_detail_box">
+                <div class="lecture_teacher">
+                  <div class="lecture_teacher_img cursor_pointer"></div>
+                  <div class="lecture_teacher_flex">
+                    <div class="lecture_teacher_name cursor_pointer"></div>
+                    <!-- <div class="lecture_teacher_num">구독자 1명</div> -->
+                  </div>
+                  <!-- <div class="lecture_subscription cursor_pointer">구독</div> -->
+                </div>
+                <div class="lecture_detail_flex">
+                  <div class="lecture_detail_flex1">
+                    <div class="lecture_detail_title">구매자수</div>
+                    <div class="lecture_detail_value buyNum"></div>  
+                  </div>
+                  <div class="lecture_detail_flex1">
+                    <div class="lecture_detail_title">평점</div>
+                    <div class="lecture_detail_value avg"></div>  
+                  </div>
+                  <div class="lecture_detail_flex1">
+                    <div class="lecture_detail_title">작성일</div>
+                    <div class="lecture_detail_value date"></div>  
+                  </div>
+                </div>
+                <div class="lecture_detail_flex2">
+                  <div class="lecture_detail_title">가격</div>
+                  <div class="lecture_detail_value price"></div>  
+                </div>
+                <div class="lecture_detail_flex2">
+                  <div class="lecture_detail_title">카테고리</div>
+                  <!-- <div class="lecture_detail_value">유산소, 근력운동, 필라테스, 스트레칭, 식단</div>   -->
+                </div>
+                <div class="lecture_btn">
+                  <!-- <div class="lecture_btn_buy cursor_pointer">구매하기</div>
+                  <div class="lecture_btn_scrap cursor_pointer">스크랩하기</div> -->
+                </div>
+              </div>
+            </div>
+            <div class="lecture_description">영상 내용</div>
+                <div class="lecture_description_value"></div>
+            <div class="lecture_reviews">
+              <table class="lecture_reviews_table">
+                <caption class="caption"></caption>
+                <thead>
+                    <tr>
+                      <th>작성자</th>
+                      <th>별점</th>
+                      <th>리뷰</th>
+                      <th>날짜</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/lectureView.js"></script>
+  </body>
+</html>

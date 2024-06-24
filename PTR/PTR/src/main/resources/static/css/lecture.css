@@ -149,7 +149,7 @@
   gap: 20px;
 }
 .content_body_interestLecture_box{
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(212, 212, 212);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   cursor: pointer;
@@ -161,6 +161,13 @@
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   background-color: gray;
+  overflow: hidden;
+}
+
+.content_body_interestLecture_box_img > video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .lecture_flex{
@@ -174,12 +181,19 @@
   margin-right: 20px;
   border-radius: 50%;
   background-color: #fff;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.lecture_teacher_profile > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 이미지가 컨테이너를 가득 채우도록 설정 */
 }
 
 .lecture_title{
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: 5px;
 }
 
 .lecture_teacher_name{
@@ -189,6 +203,13 @@
 .lecture_updateTime{
   font-size: 15px;
   color: gray;
+}
+
+.lecture_price{
+  text-align: end;
+  margin-top: -50px;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
 
 
