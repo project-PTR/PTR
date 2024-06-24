@@ -53,4 +53,9 @@ public class FeedController {
         return feedService.updateFeed(feed);
     }
 
+    @PostMapping("/numberOfFeed")
+    public int getNumberOfFeed(@RequestBody User user){
+        return feedService.getNumberOfFeed(user);
+    }
+
 }

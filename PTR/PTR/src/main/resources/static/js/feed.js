@@ -157,7 +157,7 @@ function displayFeed(data){
 
 //피드 작성
 let user = {
-    userId: "cake"
+    userId: "ham"
 }
 let text = "";
 document.querySelector("#text-large").addEventListener("change",(e)=>{
@@ -355,6 +355,38 @@ axios
     console.log("에러발생: ", error);
 })
 
+const content_myFeed_profile_box_numberOfFeed = document.querySelector(".content_myFeed_profile_box_numberOfFeed");
+axios
+.post("http://localhost:8080/numberOfFeed", {userId: user.userId}, {withCredentials:true})
+.then((response)=>{
+    console.log("데이터: ", response.data);
+    content_myFeed_profile_box_numberOfFeed.textContent = response.data;
+
+})
+.catch((error)=>{
+    console.log("에러발생: ", error);
+})
+const content_myFeed_profile_box_numberOfFollower = document.querySelector(".content_myFeed_profile_box_numberOfFollower");
+axios
+.post("http://localhost:8080/numberOfFollowByUser", {userId: user.userId}, {withCredentials:true})
+.then((response)=>{
+    console.log("데이터: ",response.data);
+    content_myFeed_profile_box_numberOfFollower.textContent = response.data;
+})
+.catch((error)=>{
+    console.log("에러발생: ", error);
+})
+const content_myFeed_profile_box_numberOfFollowing = document.querySelector(".content_myFeed_profile_box_numberOfFollowing");
+axios
+.post("http://localhost:8080/numberOfFollowByUser2", {userId: user.userId}, {withCredentials:true})
+.then((response)=>{
+    console.log("데이터: ", response.data);
+    content_myFeed_profile_box_numberOfFollowing.textContent = response.data;
+})
+.catch((error)=>{
+    console.log("에러발생: ", error);
+})
+
 axios
 .post("http://localhost:8080/feed/id", {userId: user.userId}, {withCredentials: true})
 .then((response) => {
@@ -508,3 +540,74 @@ function displayMyFeed(data){
     }
 }            
         
+
+//팔로우 팔로잉 조회
+document.querySelector(".content_myFeed_profile_box_numberOfFollower").addEventListener("click",()=>{
+    document.querySelector(".content_myFeed").classList.add("hiden");
+    document.querySelector(".content_follower").classList.remove("hiden");
+
+
+    axios
+    .post("http://localhost:8080/userFollow/user", {userId: user.userId}, {withCredentials: true})
+    .then((response) => {
+        console.log("데이터: ", response.data);
+        displayFollower(response.data);
+        
+    })
+    .catch((error)=>{
+        console.log("에러발생: ", error);
+    })
+})
+
+
+
+function displayFollower(data){
+    const follower = document.querySelector(".content_follower_follower");
+    data.forEach((follow)=>{
+        console.log(follower);
+        
+        follower.innerHTML = "";
+
+        const content_follower_left = document.createElement("div");
+        const content_follower_userPhoto = document.createElement("img");
+        const content_follower_user = document.createElement("div");
+        const content_follower_userId = document.createElement("div");
+        const content_follower_userName = document.createElement("div");
+        const content_follower_right = document.createElement("div");
+        const content_follower_deleteFollower = document.createElement("div");
+
+        content_follower_left.classList.add("content_follower_left");
+        content_follower_userPhoto.classList.add("content_follower_userPhoto");
+        content_follower_user.classList.add("content_follower_user");
+        content_follower_userId.classList.add("content_follower_userId");
+        content_follower_userName.classList.add("content_follower_userName");
+        content_follower_right.classList.add("content_follower_right");
+        content_follower_deleteFollower.classList.add("content_follower_deleteFollower");
+
+        content_follower_userPhoto.src = follow.user2.profileImg;
+        content_follower_userId.textContent = follow.user2.userId;
+        content_follower_userName.textContent = follow.user2.userName;
+
+        // content_follower_deleteFollower.addEventListener("click",()=>{
+        
+        //     axios
+        //     .delete("/userFollow", {withCredentials: true})
+        //     .then((response) => {
+        //         console.log("데이터: ", response.data);
+
+        //     })
+        //     .catch((error)=>{
+        //         console.log("에러발생: ", error);
+        //     })
+        // })
+
+        follower.appendChild(content_follower_left);
+        content_follower_left.appendChild(content_follower_userPhoto);
+        content_follower_left.appendChild(content_follower_user);
+        content_follower_user.appendChild(content_follower_userId);
+        content_follower_user.appendChild(content_follower_userName);
+        follower.appendChild(content_follower_right);
+        content_follower_right.appendChild(content_follower_deleteFollower);
+    })
+
+}

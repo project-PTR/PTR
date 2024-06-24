@@ -63,7 +63,13 @@ public class FeedService {
         }
     }
 
+    //피드 아이디로 피드 한 개 불러오기
     public Optional<Feed> getFeedByFeedId(Feed feed) {
         return feedRepository.findById(feed.getId());
+    }
+
+    //유저의 피드 개수 조회
+    public int getNumberOfFeed(User user){
+        return feedRepository.findByUser(user).size();
     }
 }
