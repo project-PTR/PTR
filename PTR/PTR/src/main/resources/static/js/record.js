@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentYear = 2024;
   let currentMonth = 6;
   let selectedDateEl = document.getElementById("selectedDate");
-  let recordButton = document.getElementById("recordButton");
 
   // 서버에서 데이터를 가져오는 함수
   async function fetchData(year, month) {
