@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="52880d50-3b4d-4ab9-8998-704ee1611848" name="Changes" comment="">
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/PTR/src/main/resources/static/css/record.css" beforeDir="false" afterPath="$PROJECT_DIR$/PTR/src/main/resources/static/css/record.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PTR/src/main/resources/static/js/management.js" beforeDir="false" afterPath="$PROJECT_DIR$/PTR/src/main/resources/static/js/management.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PTR/src/main/resources/static/js/record.js" beforeDir="false" afterPath="$PROJECT_DIR$/PTR/src/main/resources/static/js/record.js" afterDir="false" />
@@ -15,6 +16,11 @@
       <change beforePath="$PROJECT_DIR$/PTR/src/main/resources/templates/record.html" beforeDir="false" afterPath="$PROJECT_DIR$/PTR/src/main/resources/templates/record.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PTR/src/main/resources/templates/recordExercise.html" beforeDir="false" afterPath="$PROJECT_DIR$/PTR/src/main/resources/templates/recordExercise.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PTR/src/main/resources/templates/recordFood.html" beforeDir="false" afterPath="$PROJECT_DIR$/PTR/src/main/resources/templates/recordFood.html" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/PTR/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/PTR/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PTR/src/main/resources/static/css/record.css" beforeDir="false" afterPath="$PROJECT_DIR$/PTR/src/main/resources/static/css/record.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PTR/src/main/resources/static/js/record.js" beforeDir="false" afterPath="$PROJECT_DIR$/PTR/src/main/resources/static/js/record.js" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +37,7 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< Updated upstream
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.PtrApplication.executor": "Run",
@@ -49,6 +56,21 @@
     <configuration name="PtrApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+=======
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.PtrApplication.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/okdae/Documents/GitHub/haeun/ptr/PTR/PTR&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="PtrApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+>>>>>>> Stashed changes
       <option name="MAIN_CLASS_NAME" value="PTR.PTR.PtrApplication" />
       <module name="PTR" />
       <extension name="coverage">
@@ -70,7 +92,10 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
+<<<<<<< Updated upstream
         <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+=======
+>>>>>>> Stashed changes
         <option value="jdk-22-openjdk-22-3183f394aec4-bad0321e" />
       </set>
     </attachedChunks>
