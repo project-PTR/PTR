@@ -38,7 +38,7 @@ public class FeedScrapController {
         feedScrapService.deleteFeedScrap(feedScrap);
     }
 
-    @PostMapping("/checkFeedScrpaClick")
+    @PostMapping("/checkFeedScrapClick")
     public boolean checkFeedScrapClick(@RequestBody FeedLike feedLike){
         return feedScrapService.checkFeedScrapClick(feedLike);
     }
