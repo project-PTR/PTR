@@ -40,4 +40,8 @@ public class FeedLikeService {
         return feedLikeRepository.findByFeed(feed).size();
     }
 
+    //유저가 피드 좋아요 눌렀는지 확인
+    public boolean checkFeedLikeClick(FeedLike feedLike){
+        return feedLikeRepository.findByFeedAndUser(feedLike.getFeed(), feedLike.getUser()) != null;
+    }
 }
