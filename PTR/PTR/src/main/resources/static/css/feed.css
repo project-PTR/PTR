@@ -431,6 +431,7 @@
     grid-template-columns: 9fr 1fr;
     border: 1px solid #000;
     padding: 20px;
+    row-gap: 20px; 
 }
 .content_follower_left, .content_following_left{
     display: flex;
