@@ -44,7 +44,7 @@ public class FeedScrapService {
         feedScrapRepository.deleteById(feedScrap.getId());
     }
     //유저가 피드 좋아요 눌렀는지 확인
-    public boolean checkFeedScrapClick(FeedLike feedLike){
-        return feedScrapRepository.findByFeedAndUser(feedLike.getFeed(), feedLike.getUser()) != null;
+    public boolean checkFeedScrapClick(FeedScrap feedScrap){
+        return feedScrapRepository.findByFeedAndUser(feedScrap.getFeed(), feedScrap.getUser()) != null;
     }
 }
