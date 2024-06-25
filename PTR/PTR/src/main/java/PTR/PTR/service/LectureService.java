@@ -36,6 +36,10 @@ public class LectureService {
         return lectureRepository.findByTeacher(teacher);
     }
 
+    public List<Lecture> findTeacherLectureReversed(Teacher teacher){
+        return lectureRepository.findByTeacher(teacher).reversed();
+    }
+
 
 
     public List<Lecture> searchLecture(String search){

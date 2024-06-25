@@ -33,6 +33,10 @@ function createMySubscription(data){
         butten.classList.add("content_body_subscriptionlist_box_butten");
         butten.textContent = "자세히보기"
 
+        butten.addEventListener("click",()=>{
+            window.location.href = "teacherView.html?id=" + data.teacher.id
+        })
+
         image.appendChild(img);
         box.appendChild(image);
         box.appendChild(name);
@@ -224,10 +228,6 @@ function createMyLectureReview(data){
         box.appendChild(review_box)
 
         body.appendChild(box);
-
-        // box.addEventListener("click",()=>{
-
-        // })
     })
 }
 

@@ -25,6 +25,12 @@ public class LectureController {
     public ResponseEntity<List<Lecture>> findTeacherLecture(@RequestBody Teacher teacher){
         return new ResponseEntity<>(lectureService.findTeacherLecture(teacher), HttpStatus.OK);
     }
+
+    @PostMapping("findTeacherLectureReversed")
+    public ResponseEntity<List<Lecture>> findTeacherLectureReversed(@RequestBody Teacher teacher){
+        return new ResponseEntity<>(lectureService.findTeacherLectureReversed(teacher), HttpStatus.OK);
+    }
+
     // 강의 검색
     @PostMapping("searchLecture")
     public ResponseEntity<List<Lecture>> searchLecture(@RequestBody String search){

@@ -84,7 +84,17 @@ function view(data, lectureUser, ratingAVG, category){
         console.log("에러 발생: ", error);
     });
 
+    lecture_teacher_img.addEventListener("click",()=>{
+        window.location.href = "teacherView.html?id=" + data.teacher.id
+    })
 
+    lecture_teacher_name.addEventListener("click",()=>{
+        window.location.href = "teacherView.html?id=" + data.teacher.id
+    })
+
+    lecture_teacher_num.addEventListener("click",()=>{
+        window.location.href = "teacherView.html?id=" + data.teacher.id
+    })
     
 
     const lecture_subscription = document.querySelector(".lecture_subscription");

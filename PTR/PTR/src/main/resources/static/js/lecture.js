@@ -61,7 +61,15 @@ function allLecture(data){
     const img = document.createElement("img");
     img.src = data.teacher.user.profileImg;
 
+    lecture_teacher_profile.addEventListener("click", (event) => {
+      event.stopPropagation(); // 클릭 이벤트가 상위 요소로 전파되지 않도록 방지
+      window.location.href = "teacherView.html?id=" + data.teacher.id;
+    });
 
+    img.addEventListener("click", (event) => {
+      event.stopPropagation(); // 클릭 이벤트가 상위 요소로 전파되지 않도록 방지
+      window.location.href = "teacherView.html?id=" + data.teacher.id;
+    });
 
     const div2 = document.createElement("div");
 
