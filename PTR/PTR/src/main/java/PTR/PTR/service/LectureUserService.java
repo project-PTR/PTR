@@ -50,7 +50,10 @@ public class LectureUserService {
     }
 
     public LectureUser changeLectureUser(LectureUser lectureUser){
-        return lectureUserRepository.save(lectureUser);
+        LectureUser changeLectureUser = lectureUserRepository.findById(lectureUser.getId()).get();
+        changeLectureUser.setTeacherReview(lectureUser.getTeacherReview());
+        changeLectureUser.setTeacherRating(lectureUser.getTeacherRating());
+        return lectureUserRepository.save(changeLectureUser);
     }
 
     public float ratingAVG(Lecture lecture){

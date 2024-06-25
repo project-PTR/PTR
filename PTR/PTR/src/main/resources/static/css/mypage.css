@@ -13,8 +13,6 @@
   font-size: 20px;
 }
 
-
-
 .content_body_subscription_menu_box{
   display: flex;
   margin-top: 20px;
@@ -47,8 +45,6 @@
   padding: 20px;
   margin-top: -1px;
 }
-
-
 
 
 
@@ -207,29 +203,6 @@
   font-weight: lighter;
 }
 
-/* .content_body_favoriteLecture_box{
-  background-color: #FEC009;
-  color: black;
-  cursor: pointer;
-}
-.content_body_favoriteLecture_box_img{
-  height: 250px;
-  width: 100%;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  background-color: yellow;
-  overflow: hidden;
-}
-.content_body_favoriteLecture_box_img > video{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.content_body_favoriteLecture_box_title{
-  font-size: 20px;
-  padding: 20px;
-} */
 
 
 
@@ -292,7 +265,32 @@
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
+  flex-shrink: 0;
 }
+
+.review_box_flex{
+  display: flex;
+  align-items: center;
+}
+
+.review_box_flex_title{
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+
+.review_box_flex_value{
+  font-weight: lighter;
+}
+
+.review_box_flex_value_none{
+  font-weight: lighter;
+  font-size: 10px;
+  color: gray;
+}
+
+
+
+
 
 .review_img > video{
   width: 100%;
@@ -317,31 +315,6 @@
 .review_btn:hover{
   background-color: #FEC009;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

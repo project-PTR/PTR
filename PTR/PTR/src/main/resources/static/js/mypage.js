@@ -239,31 +239,61 @@ function createMyLectureReview(data){
         const review_box = document.createElement("div");
         review_box.classList.add("review_box");
 
-        const title = document.createElement("div");
-        title.classList.add("review_title");
-        title.textContent = "제목: " + data.lecture.lectureName;
-
-        const rating = document.createElement("div");
-        rating.classList.add("review_rating");
-        if(data.teacherRating===-1){
-            rating.textContent = "별점: 아직 별점을 작성하지 않았습니다."
-        } else{
-            rating.textContent = "별점: " + data.teacherRating;
-        }
+        const flex1 = document.createElement("div");
+        flex1.classList.add("review_box_flex");
         
+        const title1 = document.createElement("div");
+        title1.classList.add("review_box_flex_title");
+        title1.textContent = "제목: ";
 
-        const review = document.createElement("div");
-        review.classList.add("review_review");
-        if(data.teacherReview==""){
-            review.textContent = "리뷰 내용: 아직 리뷰를 작성하지 않았습니다."
+        const value1 = document.createElement("div");
+        value1.classList.add("review_box_flex_value");
+        value1.textContent = data.lecture.lectureName;
+
+
+        const flex2 = document.createElement("div");
+        flex2.classList.add("review_box_flex");
+        
+        const title2 = document.createElement("div");
+        title2.classList.add("review_box_flex_title");
+        title2.textContent = "별점: ";
+
+        const value2 = document.createElement("div");
+        if(data.teacherRating===-1){
+            value2.classList.add("review_box_flex_value_none");
+            value2.textContent = "아직 별점을 작성하지 않았습니다."
         } else{
-            review.textContent = "리뷰 내용: " + data.teacherReview;
+            value2.classList.add("review_box_flex_value");
+            value2.textContent = data.teacherRating;
         }
 
-        const date = document.createElement("div");
-        date.classList.add("review_date");
+        const flex3 = document.createElement("div");
+        flex3.classList.add("review_box_flex");
+        
+        const title3 = document.createElement("div");
+        title3.classList.add("review_box_flex_title");
+        title3.textContent = "리뷰 내용: ";
+
+        const value3 = document.createElement("div");
+        if(data.teacherReview==""||data.teacherReview==null||data.teacherReview==" "){
+            value3.classList.add("review_box_flex_value_none");
+            value3.textContent = "아직 리뷰를 작성하지 않았습니다."
+        } else{
+            value3.classList.add("review_box_flex_value");
+            value3.textContent = data.teacherReview;
+        }
+
+        const flex4 = document.createElement("div");
+        flex4.classList.add("review_box_flex");
+        
+        const title4 = document.createElement("div");
+        title4.classList.add("review_box_flex_title");
+        title4.textContent = "구매일: ";
+
+        const value4 = document.createElement("div");
+        value4.classList.add("review_box_flex_value");
         const createdAt = new Date(data.createdAt);
-        date.textContent = "구매일: " + `${createdAt.getFullYear()}년 ${createdAt.getMonth() + 1}월 ${createdAt.getDate()}일`;
+        value4.textContent =  `${createdAt.getFullYear()}년 ${createdAt.getMonth() + 1}월 ${createdAt.getDate()}일`;
 
         const review_btn_flex = document.createElement("div");
         review_btn_flex.classList.add("review_btn_flex");
@@ -280,16 +310,93 @@ function createMyLectureReview(data){
         review_btn_flex.appendChild(btn1);
         review_btn_flex.appendChild(btn2);
 
-        review_box.appendChild(title);
-        review_box.appendChild(rating);
-        review_box.appendChild(review);
-        review_box.appendChild(date);
+        flex1.appendChild(title1)
+        flex1.appendChild(value1)
+        flex2.appendChild(title2)
+        flex2.appendChild(value2)
+        flex3.appendChild(title3)
+        flex3.appendChild(value3)
+        flex4.appendChild(title4)
+        flex4.appendChild(value4)
+
+        review_box.appendChild(flex1);
+        review_box.appendChild(flex4);
+        review_box.appendChild(flex2);
+        review_box.appendChild(flex3);
         review_box.appendChild(review_btn_flex)
 
         box.appendChild(image);
         box.appendChild(review_box)
 
         body.appendChild(box);
+
+
+        
+        title4.classList.add("review_box_flex_title");
+        title4.textContent = "구매일: ";
+
+
+        btn1.addEventListener("click", ()=>{
+            value2.classList.add("hiden")
+            const inputValue2 = document.createElement("input");
+            inputValue2.type = "number"
+            inputValue2.min = 0
+            inputValue2.max = 10
+            flex2.appendChild(inputValue2)
+
+            value3.classList.add("hiden")
+            const inputValue3 = document.createElement("textarea");
+            inputValue3.rows = 2
+            inputValue3.min = 0
+            inputValue3.max = 10
+            flex3.appendChild(inputValue3)
+
+            btn1.classList.add("hiden")
+            const btn11 = document.createElement("div");
+            btn11.classList.add("review_btn");
+            btn11.textContent = "완료";
+
+            btn2.classList.add("hiden")
+            const btn21 = document.createElement("div");
+            btn21.classList.add("review_btn");
+            btn21.textContent = "취소";
+
+            review_btn_flex.appendChild(btn11);
+            review_btn_flex.appendChild(btn21);
+
+            btn21.addEventListener("click", ()=>{
+                value2.classList.remove("hiden")
+                value3.classList.remove("hiden")
+                btn1.classList.remove("hiden")
+                btn2.classList.remove("hiden")
+
+                inputValue2.classList.add("hiden")
+                inputValue3.classList.add("hiden")
+                btn11.classList.add("hiden")
+                btn21.classList.add("hiden")
+            })
+
+            // btn11.addEventListener("click", ()=>{
+                // 여기부터 입력
+            // })
+        })
+
+        btn2.addEventListener("click",()=>{
+            const lectureUser = {
+                id: data.id,
+                teacherRating: -1,
+                teacherReview: ""
+            }
+            axios
+            .post("http://localhost:8080/changeLectureUser", lectureUser)
+            .then((response)=>{
+                console.log("데이터: ", response.data)
+                location.reload();
+            })
+            .catch((error)=>{
+                console.log("에러: ", error)
+            })
+        })
     })
 }
 

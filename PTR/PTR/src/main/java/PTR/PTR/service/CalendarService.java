@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CalendarService {
@@ -59,4 +60,13 @@ public class CalendarService {
         }
         return calendars;
     }
+
+    public List<Calendar> findCalenderMonth(Calendar calendar){
+        return calendarRepository.findAll().stream()
+                .filter(c -> c.getDate().getYear() == calendar.getDate().getYear()
+                        && c.getDate().getMonth() == calendar.getDate().getMonth()
+                        && c.getUser().getUserId().equals(calendar.getUser().getUserId())).collect(Collectors.toList());
+    }
+
+
 }
