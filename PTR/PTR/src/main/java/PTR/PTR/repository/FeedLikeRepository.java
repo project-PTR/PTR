@@ -12,4 +12,5 @@ public interface FeedLikeRepository extends JpaRepository<FeedLike,Long> {
 
     FeedLike findByFeedAndUser(Feed feed, User user);
 
+    void deleteByFeedAndUser(Feed feed, User user);
 }

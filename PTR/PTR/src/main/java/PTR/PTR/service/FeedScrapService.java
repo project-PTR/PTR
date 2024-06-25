@@ -7,6 +7,7 @@ import PTR.PTR.model.User;
 import PTR.PTR.repository.FeedRepository;
 import PTR.PTR.repository.FeedScrapRepository;
 import PTR.PTR.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -40,9 +41,11 @@ public class FeedScrapService {
         return feedScrapRepository.findByUser(user);
     }
     //스크랩 취소
+    @Transactional
     public void deleteFeedScrap(FeedScrap feedScrap){
-        feedScrapRepository.deleteById(feedScrap.getId());
+        feedScrapRepository.deleteByFeedAndUser(feedScrap.getFeed(), feedScrap.getUser());
     }
+
     //유저가 피드 좋아요 눌렀는지 확인
     public boolean checkFeedScrapClick(FeedScrap feedScrap){
         return feedScrapRepository.findByFeedAndUser(feedScrap.getFeed(), feedScrap.getUser()) != null;

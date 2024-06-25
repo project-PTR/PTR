@@ -43,7 +43,9 @@ document.querySelector(".content_following_backBtn").addEventListener("click", (
     document.querySelector(".content_myFeed").classList.remove("hiden");
 })
 
-
+let user = {
+    userId: "cake"
+}
 //피드 홈
 axios
 .get("http://localhost:8080/feed", {withCredentials: true})
@@ -125,15 +127,90 @@ function displayFeed(data){
             console.log("에러발생: ", error);
         })
 
+        //좋아요버튼
+        axios
+        .post("http://localhost:8080/checkFeedLikeClick", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+        .then((response)=>{
+            console.log("데이터: ", response.data);
+            if(response.data == true){
+                content_feedfooter_likeBtn.src = "/img/redheart.png";
+                //조아요 취소
+                content_feedfooter_likeBtn.addEventListener("click", ()=>{
+                    axios
+                    .delete("http://localhost:8080/feedLike", {data:{feed:{id:feed.id },user:{userId:user.userId }}, withCredentials: true})
+                    .then((response)=>{
+                        console.log("데이터: ", response.data);
+                        location.reload();
+                    })
+                    .catch((error)=>{
+                        console.log("에러발생: ", error);
+                    })
+                })
+            }else{
+                content_feedfooter_likeBtn.src = "/img/heart.png";
+                //조아요
+                content_feedfooter_likeBtn.addEventListener("click", ()=>{
+                    axios
+                    .post("http://localhost:8080/feedLike", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+                    .then((response)=>{
+                        console.log("데이터: ", response.data);
+                        location.reload();
+                    })
+                    .catch((error)=>{
+                        console.log("에러발생: ", error);
+                    })
+                })
+            }
+        })
+        .catch((error)=>{
+            console.log("에러발생: ", error);
+        })
+        //스크랩버튼
+        axios
+        .post("http://localhost:8080/checkFeedScrapClick", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+        .then((response)=>{
+            console.log("데이터: ", response.data);
+            if(response.data == true){
+                content_feedfooter_scrapBtn.src = "/img/blackbookmark.png";
+                //스크랩취소
+                content_feedfooter_scrapBtn.addEventListener("click",()=>{
+                    axios
+                    .delete("http://localhost:8080/feedScrap", {data:{feed:{id:feed.id },user:{userId:user.userId }}, withCredentials: true})
+                    .then((response)=>{
+                        console.log("데이터: ", response.data);
+                        location.reload();
+                    })
+                    .catch((error)=>{
+                        console.log("에러발생: ", error);
+                    })
+                })
+            }else{
+                content_feedfooter_scrapBtn.src = "/img/bookmark.png";
+                content_feedfooter_scrapBtn.addEventListener("click",()=>{
+                    axios
+                    .post("http://localhost:8080/feedScrap", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+                    .then((response)=>{
+                        console.log("데이터: ", response.data);
+                        location.reload();
+                    })
+                    .catch((error)=>{
+                        console.log("에러발생: ", error);
+                    })
+                })
+            }
+        })
+        .catch((error)=>{
+            console.log("에러발생: ", error);
+        })
+
         content_feedheader_userPhoto.src = feed.user.profileImg;
         content_feedheader_userId.textContent = feed.user.userId;
         content_feedheader_date.textContent = feed.createdAt;
         content_feedPhoto.src = feed.image;
         content_feedfooter_text.textContent = feed.text;
 
-        content_feedfooter_likeBtn.src = "/img/heart.png";
         content_feedfooter_commentBtn.src = "/img/comment.png";
-        content_feedfooter_scrapBtn.src = "/img/bookmark.png";
+        
         
         //부모 자식 위치
         feedbody.appendChild(content_feed);
@@ -162,9 +239,6 @@ function displayFeed(data){
 }
 
 //피드 작성
-let user = {
-    userId: "cake"
-}
 let text = "";
 document.querySelector("#text-large").addEventListener("change",(e)=>{
     console.log(e.target.value);
@@ -297,6 +371,82 @@ function displayScrap(data){
         .catch((error)=>{
             console.log("에러발생: ", error);
         })
+
+        //좋아요버튼
+        axios
+        .post("http://localhost:8080/checkFeedLikeClick", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+        .then((response)=>{
+            console.log("데이터: ", response.data);
+            if(response.data == true){
+                content_feedfooter_likeBtn.src = "/img/redheart.png";
+                //조아요 취소
+                content_feedfooter_likeBtn.addEventListener("click", ()=>{
+                    axios
+                    .delete("http://localhost:8080/feedLike", {data:{feed:{id:feed.id },user:{userId:user.userId }}, withCredentials: true})
+                    .then((response)=>{
+                        console.log("데이터: ", response.data);
+                        location.reload();
+                    })
+                    .catch((error)=>{
+                        console.log("에러발생: ", error);
+                    })
+                })
+            }else{
+                content_feedfooter_likeBtn.src = "/img/heart.png";
+                //조아요
+                content_feedfooter_likeBtn.addEventListener("click", ()=>{
+                    axios
+                    .post("http://localhost:8080/feedLike", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+                    .then((response)=>{
+                        console.log("데이터: ", response.data);
+                        location.reload();
+                    })
+                    .catch((error)=>{
+                        console.log("에러발생: ", error);
+                    })
+                })
+            }
+        })
+        .catch((error)=>{
+            console.log("에러발생: ", error);
+        })
+        //스크랩버튼
+        axios
+        .post("http://localhost:8080/checkFeedScrapClick", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+        .then((response)=>{
+            console.log("데이터: ", response.data);
+            if(response.data == true){
+                content_feedfooter_scrapBtn.src = "/img/blackbookmark.png";
+                //스크랩취소
+                content_feedfooter_scrapBtn.addEventListener("click",()=>{
+                    axios
+                    .delete("http://localhost:8080/feedScrap", {data:{feed:{id:feed.id },user:{userId:user.userId }}, withCredentials: true})
+                    .then((response)=>{
+                        console.log("데이터: ", response.data);
+                        location.reload();
+                    })
+                    .catch((error)=>{
+                        console.log("에러발생: ", error);
+                    })
+                })
+            }else{
+                content_feedfooter_scrapBtn.src = "/img/bookmark.png";
+                content_feedfooter_scrapBtn.addEventListener("click",()=>{
+                    axios
+                    .post("http://localhost:8080/feedScrap", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+                    .then((response)=>{
+                        console.log("데이터: ", response.data);
+                        location.reload();
+                    })
+                    .catch((error)=>{
+                        console.log("에러발생: ", error);
+                    })
+                })
+            }
+        })
+        .catch((error)=>{
+            console.log("에러발생: ", error);
+        })
     
         content_feedheader_userPhoto.src = feed.user.profileImg;
         content_feedheader_userId.textContent = feed.user.userId;
@@ -304,9 +454,7 @@ function displayScrap(data){
         content_feedPhoto.src = feed.image;
         content_feedfooter_text.textContent = feed.text;
     
-        content_feedfooter_likeBtn.src = "/img/heart.png";
         content_feedfooter_commentBtn.src = "/img/comment.png";
-        content_feedfooter_scrapBtn.src = "/img/bookmark.png";
         
         //부모 자식 위치
         feedbody.appendChild(content_feed2);
@@ -490,15 +638,89 @@ function displayMyFeed(data){
             console.log("에러발생: ", error);
         })
     
+        //좋아요버튼
+        axios
+        .post("http://localhost:8080/checkFeedLikeClick", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+        .then((response)=>{
+            console.log("데이터: ", response.data);
+            if(response.data == true){
+                content_feedfooter_likeBtn.src = "/img/redheart.png";
+                //조아요 취소
+                content_feedfooter_likeBtn.addEventListener("click", ()=>{
+                    axios
+                    .delete("http://localhost:8080/feedLike", {data:{feed:{id:feed.id },user:{userId:user.userId }}, withCredentials: true})
+                    .then((response)=>{
+                        console.log("데이터: ", response.data);
+                        location.reload();
+                    })
+                    .catch((error)=>{
+                        console.log("에러발생: ", error);
+                    })
+                })
+            }else{
+                content_feedfooter_likeBtn.src = "/img/heart.png";
+                //조아요
+                content_feedfooter_likeBtn.addEventListener("click", ()=>{
+                    axios
+                    .post("http://localhost:8080/feedLike", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+                    .then((response)=>{
+                        console.log("데이터: ", response.data);
+                        location.reload();
+                    })
+                    .catch((error)=>{
+                        console.log("에러발생: ", error);
+                    })
+                })
+            }
+        })
+        .catch((error)=>{
+            console.log("에러발생: ", error);
+        })
+        //스크랩버튼
+        axios
+        .post("http://localhost:8080/checkFeedScrapClick", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+        .then((response)=>{
+            console.log("데이터: ", response.data);
+            if(response.data == true){
+                content_feedfooter_scrapBtn.src = "/img/blackbookmark.png";
+                //스크랩취소
+                content_feedfooter_scrapBtn.addEventListener("click",()=>{
+                    axios
+                    .delete("http://localhost:8080/feedScrap", {data:{feed:{id:feed.id },user:{userId:user.userId }}, withCredentials: true})
+                    .then((response)=>{
+                        console.log("데이터: ", response.data);
+                        location.reload();
+                    })
+                    .catch((error)=>{
+                        console.log("에러발생: ", error);
+                    })
+                })
+            }else{
+                content_feedfooter_scrapBtn.src = "/img/bookmark.png";
+                content_feedfooter_scrapBtn.addEventListener("click",()=>{
+                    axios
+                    .post("http://localhost:8080/feedScrap", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+                    .then((response)=>{
+                        console.log("데이터: ", response.data);
+                        location.reload();
+                    })
+                    .catch((error)=>{
+                        console.log("에러발생: ", error);
+                    })
+                })
+            }
+        })
+        .catch((error)=>{
+            console.log("에러발생: ", error);
+        })
+ 
         content_feedheader_userPhoto.src = feed.user.profileImg;
         content_feedheader_userId.textContent = feed.user.userId;
         content_feedheader_date.textContent = feed.createdAt;
         content_feedPhoto.src = feed.image;
         content_feedfooter_text.textContent = feed.text;
     
-        content_feedfooter_likeBtn.src = "/img/heart.png";
         content_feedfooter_commentBtn.src = "/img/comment.png";
-        content_feedfooter_scrapBtn.src = "/img/bookmark.png";
         
         //부모 자식 위치
         feedbody.appendChild(content_feed2);

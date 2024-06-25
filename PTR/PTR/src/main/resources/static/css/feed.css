@@ -21,8 +21,6 @@
     align-items: center;
     padding: 10px;
     border: 1px solid rgba(0, 0, 0, 0.5);
-
-    /*transition: transform 0.5s;*/
 }
 .content_feedheader_left{
     display: flex;
@@ -64,12 +62,9 @@
 
 .content_feedPhoto{
     width: 70%;
-    /*height: 700px;*/
     aspect-ratio: 5 / 4;
     border: 1px solid rgba(0, 0, 0, 0.5);
     background-color: gray;
-
-    /*transition: transform 0.5s;*/
 }
 
 .content_feedfooter{
@@ -80,8 +75,6 @@
     align-items: center;
     padding: 15px;
     border: 1px solid rgba(0, 0, 0, 0.5);
-
-    /*transition: transform 0.5s;*/
 }
 .content_feedfooter_left{
     align-items: center;
@@ -123,18 +116,83 @@
 .content_feedfooter_scrapBtn:hover{
     cursor: pointer;
 }
-/*
+/*댓글*/
 .content_feedcommentbox{
-    width: 30%;
-    height: 820px;
-    display: none;
+    /*display: none;*/
+    position: fixed;
+    right: 0;
+    width: 25%;
+    height: 450px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    padding: 15px;
 }
-.shifted {
-    transform: translateX(-20%);
-  }
-.visible {
-    display: block;
-}*/
+.content_feedcomment_header{
+    width: 100%;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.content_feedcomment_text{
+    color: #000;
+}
+.content_feedcomment_closeBtn{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 30px;
+}
+.content_feedcomment_closeBtn:hover{
+    cursor: pointer;
+}
+.content_feedcomment_body{
+    background-color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 20px;
+    border: 1px solid #000;
+    border-radius: 1px;
+    width: 100%;
+    height: 330px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+/* .content_feedcomment
+.content_feedcomment_UserPhoto
+.content_feedcomment_UserId
+.content_feedcomment_text */
+.content_feedcomment_footer{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 0;
+    width: 100%;
+    height: 35px;
+}
+#commentText{
+    width: 80%;
+    height: 30px;
+}
+.content_feedcomment_forwardBtn{
+    width: 20%;
+    height: 30px;
+    background-color: #2c394a;
+    color: #fec009;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    line-height: 30px;
+}
+.content_feedcomment_forwardBtn:hover{
+    cursor: pointer;
+    color: #2c394a;
+    background-color: #fec009;
+}
 
 /*더보기창*/
 .content_feedMore{

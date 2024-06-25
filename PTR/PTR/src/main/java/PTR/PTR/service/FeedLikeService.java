@@ -4,6 +4,7 @@ import PTR.PTR.model.Feed;
 import PTR.PTR.model.FeedLike;
 import PTR.PTR.repository.FeedLikeRepository;
 import PTR.PTR.repository.FeedRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -26,8 +27,9 @@ public class FeedLikeService {
     }
 
     //좋아요 취소
+    @Transactional
     public void deleteFeedLike(FeedLike feedLike){
-        feedLikeRepository.deleteById(feedLike.getId());
+        feedLikeRepository.deleteByFeedAndUser(feedLike.getFeed(), feedLike.getUser());
     }
 
     //좋아요 확인

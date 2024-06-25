@@ -19,8 +19,9 @@ public class FeedScrapController {
 
 
     @PostMapping("/feedScrap")
-    public FeedScrap saveFeedScrap(@RequestBody FeedScrap feedScrap){
-        return feedScrapService.saveFeedScrap(feedScrap);
+    public String saveFeedScrap(@RequestBody FeedScrap feedScrap){
+        feedScrapService.saveFeedScrap(feedScrap);
+        return "정상작동";
     }
 
     @PostMapping("/feedScrap/feed")

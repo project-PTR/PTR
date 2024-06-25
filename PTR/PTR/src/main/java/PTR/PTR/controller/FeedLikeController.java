@@ -16,8 +16,9 @@ public class FeedLikeController {
     }
 
     @PostMapping("/feedLike")
-    public FeedLike feedLike(@RequestBody FeedLike feedLike){
-        return feedLikeService.feedLike(feedLike);
+    public String feedLike(@RequestBody FeedLike feedLike){
+        feedLikeService.feedLike(feedLike);
+        return "정상작동";
     }
 
     @DeleteMapping("/feedLike")
@@ -25,7 +26,7 @@ public class FeedLikeController {
         feedLikeService.deleteFeedLike(feedLike);
     }
 
-    @GetMapping("/feedLike")
+    @PostMapping("/getFeedLike")
     public List<FeedLike> getFeedLike(@RequestBody Feed feed){
         return feedLikeService.getFeedLike(feed);
     }
