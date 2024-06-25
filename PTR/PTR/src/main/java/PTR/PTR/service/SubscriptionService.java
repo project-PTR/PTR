@@ -38,4 +38,8 @@ public class SubscriptionService {
     public int teacherSubscription(Teacher teacher){
         return subscriptionRepository.findByTeacher(teacher).size();
     }
+
+    public Subscription subscriptionCheck(Subscription subscription){
+        return subscriptionRepository.findByUserAndTeacher(subscription.getUser(), subscription.getTeacher());
+    }
 }

@@ -105,6 +105,10 @@ function createMyLecture(data){
         box.appendChild(image);
         box.appendChild(name);
         lectureBody.appendChild(box);
+
+        box.addEventListener("click",()=>{
+            window.location.href = "lectureView.html?id=" + data.lecture.id
+        })
     })
 }
 
@@ -140,6 +144,10 @@ function createMyLecturescrap(data){
         box.appendChild(image);
         box.appendChild(name);
         lectureBody.appendChild(box);
+
+        box.addEventListener("click",()=>{
+            window.location.href = "lectureView.html?id=" + data.lecture.id
+        })
     })
 }
 
@@ -157,6 +165,10 @@ function createMyLectureReview(data){
         const img = document.createElement("video");
         image.classList.add("review_img");
         img.src = data.lecture.url;
+
+        image.addEventListener("click",()=>{
+            window.location.href = "lectureView.html?id=" + data.lecture.id
+        })
         
         const review_box = document.createElement("div");
         review_box.classList.add("review_box");

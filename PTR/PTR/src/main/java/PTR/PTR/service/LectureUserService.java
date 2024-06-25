@@ -67,4 +67,8 @@ public class LectureUserService {
         return lectureUserRepository.findByLecture(lecture).stream()
                 .filter(l->l.getTeacherReview()!=null).collect(Collectors.toList());
     }
+
+    public List<LectureUser> findByLectureId(Lecture lecture){
+        return lectureUserRepository.findByLecture(lecture).stream().toList();
+    }
 }

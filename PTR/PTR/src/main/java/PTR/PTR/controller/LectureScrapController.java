@@ -35,5 +35,8 @@ public class LectureScrapController {
     public ResponseEntity<List<LectureScrap>> myScrapLecture(@RequestBody User user){
         return new ResponseEntity<>(lectureScrapService.myScrapLecture(user), HttpStatus.OK);
     }
-
+    @PostMapping("findScrapLectureByUserAndLecture")
+    public ResponseEntity<LectureScrap> findScrapLectureByUserAndLecture(@RequestBody LectureScrap lectureScrap){
+        return new ResponseEntity<>(lectureScrapService.findScrapLectureByUserAndLecture(lectureScrap), HttpStatus.OK);
+    }
 }

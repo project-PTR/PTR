@@ -34,4 +34,8 @@ public class LectureScrapService {
     public List<LectureScrap> myScrapLecture(User user){
         return lectureScrapRepository.findByUser(user);
     }
+
+    public LectureScrap findScrapLectureByUserAndLecture(LectureScrap lectureScrap){
+        return lectureScrapRepository.findByUserAndLecture(lectureScrap.getUser(), lectureScrap.getLecture());
+    }
 }
