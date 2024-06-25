@@ -3,14 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="/PTR/PTR/PTR/src/main/resources/static/css/style.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/PTR/PTR/PTR/src/main/resources/static/css/record.css"
-    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/record.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/axios.min.js"></script>
     <title>PTR</title>
   </head>
   <body>
@@ -71,15 +66,13 @@
           <div class="content_stat">
             <div class="content_stat_section">
               <div class="content_stat_body">
-                <div class="average_calories">
-                  이번 달 평균 칼로리 섭취량 0 kcal
-                </div>
+                <div class="average_calories">이번 달 평균 칼로리 섭취량</div>
                 <canvas id="barChartIntake"></canvas>
               </div>
             </div>
             <div class="content_stat_section">
               <div class="content_stat_body">
-                <div class="average_calories">이번 달 평균 운동량 0 kcal</div>
+                <div class="average_calories">이번 달 평균 운동량</div>
                 <canvas id="barChartExercise"></canvas>
               </div>
             </div>
@@ -88,6 +81,6 @@
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="/PTR/PTR/PTR/src/main/resources/static/js/record.js"></script>
+    <script src="/js/record.js"></script>
   </body>
 </html>

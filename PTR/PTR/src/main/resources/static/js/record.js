@@ -6,20 +6,30 @@ document.addEventListener("DOMContentLoaded", function () {
   let recordButton = document.getElementById("recordButton");
 
   // 서버에서 데이터를 가져오는 함수
-  async function fetchData(year, month) {
-    try {
-      const response = await axios.get(`http://localhost:3306/api/data`, {
-        params: {
-          year: year,
-          month: month,
-        },
-      });
-      const data = response.data;
-      updateCharts(data);
-    } catch (error) {
-      handleFetchError(error);
-    }
-  }
+  // async function fetchData(year, month) {
+  //   try {
+  //     const [dietResponse, exerciseResponse] = await Promise.all([
+  //       axios.get(`http://localhost:8080/dietData`, {
+  //         params: {
+  //           year: year,
+  //           month: month,
+  //         },
+  //       }),
+  //       axios.get(`http://localhost:8080/exerciseData`, {
+  //         params: {
+  //           year: year,
+  //           month: month,
+  //         },
+  //       }),
+  //     ]);
+
+  //     const dietData = dietResponse.data;
+  //     const exerciseData = exerciseResponse.data;
+  //     updateCharts(dietData, exerciseData);
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   }
+  // }
 
   // 차트를 업데이트하는 함수
   function updateCharts(data) {

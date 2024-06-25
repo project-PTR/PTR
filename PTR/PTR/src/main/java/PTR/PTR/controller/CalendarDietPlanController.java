@@ -40,4 +40,6 @@ public class CalendarDietPlanController {
     public ResponseEntity<CalendarDietPlan> findCalendarDietPlanByCalendar(@RequestBody Calendar calendar){
         return new ResponseEntity<>(calendarDietPlanService.findCalendarDietPlanByCalendar(calendar), HttpStatus.OK);
     }
+
+    
 }
