@@ -31,10 +31,19 @@ public class UserFollowService {
     public List<UserFollow> getUserFollowByUser(User user){
         return userFollowRepository.findByUser(user);
     }
+    //팔로워수 조회
+    public int getNumberOfFollowByUser(User user){
+        return userFollowRepository.findByUser(user).size();
+    }
 
     //팔로잉 조회
     public List<UserFollow> getUserFollowByUser2(User user){
         return userFollowRepository.findByUser2(user);
+    }
+
+    //팔로잉수 조회
+    public int getNumberOfFollowByUser2(User user){
+        return userFollowRepository.findByUser2(user).size();
     }
 
 }

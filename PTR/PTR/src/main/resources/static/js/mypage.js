@@ -77,6 +77,7 @@ axios
 .then((response)=>{
     console.log("데이터: ", response.data)
     createMyLecture(response.data) 
+    createMyLectureReview(response.data)
 })
 .catch((error)=>{
     console.log("에러: ", error)
@@ -104,6 +105,10 @@ function createMyLecture(data){
         box.appendChild(image);
         box.appendChild(name);
         lectureBody.appendChild(box);
+
+        box.addEventListener("click",()=>{
+            window.location.href = "lectureView.html?id=" + data.lecture.id
+        })
     })
 }
 
@@ -139,8 +144,114 @@ function createMyLecturescrap(data){
         box.appendChild(image);
         box.appendChild(name);
         lectureBody.appendChild(box);
+
+        box.addEventListener("click",()=>{
+            window.location.href = "lectureView.html?id=" + data.lecture.id
+        })
     })
 }
+
+
+
+
+function createMyLectureReview(data){
+    const body = document.querySelector(".content_body_review_box");
+
+    data.forEach((data, index)=>{
+        const box = document.createElement("div");
+        box.classList.add("content_body_review");
+
+        const image = document.createElement("div");
+        const img = document.createElement("video");
+        image.classList.add("review_img");
+        img.src = data.lecture.url;
+
+        image.addEventListener("click",()=>{
+            window.location.href = "lectureView.html?id=" + data.lecture.id
+        })
+        
+        const review_box = document.createElement("div");
+        review_box.classList.add("review_box");
+
+        const title = document.createElement("div");
+        title.classList.add("review_title");
+        title.textContent = "제목: " + data.lecture.lectureName;
+
+        const rating = document.createElement("div");
+        rating.classList.add("review_rating");
+        if(data.teacherRating===-1){
+            rating.textContent = "별점: 아직 별점을 작성하지 않았습니다."
+        } else{
+            rating.textContent = "별점: " + data.teacherRating;
+        }
+        
+
+        const review = document.createElement("div");
+        review.classList.add("review_review");
+        if(data.teacherReview==""){
+            review.textContent = "리뷰 내용: 아직 리뷰를 작성하지 않았습니다."
+        } else{
+            review.textContent = "리뷰 내용: " + data.teacherReview;
+        }
+
+        const date = document.createElement("div");
+        date.classList.add("review_date");
+        const createdAt = new Date(data.createdAt);
+        date.textContent = "구매일: " + `${createdAt.getFullYear()}년 ${createdAt.getMonth() + 1}월 ${createdAt.getDate()}일`;
+
+        const review_btn_flex = document.createElement("div");
+        review_btn_flex.classList.add("review_btn_flex");
+
+        const btn1 = document.createElement("div");
+        btn1.classList.add("review_btn");
+        btn1.textContent = "수정";
+
+        const btn2 = document.createElement("div");
+        btn2.classList.add("review_btn");
+        btn2.textContent = "삭제";
+        
+        image.appendChild(img);
+        review_btn_flex.appendChild(btn1);
+        review_btn_flex.appendChild(btn2);
+
+        review_box.appendChild(title);
+        review_box.appendChild(rating);
+        review_box.appendChild(review);
+        review_box.appendChild(date);
+        review_box.appendChild(review_btn_flex)
+
+        box.appendChild(image);
+        box.appendChild(review_box)
+
+        body.appendChild(box);
+
+        // box.addEventListener("click",()=>{
+
+        // })
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

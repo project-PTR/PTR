@@ -49,4 +49,8 @@ public class LectureUserController {
     public ResponseEntity<List<LectureUser>> findReviewByLecture(@RequestBody Lecture lecture){
         return new ResponseEntity<>(lectureUserService.findReviewByLecture(lecture), HttpStatus.OK);
     }
+    @PostMapping("findByLectureId")
+    public ResponseEntity<List<LectureUser>> findByLectureId(@RequestBody Lecture lecture){
+        return new ResponseEntity<>(lectureUserService.findByLectureId(lecture), HttpStatus.OK);
+    }
 }

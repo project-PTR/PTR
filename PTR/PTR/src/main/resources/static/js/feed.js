@@ -4,6 +4,8 @@ document.querySelector(".footer_feedMenu_feedHomeBtn").addEventListener("click",
     document.querySelector(".content_createFeed").classList.add("hiden");
     document.querySelector(".content_myFeed").classList.add("hiden");
     document.querySelector(".content_scrapFeed").classList.add("hiden");
+    document.querySelector(".content_follower").classList.add("hiden");
+    document.querySelector(".content_following").classList.add("hiden");
 })
 document.querySelector(".footer_feedMenu_createFeedBtn").addEventListener("click", ()=>{
     document.querySelector(".content_feed").classList.add("hiden");
@@ -11,6 +13,8 @@ document.querySelector(".footer_feedMenu_createFeedBtn").addEventListener("click
     document.querySelector(".content_createFeed").classList.remove("hiden");
     document.querySelector(".content_myFeed").classList.add("hiden");
     document.querySelector(".content_scrapFeed").classList.add("hiden");
+    document.querySelector(".content_follower").classList.add("hiden");
+    document.querySelector(".content_following").classList.add("hiden");
 })
 document.querySelector(".footer_feedMenu_myFeedBtn").addEventListener("click", ()=>{
     document.querySelector(".content_feed").classList.add("hiden");
@@ -18,6 +22,8 @@ document.querySelector(".footer_feedMenu_myFeedBtn").addEventListener("click", (
     document.querySelector(".content_createFeed").classList.add("hiden");
     document.querySelector(".content_myFeed").classList.remove("hiden");
     document.querySelector(".content_scrapFeed").classList.add("hiden");
+    document.querySelector(".content_follower").classList.add("hiden");
+    document.querySelector(".content_following").classList.add("hiden");
 })
 document.querySelector(".footer_feedMenu_scrapFeedBtn").addEventListener("click", ()=>{
     document.querySelector(".content_feed").classList.add("hiden");
@@ -25,6 +31,16 @@ document.querySelector(".footer_feedMenu_scrapFeedBtn").addEventListener("click"
     document.querySelector(".content_createFeed").classList.add("hiden");
     document.querySelector(".content_myFeed").classList.add("hiden");
     document.querySelector(".content_scrapFeed").classList.remove("hiden");
+    document.querySelector(".content_follower").classList.add("hiden");
+    document.querySelector(".content_following").classList.add("hiden");
+})
+document.querySelector(".content_follower_backBtn").addEventListener("click", ()=>{
+    document.querySelector(".content_follower").classList.add("hiden");
+    document.querySelector(".content_myFeed").classList.remove("hiden");
+})
+document.querySelector(".content_following_backBtn").addEventListener("click", ()=>{
+    document.querySelector(".content_following").classList.add("hiden");
+    document.querySelector(".content_myFeed").classList.remove("hiden");
 })
 
 
@@ -65,9 +81,6 @@ function displayFeed(data){
         const content_feedfooter_comment = document.createElement("div");
         const content_feedfooter_scrapBtn = document.createElement("img");
         const content_feedheader_a = document.createElement("div");
-        /*const content_feedMore = document.createElement("div");
-        const content_feedMore_delete = document.createElement("div");
-        const content_feedMore_likeCheck = document.createElement("div");*/
         //클래스 이름
         content_feed.classList.add("content_feed");
         content_feedheader.classList.add("content_feedheader");
@@ -89,9 +102,6 @@ function displayFeed(data){
         content_feedfooter_commentBtn.classList.add("content_feedfooter_commentBtn");
         content_feedfooter_comment.classList.add("content_feedfooter_comment");
         content_feedfooter_scrapBtn.classList.add("content_feedfooter_scrapBtn");
-        /*content_feedMore.classList.add("content_feedMore");
-        content_feedMore_delete.classList.add("content_feedMore_delete");
-        content_feedMore_likeCheck.classList.add("content_feedMore_likeCheck");*/
         
        //태그 속성
         axios
@@ -147,10 +157,6 @@ function displayFeed(data){
         content_feedfooter_right.appendChild(content_feedfooter_commentBtn);
         content_feedfooter_right.appendChild(content_feedfooter_comment);
         content_feedfooter_right.appendChild(content_feedfooter_scrapBtn);
-        /*content_feed.appendChild(content_feedMore);
-        content_feedMore.appendChild(content_feedMore_changeBtn);
-        content_feedMore.appendChild(content_feedMore_Delete);
-        contnet_feedMore.appendChile(content_feedMore_likeCheck);*/     
 
         })
 }
@@ -248,9 +254,6 @@ function displayScrap(data){
         const content_feedfooter_comment = document.createElement("div");
         const content_feedfooter_scrapBtn = document.createElement("img");
         const content_feedheader_a = document.createElement("div");
-        /*const content_feedMore = document.createElement("div");
-        const content_feedMore_delete = document.createElement("div");
-        const content_feedMore_likeCheck = document.createElement("div");*/
         //클래스 이름
         content_feed2.classList.add("content_feed2");
         content_feedheader.classList.add("content_feedheader");
@@ -272,9 +275,6 @@ function displayScrap(data){
         content_feedfooter_commentBtn.classList.add("content_feedfooter_commentBtn");
         content_feedfooter_comment.classList.add("content_feedfooter_comment");
         content_feedfooter_scrapBtn.classList.add("content_feedfooter_scrapBtn");
-        /*content_feedMore.classList.add("content_feedMore");
-        content_feedMore_delete.classList.add("content_feedMore_delete");
-        content_feedMore_likeCheck.classList.add("content_feedMore_likeCheck");*/
         
        //태그 속성
         axios
@@ -330,10 +330,6 @@ function displayScrap(data){
         content_feedfooter_right.appendChild(content_feedfooter_commentBtn);
         content_feedfooter_right.appendChild(content_feedfooter_comment);
         content_feedfooter_right.appendChild(content_feedfooter_scrapBtn);
-        /*content_feed.appendChild(content_feedMore);
-        content_feedMore.appendChild(content_feedMore_changeBtn);
-        content_feedMore.appendChild(content_feedMore_Delete);
-        contnet_feedMore.appendChile(content_feedMore_likeCheck);*/  
         
     }
 }
@@ -350,6 +346,38 @@ axios
     content_myFeed_profile_img.src = response.data.profileImg;
     content_myFeed_profile_id.textContent = response.data.userId;
     content_myFeed_profile_text.textContent = response.data.profileText;
+})
+.catch((error)=>{
+    console.log("에러발생: ", error);
+})
+
+const content_myFeed_profile_box_numberOfFeed = document.querySelector(".content_myFeed_profile_box_numberOfFeed");
+axios
+.post("http://localhost:8080/numberOfFeed", {userId: user.userId}, {withCredentials:true})
+.then((response)=>{
+    console.log("데이터: ", response.data);
+    content_myFeed_profile_box_numberOfFeed.textContent = response.data;
+
+})
+.catch((error)=>{
+    console.log("에러발생: ", error);
+})
+const content_myFeed_profile_box_numberOfFollower = document.querySelector(".content_myFeed_profile_box_numberOfFollower");
+axios
+.post("http://localhost:8080/numberOfFollowByUser", {userId: user.userId}, {withCredentials:true})
+.then((response)=>{
+    console.log("데이터: ",response.data);
+    content_myFeed_profile_box_numberOfFollower.textContent = response.data;
+})
+.catch((error)=>{
+    console.log("에러발생: ", error);
+})
+const content_myFeed_profile_box_numberOfFollowing = document.querySelector(".content_myFeed_profile_box_numberOfFollowing");
+axios
+.post("http://localhost:8080/numberOfFollowByUser2", {userId: user.userId}, {withCredentials:true})
+.then((response)=>{
+    console.log("데이터: ", response.data);
+    content_myFeed_profile_box_numberOfFollowing.textContent = response.data;
 })
 .catch((error)=>{
     console.log("에러발생: ", error);
@@ -418,9 +446,6 @@ function displayMyFeed(data){
         const content_feedfooter_comment = document.createElement("div");
         const content_feedfooter_scrapBtn = document.createElement("img");
         const content_feedheader_a = document.createElement("div");
-        /*const content_feedMore = document.createElement("div");
-        const content_feedMore_delete = document.createElement("div");
-        const content_feedMore_likeCheck = document.createElement("div");*/
         //클래스 이름
         content_feed2.classList.add("content_feed2");
         content_feedheader.classList.add("content_feedheader");
@@ -442,9 +467,6 @@ function displayMyFeed(data){
         content_feedfooter_commentBtn.classList.add("content_feedfooter_commentBtn");
         content_feedfooter_comment.classList.add("content_feedfooter_comment");
         content_feedfooter_scrapBtn.classList.add("content_feedfooter_scrapBtn");
-        /*content_feedMore.classList.add("content_feedMore");
-        content_feedMore_delete.classList.add("content_feedMore_delete");
-        content_feedMore_likeCheck.classList.add("content_feedMore_likeCheck");*/
         
        //태그 속성
         axios
@@ -500,11 +522,139 @@ function displayMyFeed(data){
         content_feedfooter_right.appendChild(content_feedfooter_commentBtn);
         content_feedfooter_right.appendChild(content_feedfooter_comment);
         content_feedfooter_right.appendChild(content_feedfooter_scrapBtn);
-        /*content_feed.appendChild(content_feedMore);
-        content_feedMore.appendChild(content_feedMore_changeBtn);
-        content_feedMore.appendChild(content_feedMore_Delete);
-        contnet_feedMore.appendChile(content_feedMore_likeCheck);*/  
         
     }
 }            
         
+
+//팔로워 조회
+document.querySelector(".content_myFeed_profile_box_numberOfFollower").addEventListener("click",()=>{
+    document.querySelector(".content_myFeed").classList.add("hiden");
+    document.querySelector(".content_follower").classList.remove("hiden");
+
+
+    axios
+    .post("http://localhost:8080/userFollow/user", {userId: user.userId}, {withCredentials: true})
+    .then((response) => {
+        console.log("데이터: ", response.data);
+        displayFollower(response.data);
+        
+    })
+    .catch((error)=>{
+        console.log("에러발생: ", error);
+    })
+})
+
+function displayFollower(data){
+    const follower = document.querySelector(".content_follower_follower");
+    follower.innerHTML = "";
+    data.forEach((follow)=>{
+        console.log(follower);
+
+        const content_follower_left = document.createElement("div");
+        const content_follower_userPhoto = document.createElement("img");
+        const content_follower_user = document.createElement("div");
+        const content_follower_userId = document.createElement("div");
+        const content_follower_userName = document.createElement("div");
+        const content_follower_right = document.createElement("div");
+        const content_follower_deleteFollower = document.createElement("div");
+
+        content_follower_left.classList.add("content_follower_left");
+        content_follower_userPhoto.classList.add("content_follower_userPhoto");
+        content_follower_user.classList.add("content_follower_user");
+        content_follower_userId.classList.add("content_follower_userId");
+        content_follower_userName.classList.add("content_follower_userName");
+        content_follower_right.classList.add("content_follower_right");
+        content_follower_deleteFollower.classList.add("content_follower_deleteFollower");
+
+        content_follower_userPhoto.src = follow.user2.profileImg;
+        content_follower_userId.textContent = follow.user2.userId;
+        content_follower_userName.textContent = follow.user2.userName;
+        content_follower_deleteFollower.textContent = "삭제";
+        content_follower_deleteFollower.addEventListener("click",()=>{
+            axios
+            .delete("/userFollow", {data:{ id: follow.id }}, {withCredentials: true})
+            .then((response) => {
+                console.log("데이터: ", response.data);
+
+            })
+            .catch((error)=>{
+                console.log("에러발생: ", error);
+            })
+        })
+
+        follower.appendChild(content_follower_left);
+        content_follower_left.appendChild(content_follower_userPhoto);
+        content_follower_left.appendChild(content_follower_user);
+        content_follower_user.appendChild(content_follower_userId);
+        content_follower_user.appendChild(content_follower_userName);
+        follower.appendChild(content_follower_right);
+        content_follower_right.appendChild(content_follower_deleteFollower);
+    })
+}
+
+//팔로잉 조회
+document.querySelector(".content_myFeed_profile_box_numberOfFollowing").addEventListener("click",()=>{
+    document.querySelector(".content_myFeed").classList.add("hiden");
+    document.querySelector(".content_following").classList.remove("hiden");
+
+
+    axios
+    .post("http://localhost:8080/userFollow/user2", {userId: user.userId}, {withCredentials: true})
+    .then((response) => {
+        console.log("데이터: ", response.data);
+        displayFollowing(response.data);
+        
+    })
+    .catch((error)=>{
+        console.log("에러발생: ", error);
+    })
+})
+
+function displayFollowing(data){
+    const following = document.querySelector(".content_following_following");
+    following.innerHTML = "";
+    data.forEach((follow)=>{
+        console.log(following);
+        
+        const content_following_left = document.createElement("div");
+        const content_following_userPhoto = document.createElement("img");
+        const content_following_user = document.createElement("div");
+        const content_following_userId = document.createElement("div");
+        const content_following_userName = document.createElement("div");
+        const content_following_right = document.createElement("div");
+        const content_following_deleteFollowing = document.createElement("div");
+
+        content_following_left.classList.add("content_following_left");
+        content_following_userPhoto.classList.add("content_following_userPhoto");
+        content_following_user.classList.add("content_following_user");
+        content_following_userId.classList.add("content_following_userId");
+        content_following_userName.classList.add("content_following_userName");
+        content_following_right.classList.add("content_following_right");
+        content_following_deleteFollowing.classList.add("content_following_deleteFollowing");
+
+        content_following_userPhoto.src = follow.user.profileImg;
+        content_following_userId.textContent = follow.user.userId;
+        content_following_userName.textContent = follow.user.userName;
+        content_following_deleteFollowing.textContent = "삭제";
+        content_following_deleteFollowing.addEventListener("click",()=>{
+            axios
+            .delete("/userFollow", {data:{ id: follow.id }}, {withCredentials: true})
+            .then((response) => {
+                console.log("데이터: ", response.data);
+
+            })
+            .catch((error)=>{
+                console.log("에러발생: ", error);
+            })
+        })
+
+        following.appendChild(content_following_left);
+        content_following_left.appendChild(content_following_userPhoto);
+        content_following_left.appendChild(content_following_user);
+        content_following_user.appendChild(content_following_userId);
+        content_following_user.appendChild(content_following_userName);
+        following.appendChild(content_following_right);
+        content_following_right.appendChild(content_following_deleteFollowing); 
+    })
+}

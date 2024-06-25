@@ -4,7 +4,11 @@ import PTR.PTR.model.*;
 import PTR.PTR.repository.LectureCategoryRepository;
 import PTR.PTR.repository.LectureRepository;
 import PTR.PTR.repository.NotificationRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -63,5 +67,19 @@ public class LectureService {
     public List<Lecture> findLectureByCategory(Category category){
         return lectureCategoryRepository.findByCategory(category)
                 .stream().map(LectureCategory::getLecture).collect(Collectors.toList());
+    }
+
+    public List<Lecture> findLectureAllByCategoryIn(List<Category> categories){
+        return lectureCategoryRepository.findAllByCategoryIn(categories)
+                .stream().map(LectureCategory::getLecture).collect(Collectors.toList())
+                .reversed().stream().limit(6).collect(Collectors.toList());
+    }
+
+    public List<Lecture> findAllLecture(){
+        return lectureRepository.findAll().reversed();
+    }
+
+    public Lecture getLectureById(long id) {
+        return lectureRepository.findById(id).get();
     }
 }

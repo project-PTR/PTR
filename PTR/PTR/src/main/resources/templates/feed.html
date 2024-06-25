@@ -96,7 +96,7 @@
             <div class="content_myFeed_profile">
               <div class="content_myFeed_profile_left">
                 <div class="content_myFeed_profile_left_box">
-                  <img id="content_myFeed_profile_img" src="" alt="Profile Image">
+                  <img id="content_myFeed_profile_img" src="">
                   <div class="content_myFeed_profile_id">@피드아이디</div>
                 </div>
               </div>
@@ -105,9 +105,9 @@
                   <div>피드</div>
                   <div>팔로워</div>
                   <div>팔로잉</div>
-                  <div>11</div>
-                  <div>0</div>
-                  <div>0</div>
+                  <div class="content_myFeed_profile_box_numberOfFeed"></div>
+                  <div class="content_myFeed_profile_box_numberOfFollower">0</div>
+                  <div class="content_myFeed_profile_box_numberOfFollowing">0</div>
                 </div>
                 <div class="content_myFeed_profile_butten_box">
                   <div class="content_myFeed_profile_butten">프로필 편집</div>
@@ -157,18 +157,16 @@
               <div class="content_otherFeed_feed"></div>-->
             </div>
           </div>
-          <!--팔로우,필로잉 확인-->
-          <div class="content_follow hiden">
-            <div class="content_follow_header">
-              <div class="content_follow_backBtn"></div>
-              <div class="content_follow_Id">@feedId</div>
+          <!-- 팔로우,필로잉 확인-->
+          <div class="content_follower hiden">
+            <div class="content_follower_header">
+              <div class="content_follower_backBtn">
+                <img src="/img/backBtn.png" width="35" height="35">
+              </div>
+              <div class="content_follower_text">팔로우</div>
             </div>
-            <div class="content_follow_choose">
-              <div class="content_follow_followerBtn">팔로우</div>
-              <div class="content_follow_followingBtn">팔로잉</div>
-            </div>
-            <div class="content_follow_follower">
-              <div class="content_follower_left">
+            <div class="content_follower_follower">
+              <!-- <div class="content_follower_left">
                 <div class="content_follower_userPhoto"></div>
                 <div class="content_follower_user">
                   <div class="content_follower_userId">userId</div>
@@ -176,11 +174,18 @@
                 </div>
               </div>
                 <div class="content_follower_right">
-                  <div class="content_follower_deleteFollower">삭제</div>
-                </div>
+                  <div class="content_follower_deleteFollower">삭제</div>-->
             </div>
-            <div class="content_follow_following hiden">
-              <div class="content_following_left">
+           </div>
+          <div class="content_following hiden">
+            <div class="content_following_header">
+              <div class="content_following_backBtn">
+                <img src="/img/backBtn.png" width="35" height="35">
+              </div>
+              <div class="content_following_text">팔로잉</div>
+            </div>
+            <div class="content_following_following">
+              <!-- <div class="content_following_left">
                 <div class="content_following_userPhoto"></div>
                 <div class="content_following_user">
                   <div class="content_following_userId">userId</div>
@@ -189,10 +194,10 @@
               </div>
               <div class="content_following_right">
                 <div class="content_following_deleteFollowing">삭제</div>
-              </div>
+              </div> -->
             </div>
           </div>
-          <!--csrap-->
+          <!--scrap-->
           <div class="content_scrapFeed hiden">
             <div class="content_scrapFeed_header">Scrap</div>
             <div class="content_scrapFeed_feeds">

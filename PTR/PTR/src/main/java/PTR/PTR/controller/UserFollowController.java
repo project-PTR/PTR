@@ -25,13 +25,21 @@ public class UserFollowController {
         userFollowService.deleteUserFollow(userFollow);
     }
 
-    @GetMapping("/userFollow/user")
+    @PostMapping("/userFollow/user")
     public List<UserFollow> getUserFollowByUser(@RequestBody User user){
         return userFollowService.getUserFollowByUser(user);
     }
+    @PostMapping("/numberOfFollowByUser")
+    public int getNumberOfFollowByUser(@RequestBody User user){
+        return userFollowService.getNumberOfFollowByUser(user);
+    }
 
-    @GetMapping("/userFollow/user2")
+    @PostMapping("/userFollow/user2")
     public List<UserFollow> getUserFollowByUser2(@RequestBody User user){
         return userFollowService.getUserFollowByUser2(user);
+    }
+    @PostMapping("/numberOfFollowByUser2")
+    public int getNumberOfFollowByUser2(@RequestBody User user){
+        return userFollowService.getNumberOfFollowByUser2(user);
     }
 }

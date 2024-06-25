@@ -4,9 +4,7 @@ import PTR.PTR.model.*;
 import PTR.PTR.service.LectureService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -58,5 +56,19 @@ public class LectureController {
     @PostMapping("findLectureByCategory")
     public ResponseEntity<List<Lecture>> findLectureByCategory(@RequestBody Category category){
         return new ResponseEntity<>(lectureService.findLectureByCategory(category), HttpStatus.OK);
+    }
+    @PostMapping("findLectureAllByCategoryIn")
+    public ResponseEntity<List<Lecture>> findLectureAllByCategoryIn(@RequestBody List<Category> categories){
+        return new ResponseEntity<>(lectureService.findLectureAllByCategoryIn(categories), HttpStatus.OK);
+    }
+    @GetMapping("findAllLecture")
+    public ResponseEntity<List<Lecture>> findAllLecture(){
+        return new ResponseEntity<>(lectureService.findAllLecture(),HttpStatus.OK);
+    }
+
+    @GetMapping("/lecture/{id}")
+    public ResponseEntity<Lecture> getLectureById(@PathVariable long id) {
+        return new ResponseEntity<>(lectureService.getLectureById(id),
+                HttpStatus.OK);
     }
 }

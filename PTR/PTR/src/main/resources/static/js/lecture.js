@@ -15,6 +15,205 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
+
+
+
+
+
+const user = {
+  userId: "cake"
+}
+
+
+
+
+axios
+.get("http://localhost:8080/findAllLecture")
+.then((response)=>{
+  console.log("데이터: ", response.data)
+  allLecture(response.data)
+})
+.catch((error)=>{
+  console.log("에러: ", error)
+})
+
+function allLecture(data){
+  const body = document.querySelector(".content_body_interestLecture");
+
+  data.forEach((data, index)=>{
+    const box = document.createElement("div");
+    box.classList.add("content_body_interestLecture_box");
+    box.classList.add("box");
+
+    const videoDiv = document.createElement("div");
+    const video = document.createElement("video");
+    videoDiv.classList.add("content_body_interestLecture_box_img");
+    video.src = data.url;
+
+    const div = document.createElement("div");
+
+    const lecture_flex = document.createElement("div");
+    lecture_flex.classList.add("lecture_flex");
+
+    const lecture_teacher_profile = document.createElement("div");
+    lecture_teacher_profile.classList.add("lecture_teacher_profile");
+    const img = document.createElement("img");
+    img.src = data.teacher.user.profileImg;
+
+
+
+    const div2 = document.createElement("div");
+
+    const lecture_title = document.createElement("div");
+    lecture_title.classList.add("lecture_title");
+    lecture_title.textContent = data.lectureName;
+
+    const lecture_teacher_name = document.createElement("div");
+    lecture_teacher_name.classList.add("lecture_teacher_name");
+    lecture_teacher_name.textContent = data.teacher.user.userName;
+
+    const lecture_updateTime = document.createElement("div");
+    lecture_updateTime.classList.add("lecture_updateTime");
+    const createdAt = new Date(data.createdAt);
+    lecture_updateTime.textContent = `${createdAt.getFullYear()}. ${createdAt.getMonth() + 1}. ${createdAt.getDate()}.`;
+
+    const lecture_price = document.createElement("div");
+    lecture_price.classList.add("lecture_price");
+    if(data.price==0){
+      lecture_price.textContent = "무료";
+    } else{
+      lecture_price.textContent = "단백질바 " + data.price + "개";
+    }
+    
+    videoDiv.appendChild(video);
+    lecture_teacher_profile.appendChild(img);
+
+    div2.appendChild(lecture_title)
+    div2.appendChild(lecture_teacher_name)
+    div2.appendChild(lecture_updateTime)
+
+    lecture_flex.appendChild(lecture_teacher_profile)
+    lecture_flex.appendChild(div2)
+
+    div.appendChild(lecture_flex)
+    div.appendChild(lecture_price)
+
+    box.appendChild(videoDiv)
+    box.appendChild(div)
+
+    body.appendChild(box)
+
+    box.addEventListener("click",()=>{
+      window.location.href = "lectureView.html?id=" + data.id
+    })
+  })
+}
+
+
+
+
+
+
+
+
+// 맞춤 교육 영상 서비스
+// let userCategoryList = []
+
+// axios
+// .post("http://localhost:8080/findUserCategory", user)
+// .then((response)=>{
+//   console.log("데이터: ", response.data)
+//   findUserCategory(response.data)
+// })
+// .catch((error)=>{
+//   console.log("에러: ", error)
+// })
+
+// function findUserCategory(data){
+//   data.forEach((data, index)=>{
+//     const category = {
+//       categoryName: data.category
+//     }
+//     userCategoryList.add(category)
+//   })
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// axios
+// .post("http://localhost:8080/findLectureAllByCategoryIn", user)
+// .then((response)=>{
+//     console.log("데이터: ", response.data)
+//     createMyLecturescrap(response.data) 
+// })
+// .catch((error)=>{
+//     console.log("에러: ", error)
+// })
+
+// function createMyLecturescrap(data){
+//     const lectureBody = document.querySelector(".content_body_scrapLecture");
+
+//     data.forEach((data, index)=>{
+//         const box = document.createElement("div");
+//         box.classList.add("content_body_scrapLecture_box");
+//         box.classList.add("box");
+
+//         const image = document.createElement("div");
+//         const img = document.createElement("video");
+//         image.classList.add("content_body_scrapLecture_box_img");
+//         img.src = data.lecture.url;
+        
+//         const name = document.createElement("div");
+//         name.classList.add("content_body_scrapLecture_box_title");
+//         name.textContent = data.lecture.lectureName;
+
+        
+//         image.appendChild(img);
+//         box.appendChild(image);
+//         box.appendChild(name);
+//         lectureBody.appendChild(box);
+//     })
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 document.querySelector(".search_filter").addEventListener("click", ()=>{
   document.querySelector(".search_filter").classList.add("hiden")
   document.querySelector(".search_filter_close").classList.remove("hiden")
