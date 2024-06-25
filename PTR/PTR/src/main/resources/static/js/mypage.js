@@ -305,10 +305,37 @@ function createMyLectureReview(data){
         const btn2 = document.createElement("div");
         btn2.classList.add("review_btn");
         btn2.textContent = "삭제";
+
+        const btn11 = document.createElement("div");
+        btn11.classList.add("review_btn");
+        btn11.classList.add("hiden")
+        btn11.textContent = "완료";
+        
+        const btn21 = document.createElement("div");
+        btn21.classList.add("review_btn");
+        btn21.classList.add("hiden")
+        btn21.textContent = "취소";
+
+        const inputValue2 = document.createElement("input");
+        inputValue2.classList.add("rating_input")
+        inputValue2.classList.add("hiden")
+        inputValue2.type = "number"
+        inputValue2.min = 0
+        inputValue2.max = 10
+        
+        const inputValue3 = document.createElement("textarea");
+        inputValue3.classList.add("review_input")
+        inputValue3.classList.add("hiden")
+        inputValue3.rows = 2
+        inputValue3.min = 0
+        inputValue3.max = 10
+        
         
         image.appendChild(img);
         review_btn_flex.appendChild(btn1);
         review_btn_flex.appendChild(btn2);
+        review_btn_flex.appendChild(btn11);
+        review_btn_flex.appendChild(btn21);
 
         flex1.appendChild(title1)
         flex1.appendChild(value1)
@@ -318,6 +345,9 @@ function createMyLectureReview(data){
         flex3.appendChild(value3)
         flex4.appendChild(title4)
         flex4.appendChild(value4)
+
+        flex2.appendChild(inputValue2)
+        flex3.appendChild(inputValue3)
 
         review_box.appendChild(flex1);
         review_box.appendChild(flex4);
@@ -329,8 +359,6 @@ function createMyLectureReview(data){
         box.appendChild(review_box)
 
         body.appendChild(box);
-
-
         
         title4.classList.add("review_box_flex_title");
         title4.textContent = "구매일: ";
@@ -338,47 +366,14 @@ function createMyLectureReview(data){
 
         btn1.addEventListener("click", ()=>{
             value2.classList.add("hiden")
-            const inputValue2 = document.createElement("input");
-            inputValue2.type = "number"
-            inputValue2.min = 0
-            inputValue2.max = 10
-            flex2.appendChild(inputValue2)
-
             value3.classList.add("hiden")
-            const inputValue3 = document.createElement("textarea");
-            inputValue3.rows = 2
-            inputValue3.min = 0
-            inputValue3.max = 10
-            flex3.appendChild(inputValue3)
+            inputValue2.classList.remove("hiden")
+            inputValue3.classList.remove("hiden")
 
             btn1.classList.add("hiden")
-            const btn11 = document.createElement("div");
-            btn11.classList.add("review_btn");
-            btn11.textContent = "완료";
-
             btn2.classList.add("hiden")
-            const btn21 = document.createElement("div");
-            btn21.classList.add("review_btn");
-            btn21.textContent = "취소";
-
-            review_btn_flex.appendChild(btn11);
-            review_btn_flex.appendChild(btn21);
-
-            btn21.addEventListener("click", ()=>{
-                value2.classList.remove("hiden")
-                value3.classList.remove("hiden")
-                btn1.classList.remove("hiden")
-                btn2.classList.remove("hiden")
-
-                inputValue2.classList.add("hiden")
-                inputValue3.classList.add("hiden")
-                btn11.classList.add("hiden")
-                btn21.classList.add("hiden")
-            })
-
-            // btn11.addEventListener("click", ()=>{
-                // 여기부터 입력
-            // })
+            btn11.classList.remove("hiden")
+            btn21.classList.remove("hiden")
         })
 
         btn2.addEventListener("click",()=>{
@@ -396,6 +391,59 @@ function createMyLectureReview(data){
             .catch((error)=>{
                 console.log("에러: ", error)
             })
+        })
+
+        let changeRating = -1
+        let changeReview = ""
+
+        document.querySelector(".rating_input").addEventListener("change",(e)=>{
+            if(e.target.value < 0){
+                inputValue2.value = 0
+                changeRating = 0
+            }else if(e.target.value > 10){
+                inputValue2.value = 10
+                changeRating = 10
+            }else if(e.target.value>=0 && e.target.value<=10){
+                changeRating = e.target.value;
+            }else{
+                changeRating = -1
+            }
+            console.log(changeRating)
+        })
+
+        document.querySelector(".review_input").addEventListener("change",(e)=>{
+            changeReview = e.target.value;
+            console.log(changeReview)
+        })
+
+        btn11.addEventListener("click", ()=>{
+            const lectureUser = {
+                id: data.id,
+                teacherRating: changeRating,
+                teacherReview: changeReview
+            }
+
+            axios
+            .post("http://localhost:8080/changeLectureUser", lectureUser)
+            .then((response)=>{
+                console.log("데이터: ", response.data)
+                location.reload();
+            })
+            .catch((error)=>{
+                console.log("에러: ", error)
+            })
+        })
+
+        btn21.addEventListener("click", ()=>{
+            value2.classList.remove("hiden")
+            value3.classList.remove("hiden")
+            btn1.classList.remove("hiden")
+            btn2.classList.remove("hiden")
+
+            inputValue2.classList.add("hiden")
+            inputValue3.classList.add("hiden")
+            btn11.classList.add("hiden")
+            btn21.classList.add("hiden")
         })
     })
 }
@@ -1270,6 +1318,9 @@ document.querySelector(".subscription").addEventListener("click", ()=>{
     document.querySelector(".content_body_myrecord").classList.add("hiden")
     document.querySelector(".content_body_cash").classList.add("hiden")
     document.querySelector(".content_body_myid").classList.add("hiden")
+    document.querySelector(".head_subscription1").classList.add("hiden")
+    document.querySelector(".head_subscription2").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
     
     document.querySelector(".subscription").classList.add("content_menu_bold")
     document.querySelector(".traning").classList.remove("content_menu_bold")
@@ -1282,6 +1333,16 @@ document.querySelector(".subscription").addEventListener("click", ()=>{
     document.querySelector(".head_myrecord").classList.add("hiden")
     document.querySelector(".head_cash").classList.add("hiden")
     document.querySelector(".head_myid").classList.add("hiden")
+
+    document.querySelector(".content_body_subscription_box1").classList.remove("hiden")
+    document.querySelector(".content_body_subscription_box2").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box3").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box4").classList.add("hiden")
+
+    document.querySelector(".content_body_subscription_menu1").classList.add("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
 })
 
 document.querySelector(".traning").addEventListener("click", ()=>{
@@ -1302,6 +1363,9 @@ document.querySelector(".traning").addEventListener("click", ()=>{
     document.querySelector(".head_myrecord").classList.add("hiden")
     document.querySelector(".head_cash").classList.add("hiden")
     document.querySelector(".head_myid").classList.add("hiden")
+    document.querySelector(".head_subscription1").classList.add("hiden")
+    document.querySelector(".head_subscription2").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 })
 
 document.querySelector(".myrecord").addEventListener("click", ()=>{
@@ -1319,6 +1383,9 @@ document.querySelector(".myrecord").addEventListener("click", ()=>{
     document.querySelector(".head_subscription").classList.add("hiden")
     document.querySelector(".head_cash").classList.add("hiden")
     document.querySelector(".head_myid").classList.add("hiden")
+    document.querySelector(".head_subscription1").classList.add("hiden")
+    document.querySelector(".head_subscription2").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 
     document.querySelector(".content_body_traning").classList.add("hiden")
     document.querySelector(".traning").classList.remove("content_menu_bold")
@@ -1339,6 +1406,9 @@ document.querySelector(".cash").addEventListener("click", ()=>{
     document.querySelector(".head_myrecord").classList.add("hiden")
     document.querySelector(".head_subscription").classList.add("hiden")
     document.querySelector(".head_myid").classList.add("hiden")
+    document.querySelector(".head_subscription1").classList.add("hiden")
+    document.querySelector(".head_subscription2").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 
     document.querySelector(".content_body_traning").classList.add("hiden")
     document.querySelector(".traning").classList.remove("content_menu_bold")
@@ -1359,6 +1429,9 @@ document.querySelector(".myid").addEventListener("click", ()=>{
     document.querySelector(".head_myrecord").classList.add("hiden")
     document.querySelector(".head_cash").classList.add("hiden")
     document.querySelector(".head_subscription").classList.add("hiden")
+    document.querySelector(".head_subscription1").classList.add("hiden")
+    document.querySelector(".head_subscription2").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 
     document.querySelector(".content_body_traning").classList.add("hiden")
     document.querySelector(".traning").classList.remove("content_menu_bold")
@@ -1373,76 +1446,58 @@ document.querySelector(".myid").addEventListener("click", ()=>{
 
 
 document.querySelectorAll(".myid_tap1")[0].addEventListener("click", ()=>{
-    console.log("1")
     document.querySelector(".content_body_myid_tap1").classList.remove("hiden")
     document.querySelector(".content_body_myid_tap2").classList.add("hiden")
     document.querySelector(".content_body_myid_tap3").classList.add("hiden")
 })
 
 document.querySelectorAll(".myid_tap2")[0].addEventListener("click", ()=>{
-    console.log("2")
     document.querySelector(".content_body_myid_tap2").classList.remove("hiden")
     document.querySelector(".content_body_myid_tap1").classList.add("hiden")
     document.querySelector(".content_body_myid_tap3").classList.add("hiden")
 })
 
 document.querySelectorAll(".myid_tap3")[0].addEventListener("click", ()=>{
-    console.log("3")
     document.querySelector(".content_body_myid_tap3").classList.remove("hiden")
     document.querySelector(".content_body_myid_tap1").classList.add("hiden")
     document.querySelector(".content_body_myid_tap2").classList.add("hiden")
 })
 
 document.querySelectorAll(".myid_tap1")[1].addEventListener("click", ()=>{
-    console.log("1")
     document.querySelector(".content_body_myid_tap1").classList.remove("hiden")
     document.querySelector(".content_body_myid_tap2").classList.add("hiden")
     document.querySelector(".content_body_myid_tap3").classList.add("hiden")
 })
 
 document.querySelectorAll(".myid_tap2")[1].addEventListener("click", ()=>{
-    console.log("2")
     document.querySelector(".content_body_myid_tap2").classList.remove("hiden")
     document.querySelector(".content_body_myid_tap1").classList.add("hiden")
     document.querySelector(".content_body_myid_tap3").classList.add("hiden")
 })
 
 document.querySelectorAll(".myid_tap3")[1].addEventListener("click", ()=>{
-    console.log("3")
     document.querySelector(".content_body_myid_tap3").classList.remove("hiden")
     document.querySelector(".content_body_myid_tap1").classList.add("hiden")
     document.querySelector(".content_body_myid_tap2").classList.add("hiden")
 })
 
 document.querySelectorAll(".myid_tap1")[2].addEventListener("click", ()=>{
-    console.log("1")
     document.querySelector(".content_body_myid_tap1").classList.remove("hiden")
     document.querySelector(".content_body_myid_tap2").classList.add("hiden")
     document.querySelector(".content_body_myid_tap3").classList.add("hiden")
 })
 
 document.querySelectorAll(".myid_tap2")[2].addEventListener("click", ()=>{
-    console.log("2")
     document.querySelector(".content_body_myid_tap2").classList.remove("hiden")
     document.querySelector(".content_body_myid_tap1").classList.add("hiden")
     document.querySelector(".content_body_myid_tap3").classList.add("hiden")
 })
 
 document.querySelectorAll(".myid_tap3")[2].addEventListener("click", ()=>{
-    console.log("3")
     document.querySelector(".content_body_myid_tap3").classList.remove("hiden")
     document.querySelector(".content_body_myid_tap1").classList.add("hiden")
     document.querySelector(".content_body_myid_tap2").classList.add("hiden")
 })
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1453,7 +1508,6 @@ document.querySelectorAll(".myid_tap3")[2].addEventListener("click", ()=>{
 
 
 document.querySelectorAll(".content_body_subscription_menu1")[0].addEventListener("click", ()=>{
-    console.log("1")
     document.querySelector(".content_body_subscription_box1").classList.remove("hiden")
     document.querySelector(".content_body_subscription_box2").classList.add("hiden")
     document.querySelector(".content_body_subscription_box3").classList.add("hiden")
@@ -1463,10 +1517,14 @@ document.querySelectorAll(".content_body_subscription_menu1")[0].addEventListene
     document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+
+    document.querySelector(".head_subscription").classList.remove("hiden")
+    document.querySelector(".head_subscription1").classList.add("hiden")
+    document.querySelector(".head_subscription2").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 })
 
 document.querySelectorAll(".content_body_subscription_menu2")[0].addEventListener("click", ()=>{
-    console.log("2")
     document.querySelector(".content_body_subscription_box2").classList.remove("hiden")
     document.querySelector(".content_body_subscription_box1").classList.add("hiden")
     document.querySelector(".content_body_subscription_box3").classList.add("hiden")
@@ -1476,10 +1534,14 @@ document.querySelectorAll(".content_body_subscription_menu2")[0].addEventListene
     document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+
+    document.querySelector(".head_subscription1").classList.remove("hiden")
+    document.querySelector(".head_subscription").classList.add("hiden")
+    document.querySelector(".head_subscription2").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 })
 
 document.querySelectorAll(".content_body_subscription_menu3")[0].addEventListener("click", ()=>{
-    console.log("3")
     document.querySelector(".content_body_subscription_box3").classList.remove("hiden")
     document.querySelector(".content_body_subscription_box1").classList.add("hiden")
     document.querySelector(".content_body_subscription_box2").classList.add("hiden")
@@ -1489,10 +1551,14 @@ document.querySelectorAll(".content_body_subscription_menu3")[0].addEventListene
     document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+
+    document.querySelector(".head_subscription2").classList.remove("hiden")
+    document.querySelector(".head_subscription").classList.add("hiden")
+    document.querySelector(".head_subscription1").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 })
 
 document.querySelectorAll(".content_body_subscription_menu4")[0].addEventListener("click", ()=>{
-    console.log("3")
     document.querySelector(".content_body_subscription_box4").classList.remove("hiden")
     document.querySelector(".content_body_subscription_box1").classList.add("hiden")
     document.querySelector(".content_body_subscription_box2").classList.add("hiden")
@@ -1502,10 +1568,14 @@ document.querySelectorAll(".content_body_subscription_menu4")[0].addEventListene
     document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
+
+    document.querySelector(".head_subscription3").classList.remove("hiden")
+    document.querySelector(".head_subscription").classList.add("hiden")
+    document.querySelector(".head_subscription1").classList.add("hiden")
+    document.querySelector(".head_subscription2").classList.add("hiden")
 })
 
 document.querySelectorAll(".content_body_subscription_menu1")[1].addEventListener("click", ()=>{
-    console.log("1")
     document.querySelector(".content_body_subscription_box1").classList.remove("hiden")
     document.querySelector(".content_body_subscription_box2").classList.add("hiden")
     document.querySelector(".content_body_subscription_box3").classList.add("hiden")
@@ -1515,10 +1585,14 @@ document.querySelectorAll(".content_body_subscription_menu1")[1].addEventListene
     document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+
+    document.querySelector(".head_subscription").classList.remove("hiden")
+    document.querySelector(".head_subscription1").classList.add("hiden")
+    document.querySelector(".head_subscription2").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 })
 
 document.querySelectorAll(".content_body_subscription_menu2")[1].addEventListener("click", ()=>{
-    console.log("2")
     document.querySelector(".content_body_subscription_box2").classList.remove("hiden")
     document.querySelector(".content_body_subscription_box1").classList.add("hiden")
     document.querySelector(".content_body_subscription_box3").classList.add("hiden")
@@ -1528,10 +1602,14 @@ document.querySelectorAll(".content_body_subscription_menu2")[1].addEventListene
     document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+    
+    document.querySelector(".head_subscription1").classList.remove("hiden")
+    document.querySelector(".head_subscription").classList.add("hiden")
+    document.querySelector(".head_subscription2").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 })
 
 document.querySelectorAll(".content_body_subscription_menu3")[1].addEventListener("click", ()=>{
-    console.log("3")
     document.querySelector(".content_body_subscription_box3").classList.remove("hiden")
     document.querySelector(".content_body_subscription_box1").classList.add("hiden")
     document.querySelector(".content_body_subscription_box2").classList.add("hiden")
@@ -1541,10 +1619,14 @@ document.querySelectorAll(".content_body_subscription_menu3")[1].addEventListene
     document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+
+    document.querySelector(".head_subscription2").classList.remove("hiden")
+    document.querySelector(".head_subscription").classList.add("hiden")
+    document.querySelector(".head_subscription1").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 })
 
 document.querySelectorAll(".content_body_subscription_menu4")[1].addEventListener("click", ()=>{
-    console.log("3")
     document.querySelector(".content_body_subscription_box4").classList.remove("hiden")
     document.querySelector(".content_body_subscription_box1").classList.add("hiden")
     document.querySelector(".content_body_subscription_box2").classList.add("hiden")
@@ -1554,10 +1636,14 @@ document.querySelectorAll(".content_body_subscription_menu4")[1].addEventListene
     document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
+
+    document.querySelector(".head_subscription3").classList.remove("hiden")
+    document.querySelector(".head_subscription").classList.add("hiden")
+    document.querySelector(".head_subscription1").classList.add("hiden")
+    document.querySelector(".head_subscription2").classList.add("hiden")
 })
 
 document.querySelectorAll(".content_body_subscription_menu1")[2].addEventListener("click", ()=>{
-    console.log("1")
     document.querySelector(".content_body_subscription_box1").classList.remove("hiden")
     document.querySelector(".content_body_subscription_box2").classList.add("hiden")
     document.querySelector(".content_body_subscription_box3").classList.add("hiden")
@@ -1567,10 +1653,14 @@ document.querySelectorAll(".content_body_subscription_menu1")[2].addEventListene
     document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+
+    document.querySelector(".head_subscription").classList.remove("hiden")
+    document.querySelector(".head_subscription1").classList.add("hiden")
+    document.querySelector(".head_subscription2").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 })
 
 document.querySelectorAll(".content_body_subscription_menu2")[2].addEventListener("click", ()=>{
-    console.log("2")
     document.querySelector(".content_body_subscription_box2").classList.remove("hiden")
     document.querySelector(".content_body_subscription_box1").classList.add("hiden")
     document.querySelector(".content_body_subscription_box3").classList.add("hiden")
@@ -1580,10 +1670,14 @@ document.querySelectorAll(".content_body_subscription_menu2")[2].addEventListene
     document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+
+    document.querySelector(".head_subscription1").classList.remove("hiden")
+    document.querySelector(".head_subscription").classList.add("hiden")
+    document.querySelector(".head_subscription2").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 })
 
 document.querySelectorAll(".content_body_subscription_menu3")[2].addEventListener("click", ()=>{
-    console.log("3")
     document.querySelector(".content_body_subscription_box3").classList.remove("hiden")
     document.querySelector(".content_body_subscription_box1").classList.add("hiden")
     document.querySelector(".content_body_subscription_box2").classList.add("hiden")
@@ -1593,10 +1687,14 @@ document.querySelectorAll(".content_body_subscription_menu3")[2].addEventListene
     document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+
+    document.querySelector(".head_subscription2").classList.remove("hiden")
+    document.querySelector(".head_subscription").classList.add("hiden")
+    document.querySelector(".head_subscription1").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 })
 
 document.querySelectorAll(".content_body_subscription_menu4")[2].addEventListener("click", ()=>{
-    console.log("3")
     document.querySelector(".content_body_subscription_box4").classList.remove("hiden")
     document.querySelector(".content_body_subscription_box1").classList.add("hiden")
     document.querySelector(".content_body_subscription_box2").classList.add("hiden")
@@ -1606,10 +1704,14 @@ document.querySelectorAll(".content_body_subscription_menu4")[2].addEventListene
     document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
+
+    document.querySelector(".head_subscription3").classList.remove("hiden")
+    document.querySelector(".head_subscription").classList.add("hiden")
+    document.querySelector(".head_subscription1").classList.add("hiden")
+    document.querySelector(".head_subscription2").classList.add("hiden")
 })
 
 document.querySelectorAll(".content_body_subscription_menu1")[3].addEventListener("click", ()=>{
-    console.log("1")
     document.querySelector(".content_body_subscription_box1").classList.remove("hiden")
     document.querySelector(".content_body_subscription_box2").classList.add("hiden")
     document.querySelector(".content_body_subscription_box3").classList.add("hiden")
@@ -1619,10 +1721,14 @@ document.querySelectorAll(".content_body_subscription_menu1")[3].addEventListene
     document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+
+    document.querySelector(".head_subscription").classList.remove("hiden")
+    document.querySelector(".head_subscription1").classList.add("hiden")
+    document.querySelector(".head_subscription2").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 })
 
 document.querySelectorAll(".content_body_subscription_menu2")[3].addEventListener("click", ()=>{
-    console.log("2")
     document.querySelector(".content_body_subscription_box2").classList.remove("hiden")
     document.querySelector(".content_body_subscription_box1").classList.add("hiden")
     document.querySelector(".content_body_subscription_box3").classList.add("hiden")
@@ -1632,10 +1738,14 @@ document.querySelectorAll(".content_body_subscription_menu2")[3].addEventListene
     document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+
+    document.querySelector(".head_subscription1").classList.remove("hiden")
+    document.querySelector(".head_subscription").classList.add("hiden")
+    document.querySelector(".head_subscription2").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 })
 
 document.querySelectorAll(".content_body_subscription_menu3")[3].addEventListener("click", ()=>{
-    console.log("3")
     document.querySelector(".content_body_subscription_box3").classList.remove("hiden")
     document.querySelector(".content_body_subscription_box1").classList.add("hiden")
     document.querySelector(".content_body_subscription_box2").classList.add("hiden")
@@ -1645,10 +1755,14 @@ document.querySelectorAll(".content_body_subscription_menu3")[3].addEventListene
     document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+
+    document.querySelector(".head_subscription2").classList.remove("hiden")
+    document.querySelector(".head_subscription").classList.add("hiden")
+    document.querySelector(".head_subscription1").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 })
 
 document.querySelectorAll(".content_body_subscription_menu4")[3].addEventListener("click", ()=>{
-    console.log("3")
     document.querySelector(".content_body_subscription_box4").classList.remove("hiden")
     document.querySelector(".content_body_subscription_box1").classList.add("hiden")
     document.querySelector(".content_body_subscription_box2").classList.add("hiden")
@@ -1658,4 +1772,9 @@ document.querySelectorAll(".content_body_subscription_menu4")[3].addEventListene
     document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
+
+    document.querySelector(".head_subscription3").classList.remove("hiden")
+    document.querySelector(".head_subscription").classList.add("hiden")
+    document.querySelector(".head_subscription1").classList.add("hiden")
+    document.querySelector(".head_subscription2").classList.add("hiden")
 })
