@@ -1,6 +1,7 @@
 package PTR.PTR.controller;
 
 import PTR.PTR.model.Feed;
+import PTR.PTR.model.FeedLike;
 import PTR.PTR.model.FeedScrap;
 import PTR.PTR.model.User;
 import PTR.PTR.service.FeedScrapService;
@@ -35,6 +36,11 @@ public class FeedScrapController {
     @DeleteMapping("/feedScrap")
     public void deleteFeedScrap(@RequestBody FeedScrap feedScrap){
         feedScrapService.deleteFeedScrap(feedScrap);
+    }
+
+    @PostMapping("/checkFeedScrpaClick")
+    public boolean checkFeedScrapClick(@RequestBody FeedLike feedLike){
+        return feedScrapService.checkFeedScrapClick(feedLike);
     }
 
 }
