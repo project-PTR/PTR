@@ -45,8 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   signupButton.addEventListener("click", function () {
-    window.location.href =
-      "/PTR/PTR/PTR/src/main/resources/templates/signUp.html";
+    window.location.href = "/signUp.html";
   });
 
   function validateEmail(email) {

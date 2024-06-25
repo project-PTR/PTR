@@ -14,34 +14,24 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
-
-
-
-
-
-
 const user = {
-  userId: "cake"
-}
-
-
-
+  userId: "cake",
+};
 
 axios
-.get("http://localhost:8080/findAllLecture")
-.then((response)=>{
-  console.log("데이터: ", response.data)
-  allLecture(response.data)
-})
-.catch((error)=>{
-  console.log("에러: ", error)
-})
+  .get("http://localhost:8080/findAllLecture")
+  .then((response) => {
+    console.log("데이터: ", response.data);
+    allLecture(response.data);
+  })
+  .catch((error) => {
+    console.log("에러: ", error);
+  });
 
-function allLecture(data){
+function allLecture(data) {
   const body = document.querySelector(".content_body_interestLecture");
 
-  data.forEach((data, index)=>{
+  data.forEach((data, index) => {
     const box = document.createElement("div");
     box.classList.add("content_body_interestLecture_box");
     box.classList.add("box");
@@ -84,46 +74,41 @@ function allLecture(data){
     const lecture_updateTime = document.createElement("div");
     lecture_updateTime.classList.add("lecture_updateTime");
     const createdAt = new Date(data.createdAt);
-    lecture_updateTime.textContent = `${createdAt.getFullYear()}. ${createdAt.getMonth() + 1}. ${createdAt.getDate()}.`;
+    lecture_updateTime.textContent = `${createdAt.getFullYear()}. ${
+      createdAt.getMonth() + 1
+    }. ${createdAt.getDate()}.`;
 
     const lecture_price = document.createElement("div");
     lecture_price.classList.add("lecture_price");
-    if(data.price==0){
+    if (data.price == 0) {
       lecture_price.textContent = "무료";
-    } else{
+    } else {
       lecture_price.textContent = "단백질바 " + data.price + "개";
     }
-    
+
     videoDiv.appendChild(video);
     lecture_teacher_profile.appendChild(img);
 
-    div2.appendChild(lecture_title)
-    div2.appendChild(lecture_teacher_name)
-    div2.appendChild(lecture_updateTime)
+    div2.appendChild(lecture_title);
+    div2.appendChild(lecture_teacher_name);
+    div2.appendChild(lecture_updateTime);
 
-    lecture_flex.appendChild(lecture_teacher_profile)
-    lecture_flex.appendChild(div2)
+    lecture_flex.appendChild(lecture_teacher_profile);
+    lecture_flex.appendChild(div2);
 
-    div.appendChild(lecture_flex)
-    div.appendChild(lecture_price)
+    div.appendChild(lecture_flex);
+    div.appendChild(lecture_price);
 
-    box.appendChild(videoDiv)
-    box.appendChild(div)
+    box.appendChild(videoDiv);
+    box.appendChild(div);
 
-    body.appendChild(box)
+    body.appendChild(box);
 
-    box.addEventListener("click",()=>{
-      window.location.href = "lectureView.html?id=" + data.id
-    })
-  })
+    box.addEventListener("click", () => {
+      window.location.href = "lectureView.html?id=" + data.id;
+    });
+  });
 }
-
-
-
-
-
-
-
 
 // 맞춤 교육 영상 서비스
 // let userCategoryList = []
@@ -147,23 +132,11 @@ function allLecture(data){
 //   })
 // }
 
-
-
-
-
-
-
-
-
-
-
-
-
 // axios
 // .post("http://localhost:8080/findLectureAllByCategoryIn", user)
 // .then((response)=>{
 //     console.log("데이터: ", response.data)
-//     createMyLecturescrap(response.data) 
+//     createMyLecturescrap(response.data)
 // })
 // .catch((error)=>{
 //     console.log("에러: ", error)
@@ -181,12 +154,11 @@ function allLecture(data){
 //         const img = document.createElement("video");
 //         image.classList.add("content_body_scrapLecture_box_img");
 //         img.src = data.lecture.url;
-        
+
 //         const name = document.createElement("div");
 //         name.classList.add("content_body_scrapLecture_box_title");
 //         name.textContent = data.lecture.lectureName;
 
-        
 //         image.appendChild(img);
 //         box.appendChild(image);
 //         box.appendChild(name);
@@ -194,42 +166,14 @@ function allLecture(data){
 //     })
 // }
 
+document.querySelector(".search_filter").addEventListener("click", () => {
+  document.querySelector(".search_filter").classList.add("hiden");
+  document.querySelector(".search_filter_close").classList.remove("hiden");
+  document.querySelector(".search_box").classList.remove("hiden");
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-document.querySelector(".search_filter").addEventListener("click", ()=>{
-  document.querySelector(".search_filter").classList.add("hiden")
-  document.querySelector(".search_filter_close").classList.remove("hiden")
-  document.querySelector(".search_box").classList.remove("hiden")
-})
-
-document.querySelector(".search_filter_close").addEventListener("click", ()=>{
-  document.querySelector(".search_filter").classList.remove("hiden")
-  document.querySelector(".search_filter_close").classList.add("hiden")
-  document.querySelector(".search_box").classList.add("hiden")
-})
+document.querySelector(".search_filter_close").addEventListener("click", () => {
+  document.querySelector(".search_filter").classList.remove("hiden");
+  document.querySelector(".search_filter_close").classList.add("hiden");
+  document.querySelector(".search_box").classList.add("hiden");
+});

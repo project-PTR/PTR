@@ -3,10 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="/css/lecture.css"
-    />
+    <link rel="stylesheet" href="/css/lecture.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/axios.min.js"></script>
     <title>Personal Training</title>
   </head>
@@ -47,55 +44,59 @@
           <div class="search_box hiden">
             <div class="search_title">카테고리</div>
             <div class="search_detail_box">
-              <input type="checkbox" name="interest" value="유산소"> 유산소
-              <input type="checkbox" name="interest" value="근력운동"> 근력운동
-              <input type="checkbox" name="interest" value="필라테스"> 필라테스
-              <input type="checkbox" name="interest" value="스트레칭"> 스트레칭
-              <input type="checkbox" name="interest" value="식단"> 식단
+              <input type="checkbox" name="interest" value="유산소" /> 유산소
+              <input type="checkbox" name="interest" value="근력운동" />
+              근력운동
+              <input type="checkbox" name="interest" value="필라테스" />
+              필라테스
+              <input type="checkbox" name="interest" value="스트레칭" />
+              스트레칭
+              <input type="checkbox" name="interest" value="식단" /> 식단
             </div>
             <div class="search_line"></div>
             <div class="search_title">업로드 날짜</div>
             <div class="search_detail_box">
-              <input type="radio" name="upload_date" value="전체"> 전체
-              <input type="radio" name="upload_date" value="오늘"> 오늘
-              <input type="radio" name="upload_date" value="이번 주"> 이번 주
-              <input type="radio" name="upload_date" value="이번 달"> 이번 달
-              <input type="radio" name="upload_date" value="올해"> 올해
-              <input type="radio" name="upload_date" value="직접 선택"> 직접 선택 <br>
+              <input type="radio" name="upload_date" value="전체" /> 전체
+              <input type="radio" name="upload_date" value="오늘" /> 오늘
+              <input type="radio" name="upload_date" value="이번 주" /> 이번 주
+              <input type="radio" name="upload_date" value="이번 달" /> 이번 달
+              <input type="radio" name="upload_date" value="올해" /> 올해
+              <input type="radio" name="upload_date" value="직접 선택" /> 직접
+              선택 <br />
               <div class="search_detail_flex">
-                <div>시작일: </div>
-                <input type="date" id="start-date" name="start-date">
-                <div>    </div>
-                <div>종료일: </div>
-                <input type="date" id="end-date" name="end-date">
+                <div>시작일:</div>
+                <input type="date" id="start-date" name="start-date" />
+                <div></div>
+                <div>종료일:</div>
+                <input type="date" id="end-date" name="end-date" />
               </div>
             </div>
             <div class="search_line"></div>
             <div class="search_title">가격대</div>
             <div class="search_detail_box">
-              <input type="radio" name="buy" value="전체"> 전체
-              <input type="radio" name="buy" value="구매"> 구매
-              <input type="radio" name="buy" value="미구매"> 미구매
+              <input type="radio" name="buy" value="전체" /> 전체
+              <input type="radio" name="buy" value="구매" /> 구매
+              <input type="radio" name="buy" value="미구매" /> 미구매
             </div>
             <div class="search_line"></div>
             <div class="search_title">가격대</div>
             <div class="search_detail_box">
-              <input type="radio" name="price" value="전체"> 전체
-              <input type="radio" name="price" value="무료"> 무료
-              <input type="radio" name="price" value="1"> 1개 이하
-              <input type="radio" name="price" value="2"> 2개 이하
-              <input type="radio" name="price" value="3"> 3개 이하
-              <input type="radio" name="price" value="4"> 4개 이하
-              <input type="radio" name="price" value="5"> 5개 이상
+              <input type="radio" name="price" value="전체" /> 전체
+              <input type="radio" name="price" value="무료" /> 무료
+              <input type="radio" name="price" value="1" /> 1개 이하
+              <input type="radio" name="price" value="2" /> 2개 이하
+              <input type="radio" name="price" value="3" /> 3개 이하
+              <input type="radio" name="price" value="4" /> 4개 이하
+              <input type="radio" name="price" value="5" /> 5개 이상
             </div>
             <div class="search_line"></div>
             <div class="search_title">정렬기준</div>
             <div class="search_detail_box">
-              <input type="radio" name="order" value="최신순"> 최신순
-              <input type="radio" name="order" value="조회수"> 조회수
-              <input type="radio" name="order" value="평점"> 평점순
-              <input type="radio" name="order" value="리뷰"> 리뷰수
-              <input type="radio" name="order" value="가격"> 낮은 가격순
+              <input type="radio" name="order" value="최신순" /> 최신순
+              <input type="radio" name="order" value="조회수" /> 조회수
+              <input type="radio" name="order" value="평점" /> 평점순
+              <input type="radio" name="order" value="리뷰" /> 리뷰수
+              <input type="radio" name="order" value="가격" /> 낮은 가격순
             </div>
             <div class="searchBtn cursor_pointer">검색</div>
           </div>
@@ -103,16 +104,7 @@
         <div class="content_body">
           <div class="interest_lecture">
             <h2>맞춤 교육 영상</h2>
-            <div class="content_body_interestLecture">
-            </div>
-          </div>
-          <div class="video_section">
-            <h2>맞춤 교육 영상</h2>
-            <div class="videos">
-              <div class="video">Video1</div>
-              <div class="video">Video2</div>
-              <div class="video">Video3</div>
-            </div>
+            <div class="content_body_interestLecture"></div>
           </div>
           <div class="instructor_section">
             <h2>강사 소개</h2>

@@ -3,14 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="/PTR/PTR/PTR/src/main/resources/static/css/style.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/PTR/PTR/PTR/src/main/resources/static/css/signUp.css"
-    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/signUp.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/axios.min.js"></script>
     <title>Document</title>
   </head>
   <body>
@@ -37,176 +32,31 @@
       <div class="content">
         <div class="content_body">
           <form>
-            <div class="profile_image" id="profileImageContainer">
-              <img id="profileImage" src="profile_palceholder.png" />
-              <input
-                type="file"
-                id="profileImageInput"
-                accept="image/*"
-                style="display: none"
-              />
+            <div class="form_group">
+              <label for="name">Id :</label>
+              <input type="text" id="id" required />
             </div>
             <div class="form_group">
-              <label for="name">name :</label>
-              <input type="text" id="name" required />
-            </div>
-            <div class="form_group">
-              <label for="email">email :</label>
-              <input type="email" id="email" required />
-            </div>
-            <div class="form_group">
-              <label for="password">password :</label>
+              <label for="password">Password :</label>
               <input type="password" id="password" required />
             </div>
             <div class="form_group">
-              <label>gender :</label>
-              <div class="radio_group">
-                <input
-                  type="radio"
-                  id="genderM"
-                  name="gender"
-                  value="M"
-                  required
-                />
-                <label for="genderM">M</label>
-                <input
-                  type="radio"
-                  id="genderW"
-                  name="gender"
-                  value="W"
-                  required
-                />
-                <label for="genderW">W</label>
-              </div>
+              <label for="name">Name :</label>
+              <input type="text" id="name" required />
             </div>
             <div class="form_group">
-              <label>Position :</label>
-              <div class="radio_group">
-                <input
-                  type="radio"
-                  id="positionS"
-                  name="position"
-                  value="student"
-                  required
-                />
-                <label for="positionS">학생</label>
-                <input
-                  type="radio"
-                  id="positionT"
-                  name="position"
-                  value="teacher"
-                  required
-                />
-                <label for="positionT">강사</label>
-              </div>
+              <label for="email">Email :</label>
+              <input type="email" id="email" required />
             </div>
             <div class="form_group">
               <label for="birthday">Birthday :</label>
               <input type="date" id="birthday" required />
-            </div>
-            <div class="customization_setting">
-              <h1>Customization Setting</h1>
-              <div class="subheading">평소 활동량</div>
-              <div class="form_group">
-                <div class="checkbox_group horizontal">
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="activity1"
-                      name="activity"
-                      value="text1"
-                    />
-                    <label for="activity1">적음</label>
-                  </div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="activity2"
-                      name="activity"
-                      value="text2"
-                    />
-                    <label for="activity2">보통</label>
-                  </div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="activity3"
-                      name="activity"
-                      value="text3"
-                    />
-                    <label for="activity3">많음</label>
-                  </div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="activity4"
-                      name="activity"
-                      value="text4"
-                    />
-                    <label for="activity4">매우 많음</label>
-                  </div>
-                </div>
-              </div>
-              <div class="subheading">식단 모드</div>
-              <div class="form_group">
-                <div class="checkbox_group horizontal">
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="diet1"
-                      name="diet_mode"
-                      value="text1"
-                    />
-                    <lavel for="diet1">일반</lavel>
-                  </div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="diet2"
-                      name="diet_mode"
-                      value="text2"
-                    />
-                    <lavel for="diet2">운동</lavel>
-                  </div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="diet3"
-                      name="diet_mode"
-                      value="text3"
-                    />
-                    <lavel for="diet3">키토</lavel>
-                  </div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="diet4"
-                      name="diet_mode"
-                      value="text4"
-                    />
-                    <lavel for="diet3">비건</lavel>
-                  </div>
-                </div>
-              </div>
-              <div class="subheading">체중</div>
-              <div class="form_group">
-                <div class="weight_group">
-                  <div>
-                    <label for="start_weight">시작 체중</label>
-                    <input type="number" id="start_weight" /> kg
-                  </div>
-                  <div>
-                    <label for="target_weight">목표 체중</label>
-                    <input type="number" id="target_weight" /> kg
-                  </div>
-                </div>
-              </div>
             </div>
             <button type="submit">JOIN</button>
           </form>
         </div>
       </div>
     </div>
-    <script src="/PTR/PTR/PTR/src/main/resources/static/js/signUp.js"></script>
+    <script src="/js/signUp.js"></script>
   </body>
 </html>
