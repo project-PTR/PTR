@@ -35,4 +35,9 @@ public class FeedLikeController {
         return feedLikeService.getNumberOfFeedLike(feed);
     }
 
+    @PostMapping("/checkFeedLikeClick")
+    public boolean checkFeedLikeClick(@RequestBody FeedLike feedLike){
+        return feedLikeService.checkFeedLikeClick(feedLike);
+    }
+
 }

@@ -65,4 +65,8 @@ public class ViewController {
     public String lectureView(){
         return "lectureView";
     }
+    @GetMapping("/ptr/teacherView.html")
+    public String teacherView(){
+        return "teacherView";
+    }
 }

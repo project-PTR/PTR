@@ -63,6 +63,7 @@
 .lecture_teacher_num{
     font-size: 15px;
     margin-left: 10px;
+    cursor: pointer;
 }
 
 .lecture_subscription{
