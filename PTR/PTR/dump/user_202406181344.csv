@@ -1,0 +1,7 @@
+"user_id","birthday","coin","created_at","email","password","profile_img","profile_text","user_name","user_authority"
+admin1,1990-01-01,0,2024-06-17 15:24:51.207,ham@gmail.com,$2a$10$8DWjfxQTOM4m9pELJA7a0Oa.hfX4AKygFG4BKi2umlayTfVm8H066,"","",admin,ROLE_ADMIN
+cake,2003-03-03,1,2024-06-17 15:26:42.717,cake@gmail.com,$2a$10$.LwoYY26.g3nZuA/EloeD.wa2lkbg2ZDe6Cu5XeZjEyLlAxomoknS,https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg,"",cake,ROLE_USER
+ham,1990-01-01,50,2024-06-17 15:20:59.242,ham@gmail.com,$2a$10$FfZshWwgkLvx8FAwx.VsI.sWeZX.YuBrOLkjMKmvNWJFMExdkf0vm,"","",ham,ROLE_USER
+rose,1995-05-05,30,2024-06-17 15:25:57.683,rose@gmail.com,$2a$10$JibM3bfEmSwN6//qr2QQ8ehNuoIx9brKTa2z0BwSExKWsGGOqpy/i,https://cdn.pixabay.com/photo/2024/03/24/17/10/background-8653526_640.jpg,다이어트에 성공하고 싶어요.,rose,ROLE_USER
+steve,2001-01-01,0,2024-06-17 15:18:52.811,steve@gmail.com,$2a$10$0LWZO1A3UtGUWKmaaU.FBOj24x/h7XqOP3cXMMWhO.CFsm9v.RQZ6,https://cdn.pixabay.com/photo/2024/03/30/19/29/ai-generated-8665327_640.png,"안녕하세요. 유산소, 근력운동 위주의 영상을 주로 업로드합니다.",steve,ROLE_USER
+tom,2002-02-02,0,2024-06-17 15:20:01.417,tom@gmail.com,$2a$10$eHvHGSr1VN4Db1l2l/NISO4bCwDLTuAalIm9J5ZQuZHJy4zZIQSBi,https://cdn.pixabay.com/photo/2017/08/02/20/24/woman-2573216_1280.jpg,"안녕하세요. 요가, 필라테스, 자세교정 관련한 영상을 주로 촬영합니다.",tom,ROLE_USER
