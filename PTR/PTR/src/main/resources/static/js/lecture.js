@@ -18,6 +18,146 @@ const user = {
   userId: "cake",
 };
 
+const searchButton = document.getElementById("searchButton");
+  const searchInput = document.getElementById("searchInput");
+  const filterButton = document.querySelector(".search_filter");
+  const filterCloseButton = document.querySelector(".search_filter_close");
+  const searchBox = document.querySelector(".search_box");
+
+  filterButton.addEventListener("click", function () {
+    searchBox.classList.remove("hiden");
+    filterButton.classList.add("hiden");
+    filterCloseButton.classList.remove("hiden");
+  });
+
+  filterCloseButton.addEventListener("click", function () {
+    searchBox.classList.add("hiden");
+    filterButton.classList.remove("hiden");
+    filterCloseButton.classList.add("hiden");
+  });
+
+  searchButton.addEventListener("click", function () {
+    const query = searchInput.value;
+    const searchType = searchTypeSelect.value;
+    const filters = getFilters();
+
+    axios
+      .post('http://localhost:8080/searchLecture', { query, filters }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then((response) => {
+        console.log("검색 결과: ", response.data);
+        displaySearchResults(response.data);
+      })
+      .catch((error) => {
+        console.error("검색 중 오류 발생: ", error);
+      });
+  });
+
+  function getFilters() {
+    const filters = {};
+    const interests = Array.from(document.querySelectorAll('input[name="interest"]:checked')).map(el => el.value);
+    const uploadDate = document.querySelector('input[name="upload_date"]:checked')?.value;
+    const startDate = document.getElementById('start-date').value;
+    const endDate = document.getElementById('end-date').value;
+    const buy = document.querySelector('input[name="buy"]:checked')?.value;
+    const price = document.querySelector('input[name="price"]:checked')?.value;
+    const order = document.querySelector('input[name="order"]:checked')?.value;
+
+    if (interests.length > 0) filters.interests = interests;
+    if (uploadDate) filters.uploadDate = uploadDate;
+    if (startDate) filters.startDate = startDate;
+    if (endDate) filters.endDate = endDate;
+    if (buy) filters.buy = buy;
+    if (price) filters.price = price;
+    if (order) filters.order = order;
+
+    return filters;
+  }
+
+  function hasFilters(filters) {
+    return Object.keys(filters).length > 0;
+  }
+
+  function displaySearchResults(data) {
+    const body = document.querySelector(".content_body_interestLecture");
+    body.innerHTML = ""; // 기존 내용을 지움
+
+    data.forEach((lecture) => {
+      const box = document.createElement("div");
+      box.classList.add("content_body_interestLecture_box");
+      box.classList.add("box");
+
+      const videoDiv = document.createElement("div");
+      const video = document.createElement("video");
+      videoDiv.classList.add("content_body_interestLecture_box_img");
+      video.src = lecture.url;
+
+      const div = document.createElement("div");
+      const lectureFlex = document.createElement("div");
+      lectureFlex.classList.add("lecture_flex");
+
+      const lectureTeacherProfile = document.createElement("div");
+      lectureTeacherProfile.classList.add("lecture_teacher_profile");
+      const img = document.createElement("img");
+      img.src = lecture.teacher.user.profileImg;
+
+      lectureTeacherProfile.addEventListener("click", (event) => {
+        event.stopPropagation();
+        window.location.href = "teacherView.html?id=" + lecture.teacher.id;
+      });
+
+      img.addEventListener("click", (event) => {
+        event.stopPropagation();
+        window.location.href = "teacherView.html?id=" + lecture.teacher.id;
+      });
+
+      const div2 = document.createElement("div");
+      const lectureTitle = document.createElement("div");
+      lectureTitle.classList.add("lecture_title");
+      lectureTitle.textContent = lecture.lectureName;
+
+      const lectureTeacherName = document.createElement("div");
+      lectureTeacherName.classList.add("lecture_teacher_name");
+      lectureTeacherName.textContent = lecture.teacher.user.userName;
+
+      const lectureUpdateTime = document.createElement("div");
+      lectureUpdateTime.classList.add("lecture_updateTime");
+      const createdAt = new Date(lecture.createdAt);
+      lectureUpdateTime.textContent = `${createdAt.getFullYear()}. ${createdAt.getMonth() + 1}. ${createdAt.getDate()}.`;
+
+      const lecturePrice = document.createElement("div");
+      lecturePrice.classList.add("lecture_price");
+      lecturePrice.textContent = lecture.price === 0 ? "무료" : `단백질바 ${lecture.price}개`;
+
+      videoDiv.appendChild(video);
+      lectureTeacherProfile.appendChild(img);
+
+      div2.appendChild(lectureTitle);
+      div2.appendChild(lectureTeacherName);
+      div2.appendChild(lectureUpdateTime);
+
+      lectureFlex.appendChild(lectureTeacherProfile);
+      lectureFlex.appendChild(div2);
+
+      div.appendChild(lectureFlex);
+      div.appendChild(lecturePrice);
+
+      box.appendChild(videoDiv);
+      box.appendChild(div);
+
+      body.appendChild(box);
+
+      box.addEventListener("click", () => {
+        window.location.href = "lectureView.html?id=" + lecture.id;
+      });
+    });
+  }
+
+
+
 axios
   .get("http://localhost:8080/findAllLecture")
   .then((response) => {
@@ -42,7 +182,6 @@ function allLecture(data) {
     video.src = data.url;
 
     const div = document.createElement("div");
-
     const lecture_flex = document.createElement("div");
     lecture_flex.classList.add("lecture_flex");
 
