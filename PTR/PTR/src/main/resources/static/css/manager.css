@@ -65,12 +65,33 @@
 }
 
 
-
-
-
-
+/* 유저 관리 */
 .manager_user{
     width: 100%;
+}
+
+.manager_user_btn_flex{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.manager_user_btn_flex > div{
+    background-color: #FEC009;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.manager_user_btn_flex > div:hover{
+    background-color: #2C394A;
+    color: #FEC009;
+    padding: 10px 20px;
+    border-radius: 10px;
 }
 
 .search_filter_section {
