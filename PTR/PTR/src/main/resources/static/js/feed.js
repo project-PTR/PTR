@@ -860,7 +860,7 @@ function displayScrap(data){
                         //댓글 삭제버튼
                         content_feedcomment_deleteComment.addEventListener("click",()=>{
                             axios
-                        .post("http://localhost:8080/deleteFeedComment", {id:comment.id}, {withCredentials: true})
+                            .post("http://localhost:8080/deleteFeedComment", {id:comment.id}, {withCredentials: true})
                             .then((response)=>{
                                 console.log("데이터: ", response.data);
                             })
@@ -896,6 +896,141 @@ function displayScrap(data){
                 });
             })
         })
+        
+        //부모 자식 위치
+        feedbody.appendChild(content_feed);
+        content_feed.appendChild(content_feedheader);
+        content_feedheader.appendChild(content_feedheader_left);
+        content_feedheader_left.appendChild(content_feedheader_userPhoto);
+        content_feedheader_left.appendChild(content_feedheader_a);
+        content_feedheader_a.appendChild(content_feedheader_userId);
+        content_feedheader_a.appendChild(content_feedheader_date);
+
+        if(feed.user.userId == user.userId){
+            content_feedheader.appendChild(content_feedheader_moreBtn);
+            content_feedheader_moreBtn.appendChild(dot1);
+            content_feedheader_moreBtn.appendChild(dot2);
+            content_feedheader_moreBtn.appendChild(dot3);
+
+            //더보기
+            content_feedheader_moreBtn.addEventListener("click",()=>{
+                document.querySelector(".content_feedMore").classList.remove("hiden");
+
+                const content_feedMore_closeBtn = document.querySelector(".content_feedMore_closeBtn");
+                content_feedMore_closeBtn.addEventListener("click",()=>{
+                    document.querySelector(".content_feedMore").classList.add("hiden");
+                })
+
+                const content_feedMore_changeBtn = document.querySelector(".content_feedMore_changeBtn");
+                content_feedMore_changeBtn.addEventListener("click",()=>{
+                    document.querySelector(".content_updateFeed").classList.remove("hiden");
+                    document.querySelector(".content_feed").classList.add("hiden");
+                    document.querySelector(".content_feedMore").classList.add("hiden");
+
+                    const content_updateFeed_userPhoto = document.querySelector(".content_updateFeed_userPhoto");
+                    const content_updateFeed_myId = document.querySelector(".content_updateFeed_myId");
+
+                    axios
+                    .post("http://localhost:8080/sendUser", {userId: user.userId}, {withCredentials: true})
+                    .then((response) => {
+                        console.log("데이터: ", response.data);
+                        content_updateFeed_userPhoto.src = response.data.profileImg;
+                        content_updateFeed_myId.textContent = response.data.userId;
+                    })
+                    .catch((error)=>{
+                        console.log("에러발생: ", error);
+                    })
+
+                    //피드 수정
+                    document.querySelector("#text-large2").addEventListener("change",(e)=>{
+                        console.log(e.target.value);
+                        text = e.target.value;
+                    })
+
+                    document.querySelector(".content_updateFeed_createBtn").addEventListener("click",()=>{
+                        const data = {
+                            user : {
+                                userId: user.userId
+                            },
+                            text:text,
+                            id:feed.id,
+                            image:feed.image
+                        }
+                        axios
+                        .put("http://localhost:8080/feed", data, {withCredentials: true})
+                        .then((response) => {
+                            console.log("서버 응답: ", response.data);
+                            alert("성공적으로 전송되었습니다.");
+                            location.reload();
+                        })
+                        .catch((error) => {
+                            console.log("에러 발생: ", error);
+                            alert("에러가 발생했습니다.");
+                        
+                        })
+                    })
+                    
+
+                })
+
+                const content_feedMore_delete = document.querySelector(".content_feedMore_delete");
+                content_feedMore_delete.addEventListener("click", () => {
+                    axios
+                    .post("http://localhost:8080/deleteFeed", { id: feed.id }, { withCredentials: true })
+                    .then((response) => {
+                        console.log("데이터: ", response.data);
+                    })
+                    .catch((error) => {
+                        console.log("에러: ", error);
+                    });
+                });
+                const content_feedMore_likeCheck = document.querySelector(".content_feedMore_likeCheck");
+                content_feedMore_likeCheck.addEventListener("click",()=>{
+                    document.querySelector(".content_feedMore_likeList").classList.remove("hiden");
+
+                    const content_feedMore_likeList_closeBtn = document.querySelector(".content_feedMore_likeList_closeBtn");
+                    content_feedMore_likeList_closeBtn.addEventListener("click",()=>{
+                        document.querySelector(".content_feedMore_likeList").classList.add("hiden");
+                    })
+
+                    
+                    axios
+                    .post("http://localhost:8080/getFeedLike", {id:feed.id}, {withCredentials:true})
+                    .then((response)=>{
+                        console.log("데이터: ", response.data);
+                        const likebody = document.querySelector(".content_feedMore_likeList")
+                        response.data.forEach(like => {
+                        // const likebody = document.querySelector(".content_feedMore_like");
+                        
+                        //태그 요소
+                        const content_feedMore_like = document.createElement("div");
+                        const content_feedMore_like_userPhoto = document.createElement("img");
+                        const content_feedMore_like_userId = document.createElement("div");
+                        
+                        //클래스 이름
+                        content_feedMore_like.classList.add("content_feedMore_like");
+                        content_feedMore_like_userPhoto.classList.add("content_feedMore_like_userPhoto");
+                        content_feedMore_like_userId.classList.add("content_feedMore_like_userId");
+
+                        //태그 속성
+                        content_feedMore_like_userPhoto.src = like.user.profileImg;
+                        content_feedMore_like_userId.textContent = like.user.userId;
+
+                        //부모자식
+                        likebody.appendChild(content_feedMore_like);
+                        content_feedMore_like.appendChild(content_feedMore_like_userPhoto);
+                        content_feedMore_like.appendChild(content_feedMore_like_userId);
+
+                        });
+                        
+                    })
+                    .catch((error)=>{
+                        console.log("에러: ", error);
+                    })
+                })
+
+            })
+        }
 
         //부모 자식 위치
         feedbody.appendChild(content_feed2);
@@ -1317,6 +1452,141 @@ function displayMyFeed(data){
                 });
             })
         })
+        
+        //부모 자식 위치
+        feedbody.appendChild(content_feed);
+        content_feed.appendChild(content_feedheader);
+        content_feedheader.appendChild(content_feedheader_left);
+        content_feedheader_left.appendChild(content_feedheader_userPhoto);
+        content_feedheader_left.appendChild(content_feedheader_a);
+        content_feedheader_a.appendChild(content_feedheader_userId);
+        content_feedheader_a.appendChild(content_feedheader_date);
+
+        if(feed.user.userId == user.userId){
+            content_feedheader.appendChild(content_feedheader_moreBtn);
+            content_feedheader_moreBtn.appendChild(dot1);
+            content_feedheader_moreBtn.appendChild(dot2);
+            content_feedheader_moreBtn.appendChild(dot3);
+
+            //더보기
+            content_feedheader_moreBtn.addEventListener("click",()=>{
+                document.querySelector(".content_feedMore").classList.remove("hiden");
+
+                const content_feedMore_closeBtn = document.querySelector(".content_feedMore_closeBtn");
+                content_feedMore_closeBtn.addEventListener("click",()=>{
+                    document.querySelector(".content_feedMore").classList.add("hiden");
+                })
+
+                const content_feedMore_changeBtn = document.querySelector(".content_feedMore_changeBtn");
+                content_feedMore_changeBtn.addEventListener("click",()=>{
+                    document.querySelector(".content_updateFeed").classList.remove("hiden");
+                    document.querySelector(".content_feed").classList.add("hiden");
+                    document.querySelector(".content_feedMore").classList.add("hiden");
+
+                    const content_updateFeed_userPhoto = document.querySelector(".content_updateFeed_userPhoto");
+                    const content_updateFeed_myId = document.querySelector(".content_updateFeed_myId");
+
+                    axios
+                    .post("http://localhost:8080/sendUser", {userId: user.userId}, {withCredentials: true})
+                    .then((response) => {
+                        console.log("데이터: ", response.data);
+                        content_updateFeed_userPhoto.src = response.data.profileImg;
+                        content_updateFeed_myId.textContent = response.data.userId;
+                    })
+                    .catch((error)=>{
+                        console.log("에러발생: ", error);
+                    })
+
+                    //피드 수정
+                    document.querySelector("#text-large2").addEventListener("change",(e)=>{
+                        console.log(e.target.value);
+                        text = e.target.value;
+                    })
+
+                    document.querySelector(".content_updateFeed_createBtn").addEventListener("click",()=>{
+                        const data = {
+                            user : {
+                                userId: user.userId
+                            },
+                            text:text,
+                            id:feed.id,
+                            image:feed.image
+                        }
+                        axios
+                        .put("http://localhost:8080/feed", data, {withCredentials: true})
+                        .then((response) => {
+                            console.log("서버 응답: ", response.data);
+                            alert("성공적으로 전송되었습니다.");
+                            location.reload();
+                        })
+                        .catch((error) => {
+                            console.log("에러 발생: ", error);
+                            alert("에러가 발생했습니다.");
+                        
+                        })
+                    })
+                    
+
+                })
+
+                const content_feedMore_delete = document.querySelector(".content_feedMore_delete");
+                content_feedMore_delete.addEventListener("click", () => {
+                    axios
+                    .post("http://localhost:8080/deleteFeed", { id: feed.id }, { withCredentials: true })
+                    .then((response) => {
+                        console.log("데이터: ", response.data);
+                    })
+                    .catch((error) => {
+                        console.log("에러: ", error);
+                    });
+                });
+                const content_feedMore_likeCheck = document.querySelector(".content_feedMore_likeCheck");
+                content_feedMore_likeCheck.addEventListener("click",()=>{
+                    document.querySelector(".content_feedMore_likeList").classList.remove("hiden");
+
+                    const content_feedMore_likeList_closeBtn = document.querySelector(".content_feedMore_likeList_closeBtn");
+                    content_feedMore_likeList_closeBtn.addEventListener("click",()=>{
+                        document.querySelector(".content_feedMore_likeList").classList.add("hiden");
+                    })
+
+                    
+                    axios
+                    .post("http://localhost:8080/getFeedLike", {id:feed.id}, {withCredentials:true})
+                    .then((response)=>{
+                        console.log("데이터: ", response.data);
+                        const likebody = document.querySelector(".content_feedMore_likeList")
+                        response.data.forEach(like => {
+                        // const likebody = document.querySelector(".content_feedMore_like");
+                        
+                        //태그 요소
+                        const content_feedMore_like = document.createElement("div");
+                        const content_feedMore_like_userPhoto = document.createElement("img");
+                        const content_feedMore_like_userId = document.createElement("div");
+                        
+                        //클래스 이름
+                        content_feedMore_like.classList.add("content_feedMore_like");
+                        content_feedMore_like_userPhoto.classList.add("content_feedMore_like_userPhoto");
+                        content_feedMore_like_userId.classList.add("content_feedMore_like_userId");
+
+                        //태그 속성
+                        content_feedMore_like_userPhoto.src = like.user.profileImg;
+                        content_feedMore_like_userId.textContent = like.user.userId;
+
+                        //부모자식
+                        likebody.appendChild(content_feedMore_like);
+                        content_feedMore_like.appendChild(content_feedMore_like_userPhoto);
+                        content_feedMore_like.appendChild(content_feedMore_like_userId);
+
+                        });
+                        
+                    })
+                    .catch((error)=>{
+                        console.log("에러: ", error);
+                    })
+                })
+
+            })
+        }
 
         //부모 자식 위치
         feedbody.appendChild(content_feed2);
@@ -1474,3 +1744,21 @@ function displayFollowing(data){
         content_following_right.appendChild(content_following_deleteFollowing); 
     })
 }
+
+//프로필 이미지 누르면 otherFage, myFage로 이동
+
+content_feedcomment_userPhoto
+content_feedMore_like_userPhoto
+
+document.querySelector(".content_feedheader_userPhoto").addEventListener("click", ()=>{
+    document.querySelector(".content_feed").classList.remove("hiden");
+    document.querySelector(".content_feed2").classList.add("hiden");
+    document.querySelector(".content_createFeed").classList.add("hiden");
+    document.querySelector(".content_myFeed").classList.add("hiden");
+    document.querySelector(".content_scrapFeed").classList.add("hiden");
+    document.querySelector(".content_follower").classList.add("hiden");
+    document.querySelector(".content_following").classList.add("hiden");
+    document.querySelector(".content_feedMore").classList.add("hiden");
+    document.querySelector(".content_feedMore_likeList").classList.add("hiden");
+    document.querySelector(".content_updateFeed").classList.add("hiden");
+})
