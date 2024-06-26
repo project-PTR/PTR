@@ -81,34 +81,32 @@
 }
 
 .manager_user_btn_flex > div{
-    background-color: #FEC009;
+    background-color: #e0e0e0;
     padding: 10px 20px;
     border-radius: 10px;
     cursor: pointer;
 }
 
 .manager_user_btn_flex > div:hover{
-    background-color: #2C394A;
-    color: #FEC009;
+    background-color: #FEC009;
     padding: 10px 20px;
     border-radius: 10px;
 }
 
-.search_filter_section {
+#manager_user_btn_flex_hiden{
+    background-color: #FEC009;
+}
+
+.user_list_user_flex{
+    width: 100%;
     display: flex;
+    flex-direction: column;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
-.search_filter_section input,
-.search_filter_section select,
-.search_filter_section button {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.user_list {
+.user_list_teacher_flex{
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;

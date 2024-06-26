@@ -136,12 +136,14 @@ function create_new_Q(data){
 // manager_user 유저 정보
 
 function create_user_detail(){
+    console.log("create_user_detail")
     create_user_detail_user()
     create_user_detail_user_taacher()
 }
 
 function create_user_detail_user(){
-    const body = document.querySelector(".user_list");
+    console.log("create_user_detail_user")
+    const user_list_user_flex = document.querySelector(".user_list_user_flex");
 
     onlyUsers.forEach((user, index)=>{
         const user_item = document.createElement("div");
@@ -203,12 +205,13 @@ function create_user_detail_user(){
         user_item.appendChild(user_item_flex)
         user_item.appendChild(user_item_flex_detail)
     
-        body.appendChild(user_item)
+        user_list_user_flex.appendChild(user_item)    
     })
 }
 
 function create_user_detail_user_taacher(){
-    const body = document.querySelector(".user_list");
+    console.log("create_user_detail_user_taacher")
+    const user_list_teacher_flex = document.querySelector(".user_list_teacher_flex");
 
     allTeacher.forEach((teacher, index)=>{
         const user_item = document.createElement("div");
@@ -284,12 +287,13 @@ function create_user_detail_user_taacher(){
 
         user_item.appendChild(user_item_flex)
         user_item.appendChild(user_item_flex_detail)
-    
-        body.appendChild(user_item)
+
+        user_list_teacher_flex.appendChild(user_item)    
     })
 }
 
 function showUserDetail(user){
+    console.log("showUserDetail")
     let remove = document.querySelector(".user_detail");
     let find = document.querySelector(".user_detail_userId");
         
@@ -382,7 +386,8 @@ function showUserDetail(user){
     body.appendChild(box3)
 }
 
-function showTeacherDetail(teacher){    
+function showTeacherDetail(teacher){   
+    console.log("showTeacherDetail") 
     let remove = document.querySelector(".user_detail");
     let find = document.querySelector(".user_detail_userId");
         
@@ -545,9 +550,8 @@ function showTeacherDetail(teacher){
 
 
 
-
-
 document.querySelector(".content_menu_manager_home").addEventListener("click", ()=>{
+    console.log("ㅎㅎ")
     document.querySelector(".content_menu_manager_home").classList.add("content_menu_bold")
     document.querySelector(".content_menu_manager_user").classList.remove("content_menu_bold")
     document.querySelector(".content_menu_manager_lecture").classList.remove("content_menu_bold")
@@ -568,38 +572,83 @@ document.querySelector(".content_menu_manager_user").addEventListener("click", (
 
 
 
-// document.querySelector(".tatal_user_user").addEventListener("click", (event) => {
-//     event.stopPropagation(); // 클릭 이벤트가 상위 요소로 전파되지 않도록 방지
-// });
-
-
-
-
-
-
-
-
-
-
 document.querySelector(".box_tatal_user").addEventListener("click", ()=>{
+    console.log("전체")
     document.querySelector(".content_menu_manager_user").classList.add("content_menu_bold")
     document.querySelector(".content_menu_manager_home").classList.remove("content_menu_bold")
     document.querySelector(".content_menu_manager_lecture").classList.remove("content_menu_bold")
 
     document.querySelector(".manager_user").classList.remove("hiden")
     document.querySelector(".manager_home").classList.add("hiden")
+
+    console.log(document.querySelector(".user_list_user"))
+    document.querySelector(".user_list_user").classList.remove("hiden")
+    document.querySelector(".user_list_teacher").classList.remove("hiden")
+
+    document.querySelector(".manager_user_allBtn").id = "manager_user_btn_flex_hiden"
+    document.querySelector(".manager_user_userBtn").id = ""
+    document.querySelector(".manager_user_teacherBtn").id = ""
 })
 
-document.querySelector(".box_tatal_teacher").addEventListener("click", ()=>{
+document.querySelector(".tatal_user_user").addEventListener("click", (event) => {
+    event.stopPropagation(); // 클릭 이벤트가 상위 요소로 전파되지 않도록 방지
+    console.log("유저")
     document.querySelector(".content_menu_manager_user").classList.add("content_menu_bold")
     document.querySelector(".content_menu_manager_home").classList.remove("content_menu_bold")
     document.querySelector(".content_menu_manager_lecture").classList.remove("content_menu_bold")
 
     document.querySelector(".manager_user").classList.remove("hiden")
     document.querySelector(".manager_home").classList.add("hiden")
+
+    document.querySelector(".user_list_user").classList.remove("hiden")
+    document.querySelector(".user_list_teacher").classList.add("hiden")
+
+    document.querySelector(".manager_user_userBtn").id = "manager_user_btn_flex_hiden"
+    document.querySelector(".manager_user_allBtn").id = ""
+    document.querySelector(".manager_user_teacherBtn").id = ""
+});
+
+document.querySelector(".tatal_user_teacher").addEventListener("click", (event) => {
+    event.stopPropagation(); // 클릭 이벤트가 상위 요소로 전파되지 않도록 방지
+    console.log("강사")
+    document.querySelector(".content_menu_manager_user").classList.add("content_menu_bold")
+    document.querySelector(".content_menu_manager_home").classList.remove("content_menu_bold")
+    document.querySelector(".content_menu_manager_lecture").classList.remove("content_menu_bold")
+
+    document.querySelector(".manager_user").classList.remove("hiden")
+    document.querySelector(".manager_home").classList.add("hiden")
+
+    document.querySelector(".user_list_teacher").classList.remove("hiden")
+    document.querySelector(".user_list_user").classList.add("hiden")
+
+    document.querySelector(".manager_user_teacherBtn").id = "manager_user_btn_flex_hiden"
+    document.querySelector(".manager_user_allBtn").id = ""
+    document.querySelector(".manager_user_userBtn").id = ""
+});
+
+document.querySelector(".manager_user_allBtn").addEventListener("click", ()=>{
+    document.querySelector(".user_list_user").classList.remove("hiden")
+    document.querySelector(".user_list_teacher").classList.remove("hiden")
+
+    document.querySelector(".manager_user_allBtn").id = "manager_user_btn_flex_hiden"
+    document.querySelector(".manager_user_userBtn").id = ""
+    document.querySelector(".manager_user_teacherBtn").id = ""
 })
 
+document.querySelector(".manager_user_userBtn").addEventListener("click", ()=>{
+    document.querySelector(".user_list_user").classList.remove("hiden")
+    document.querySelector(".user_list_teacher").classList.add("hiden")
 
+    document.querySelector(".manager_user_userBtn").id = "manager_user_btn_flex_hiden"
+    document.querySelector(".manager_user_allBtn").id = ""
+    document.querySelector(".manager_user_teacherBtn").id = ""
+})
 
+document.querySelector(".manager_user_teacherBtn").addEventListener("click", ()=>{
+    document.querySelector(".user_list_teacher").classList.remove("hiden")
+    document.querySelector(".user_list_user").classList.add("hiden")
 
-
+    document.querySelector(".manager_user_teacherBtn").id = "manager_user_btn_flex_hiden"
+    document.querySelector(".manager_user_allBtn").id = ""
+    document.querySelector(".manager_user_userBtn").id = ""
+})
