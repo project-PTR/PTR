@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class LectureController {
@@ -33,8 +34,9 @@ public class LectureController {
 
     // 강의 검색
     @PostMapping("searchLecture")
-    public ResponseEntity<List<Lecture>> searchLecture(@RequestBody String search){
-        return new ResponseEntity<>(lectureService.searchLecture(search), HttpStatus.OK);
+    public ResponseEntity<List<Lecture>> searchLecture(@RequestBody Map<String, Object> searchCriteria) {
+        List<Lecture> lectures = lectureService.searchLecture(searchCriteria);
+        return new ResponseEntity<>(lectures, HttpStatus.OK);
     }
     // 가격으로 강의 조회
     @PostMapping("findPriceLecture")
