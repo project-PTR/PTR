@@ -15,6 +15,7 @@ document.querySelector(".footer_feedMenu_createFeedBtn").addEventListener("click
     document.querySelector(".content_scrapFeed").classList.add("hiden");
     document.querySelector(".content_follower").classList.add("hiden");
     document.querySelector(".content_following").classList.add("hiden");
+    document.querySelector(".content_feedcommentbox").classList.add("hiden");
 })
 document.querySelector(".footer_feedMenu_myFeedBtn").addEventListener("click", ()=>{
     document.querySelector(".content_feed").classList.add("hiden");
@@ -24,6 +25,7 @@ document.querySelector(".footer_feedMenu_myFeedBtn").addEventListener("click", (
     document.querySelector(".content_scrapFeed").classList.add("hiden");
     document.querySelector(".content_follower").classList.add("hiden");
     document.querySelector(".content_following").classList.add("hiden");
+    document.querySelector(".content_feedcommentbox").classList.add("hiden");
 })
 document.querySelector(".footer_feedMenu_scrapFeedBtn").addEventListener("click", ()=>{
     document.querySelector(".content_feed").classList.add("hiden");
@@ -33,6 +35,7 @@ document.querySelector(".footer_feedMenu_scrapFeedBtn").addEventListener("click"
     document.querySelector(".content_scrapFeed").classList.remove("hiden");
     document.querySelector(".content_follower").classList.add("hiden");
     document.querySelector(".content_following").classList.add("hiden");
+    document.querySelector(".content_feedcommentbox").classList.add("hiden");
 })
 document.querySelector(".content_follower_backBtn").addEventListener("click", ()=>{
     document.querySelector(".content_follower").classList.add("hiden");
@@ -42,10 +45,14 @@ document.querySelector(".content_following_backBtn").addEventListener("click", (
     document.querySelector(".content_following").classList.add("hiden");
     document.querySelector(".content_myFeed").classList.remove("hiden");
 })
+document.querySelector(".content_feedcomment_closeBtn").addEventListener("click",()=>{
+    document.querySelector(".content_feedcommentbox").classList.add("hiden");
+})
 
 let user = {
-    userId: "cake"
+    userId: "rose"
 }
+let text = "";
 //피드 홈
 axios
 .get("http://localhost:8080/feed", {withCredentials: true})
@@ -211,6 +218,151 @@ function displayFeed(data){
 
         content_feedfooter_commentBtn.src = "/img/comment.png";
         
+        content_feedfooter_commentBtn.addEventListener("click",()=>{
+            document.querySelector(".content_feedcommentbox").classList.remove("hiden");
+            axios
+            .post("http://localhost:8080/getFeedComment", {id:feed.id}, {withCredentials:true})
+            .then((response)=>{
+                console.log("데이터: ", response.data);
+                displayComments(response.data);
+            })
+            .catch((error)=>{
+                console.log("에러발생: ", error);
+            })
+
+            function displayComments(data){
+                const commentBody = document.querySelector(".content_feedcomment_body");
+                commentBody.innerHTML = ''; // 기존 댓글 초기화
+                data.forEach((comment)=>{
+                    //태그 요소 생성
+                    const content_feedcomment = document.createElement("div");
+                    const content_feedcomment_userPhoto = document.createElement("img");
+                    const content_feedcomment_user = document.createElement("div");
+                    const content_feedcomment_userId = document.createElement("div");
+                    const content_feedcomment_text = document.createElement("div");
+                    const content_feedcomment_right = document.createElement("div");
+                    const content_feedcomment_likeBtn = document.createElement("img");
+                    const content_feedcomment_like = document.createElement("div");
+                    const content_feedcomment_deleteComment = document.createElement("img");
+                    
+                    //클래스 이름
+                    content_feedcomment.classList.add("content_feedcomment");
+                    content_feedcomment_userPhoto.classList.add("content_feedcomment_userPhoto");
+                    content_feedcomment_user.classList.add("content_feedcomment_user");
+                    content_feedcomment_userId.classList.add("content_feedcomment_userId");
+                    content_feedcomment_text.classList.add("content_feedcomment_text");
+                    content_feedcomment_right.classList.add("content_feedcomment_right");
+                    content_feedcomment_likeBtn.classList.add("content_feedcomment_likeBtn");
+                    content_feedcomment_like.classList.add("content_feedcomment_like");
+                    content_feedcomment_deleteComment.classList.add("content_feedcomment_deleteComment");
+                    //태그속성
+                    content_feedcomment_userPhoto.src = comment.user.profileImg;
+                    content_feedcomment_userId.textContent = comment.user.userId;
+                    content_feedcomment_text.textContent = comment.text;
+                    content_feedcomment_deleteComment.src = "/img/closeBtn.png";
+
+                    //댓글 삭제버튼
+                    content_feedcomment_deleteComment.addEventListener("click",()=>{
+                        axios
+                        .post("http://localhost:8080/deleteFeedComment", {id:comment.id}, {withCredentials: true})
+                        .then((response)=>{
+                            console.log("데이터: ", response.data);
+                        })
+                        .catch((error)=>{
+                            console.log("에러발생: ", error);
+                        })
+                    })
+                    
+
+                    axios
+                    .post("http://localhost:8080/numberOfFeedCommentLike", {id:comment.id}, {withCredentials: true})
+                    .then((response)=>{
+                        console.log("데이터: ", response.data);
+                        content_feedcomment_like.textContent = response.data;
+                    
+                    })
+                    .catch((error)=>{
+                        console.log("에러발생: ", error);
+                    })
+
+                     //좋아요버튼
+                    axios
+                    .post("http://localhost:8080/checkFeedCommentLikeClick", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
+                    .then((response)=>{
+                        console.log("데이터: ", response.data);
+                        if(response.data == true){
+                            content_feedcomment_likeBtn.src = "/img/redheart.png";
+                            //조아요 취소
+                            content_feedcomment_likeBtn.addEventListener("click", ()=>{
+                                axios
+                                .delete("http://localhost:8080/feedCommentLike", {data:{feedComment:{id:comment.id },user:{userId:user.userId }}, withCredentials: true})
+                                .then((response)=>{
+                                    console.log("데이터: ", response.data);
+                                })
+                                .catch((error)=>{
+                                    console.log("에러발생: ", error);
+                                })
+                            })
+                        }else{
+                            content_feedcomment_likeBtn.src = "/img/heart.png";
+                            //조아요
+                            content_feedcomment_likeBtn.addEventListener("click", ()=>{
+                                axios
+                                .post("http://localhost:8080/feedCommentLike", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
+                                .then((response)=>{
+                                    console.log("데이터: ", response.data);
+                                })
+                                .catch((error)=>{
+                                    console.log("에러발생: ", error);
+                                })
+                            })
+                        }
+                        
+
+                    })
+                    .catch((error)=>{
+                        console.log("에러발생: ", error);
+                    })
+
+                    
+                    
+                    //부모자식설정
+                    commentBody.appendChild(content_feedcomment);
+                    content_feedcomment.appendChild(content_feedcomment_userPhoto);
+                    content_feedcomment.appendChild(content_feedcomment_user);
+                    content_feedcomment_user.appendChild(content_feedcomment_userId);
+                    content_feedcomment_user.appendChild(content_feedcomment_text);
+                    content_feedcomment.appendChild(content_feedcomment_right);
+                    content_feedcomment_right.appendChild(content_feedcomment_likeBtn);
+                    content_feedcomment_right.appendChild(content_feedcomment_like);
+                    content_feedcomment_right.appendChild(content_feedcomment_deleteComment);
+                })
+            }
+            document.querySelector("#commentText").addEventListener("change",(e)=>{
+                console.log(e.target.value);
+                text = e.target.value;
+            })
+            
+            document.querySelector(".content_feedcomment_forwardBtn").addEventListener("click",()=>{
+                const data1 = {
+                    user : {
+                        userId: user.userId
+                    },
+                    text:text,
+                    feed : {
+                        id:feed.id
+                    }
+                }
+                axios
+                .post("http://localhost:8080/feedComment", data1, {withCredentials: true})
+                .then((response) => {
+                    console.log("서버 응답: ", response.data);
+                })
+                .catch((error) => {
+                    console.log("에러 발생: ", error);
+                });
+            })
+        })
         
         //부모 자식 위치
         feedbody.appendChild(content_feed);
@@ -239,7 +391,6 @@ function displayFeed(data){
 }
 
 //피드 작성
-let text = "";
 document.querySelector("#text-large").addEventListener("change",(e)=>{
     console.log(e.target.value);
     text = e.target.value;
@@ -456,6 +607,131 @@ function displayScrap(data){
     
         content_feedfooter_commentBtn.src = "/img/comment.png";
         
+        content_feedfooter_commentBtn.addEventListener("click",()=>{
+            document.querySelector(".content_feedcommentbox").classList.remove("hiden");
+            axios
+            .post("http://localhost:8080/getFeedComment", {id:feed.id}, {withCredentials:true})
+            .then((response)=>{
+                console.log("데이터: ", response.data);
+                displayComments(response.data);
+            })
+            .catch((error)=>{
+                console.log("에러발생: ", error);
+            })
+
+            function displayComments(data){
+                const commentBody = document.querySelector(".content_feedcomment_body");
+                commentBody.innerHTML = ''; // 기존 댓글 초기화
+                data.forEach((comment)=>{
+                    //태그 요소 생성
+                    const content_feedcomment = document.createElement("div");
+                    const content_feedcomment_userPhoto = document.createElement("img");
+                    const content_feedcomment_user = document.createElement("div");
+                    const content_feedcomment_userId = document.createElement("div");
+                    const content_feedcomment_text = document.createElement("div");
+                    const content_feedcomment_right = document.createElement("div");
+                    const content_feedcomment_likeBtn = document.createElement("img");
+                    const content_feedcomment_like = document.createElement("div");
+                    
+                    //클래스 이름
+                    content_feedcomment.classList.add("content_feedcomment");
+                    content_feedcomment_userPhoto.classList.add("content_feedcomment_userPhoto");
+                    content_feedcomment_user.classList.add("content_feedcomment_user");
+                    content_feedcomment_userId.classList.add("content_feedcomment_userId");
+                    content_feedcomment_text.classList.add("content_feedcomment_text");
+                    content_feedcomment_right.classList.add("content_feedcomment_right");
+                    content_feedcomment_likeBtn.classList.add("content_feedcomment_likeBtn");
+                    content_feedcomment_like.classList.add("content_feedcomment_like");
+                    //태그속성
+                    content_feedcomment_userPhoto.src = comment.user.profileImg;
+                    content_feedcomment_userId.textContent = comment.user.userId;
+                    content_feedcomment_text.textContent = comment.text;
+
+                    axios
+                    .post("http://localhost:8080/numberOfFeedCommentLike", {id:comment.id}, {withCredentials: true})
+                    .then((response)=>{
+                        console.log("데이터: ", response.data);
+                        content_feedcomment_like.textContent = response.data;
+                    
+                    })
+                    .catch((error)=>{
+                        console.log("에러발생: ", error);
+                    })
+
+                     //좋아요버튼
+                    axios
+                    .post("http://localhost:8080/checkFeedCommentLikeClick", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
+                    .then((response)=>{
+                        console.log("데이터: ", response.data);
+                        if(response.data == true){
+                            content_feedcomment_likeBtn.src = "/img/redheart.png";
+                            //조아요 취소
+                            content_feedcomment_likeBtn.addEventListener("click", ()=>{
+                                axios
+                                .delete("http://localhost:8080/feedCommentLike", {data:{feedComment:{id:comment.id },user:{userId:user.userId }}, withCredentials: true})
+                                .then((response)=>{
+                                    console.log("데이터: ", response.data);
+                                })
+                                .catch((error)=>{
+                                    console.log("에러발생: ", error);
+                                })
+                            })
+                        }else{
+                            content_feedcomment_likeBtn.src = "/img/heart.png";
+                            //조아요
+                            content_feedcomment_likeBtn.addEventListener("click", ()=>{
+                                axios
+                                .post("http://localhost:8080/feedCommentLike", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
+                                .then((response)=>{
+                                    console.log("데이터: ", response.data);
+                                })
+                                .catch((error)=>{
+                                    console.log("에러발생: ", error);
+                                })
+                            })
+                        }
+                    })
+                    .catch((error)=>{
+                        console.log("에러발생: ", error);
+                    })
+                    
+                    //부모자식설정
+                    commentBody.appendChild(content_feedcomment);
+                    content_feedcomment.appendChild(content_feedcomment_userPhoto);
+                    content_feedcomment.appendChild(content_feedcomment_user);
+                    content_feedcomment_user.appendChild(content_feedcomment_userId);
+                    content_feedcomment_user.appendChild(content_feedcomment_text);
+                    content_feedcomment.appendChild(content_feedcomment_right);
+                    content_feedcomment_right.appendChild(content_feedcomment_likeBtn);
+                    content_feedcomment_right.appendChild(content_feedcomment_like);
+                })
+            }
+            document.querySelector("#commentText").addEventListener("change",(e)=>{
+                console.log(e.target.value);
+                text = e.target.value;
+            })
+            
+            document.querySelector(".content_feedcomment_forwardBtn").addEventListener("click",()=>{
+                const data1 = {
+                    user : {
+                        userId: user.userId
+                    },
+                    text:text,
+                    feed : {
+                        id:feed.id
+                    }
+                }
+                axios
+                .post("http://localhost:8080/feedComment", data1, {withCredentials: true})
+                .then((response) => {
+                    console.log("서버 응답: ", response.data);
+                })
+                .catch((error) => {
+                    console.log("에러 발생: ", error);
+                });
+            })
+        })
+
         //부모 자식 위치
         feedbody.appendChild(content_feed2);
         content_feed2.appendChild(content_feedheader);
@@ -722,6 +998,131 @@ function displayMyFeed(data){
     
         content_feedfooter_commentBtn.src = "/img/comment.png";
         
+        content_feedfooter_commentBtn.addEventListener("click",()=>{
+            document.querySelector(".content_feedcommentbox").classList.remove("hiden");
+            axios
+            .post("http://localhost:8080/getFeedComment", {id:feed.id}, {withCredentials:true})
+            .then((response)=>{
+                console.log("데이터: ", response.data);
+                displayComments(response.data);
+            })
+            .catch((error)=>{
+                console.log("에러발생: ", error);
+            })
+
+            function displayComments(data){
+                const commentBody = document.querySelector(".content_feedcomment_body");
+                commentBody.innerHTML = ''; // 기존 댓글 초기화
+                data.forEach((comment)=>{
+                    //태그 요소 생성
+                    const content_feedcomment = document.createElement("div");
+                    const content_feedcomment_userPhoto = document.createElement("img");
+                    const content_feedcomment_user = document.createElement("div");
+                    const content_feedcomment_userId = document.createElement("div");
+                    const content_feedcomment_text = document.createElement("div");
+                    const content_feedcomment_right = document.createElement("div");
+                    const content_feedcomment_likeBtn = document.createElement("img");
+                    const content_feedcomment_like = document.createElement("div");
+                    
+                    //클래스 이름
+                    content_feedcomment.classList.add("content_feedcomment");
+                    content_feedcomment_userPhoto.classList.add("content_feedcomment_userPhoto");
+                    content_feedcomment_user.classList.add("content_feedcomment_user");
+                    content_feedcomment_userId.classList.add("content_feedcomment_userId");
+                    content_feedcomment_text.classList.add("content_feedcomment_text");
+                    content_feedcomment_right.classList.add("content_feedcomment_right");
+                    content_feedcomment_likeBtn.classList.add("content_feedcomment_likeBtn");
+                    content_feedcomment_like.classList.add("content_feedcomment_like");
+                    //태그속성
+                    content_feedcomment_userPhoto.src = comment.user.profileImg;
+                    content_feedcomment_userId.textContent = comment.user.userId;
+                    content_feedcomment_text.textContent = comment.text;
+
+                    axios
+                    .post("http://localhost:8080/numberOfFeedCommentLike", {id:comment.id}, {withCredentials: true})
+                    .then((response)=>{
+                        console.log("데이터: ", response.data);
+                        content_feedcomment_like.textContent = response.data;
+                    
+                    })
+                    .catch((error)=>{
+                        console.log("에러발생: ", error);
+                    })
+
+                     //좋아요버튼
+                    axios
+                    .post("http://localhost:8080/checkFeedCommentLikeClick", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
+                    .then((response)=>{
+                        console.log("데이터: ", response.data);
+                        if(response.data == true){
+                            content_feedcomment_likeBtn.src = "/img/redheart.png";
+                            //조아요 취소
+                            content_feedcomment_likeBtn.addEventListener("click", ()=>{
+                                axios
+                                .delete("http://localhost:8080/feedCommentLike", {data:{feedComment:{id:comment.id },user:{userId:user.userId }}, withCredentials: true})
+                                .then((response)=>{
+                                    console.log("데이터: ", response.data);
+                                })
+                                .catch((error)=>{
+                                    console.log("에러발생: ", error);
+                                })
+                            })
+                        }else{
+                            content_feedcomment_likeBtn.src = "/img/heart.png";
+                            //조아요
+                            content_feedcomment_likeBtn.addEventListener("click", ()=>{
+                                axios
+                                .post("http://localhost:8080/feedCommentLike", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
+                                .then((response)=>{
+                                    console.log("데이터: ", response.data);
+                                })
+                                .catch((error)=>{
+                                    console.log("에러발생: ", error);
+                                })
+                            })
+                        }
+                    })
+                    .catch((error)=>{
+                        console.log("에러발생: ", error);
+                    })
+                    
+                    //부모자식설정
+                    commentBody.appendChild(content_feedcomment);
+                    content_feedcomment.appendChild(content_feedcomment_userPhoto);
+                    content_feedcomment.appendChild(content_feedcomment_user);
+                    content_feedcomment_user.appendChild(content_feedcomment_userId);
+                    content_feedcomment_user.appendChild(content_feedcomment_text);
+                    content_feedcomment.appendChild(content_feedcomment_right);
+                    content_feedcomment_right.appendChild(content_feedcomment_likeBtn);
+                    content_feedcomment_right.appendChild(content_feedcomment_like);
+                })
+            }
+            document.querySelector("#commentText").addEventListener("change",(e)=>{
+                console.log(e.target.value);
+                text = e.target.value;
+            })
+            
+            document.querySelector(".content_feedcomment_forwardBtn").addEventListener("click",()=>{
+                const data1 = {
+                    user : {
+                        userId: user.userId
+                    },
+                    text:text,
+                    feed : {
+                        id:feed.id
+                    }
+                }
+                axios
+                .post("http://localhost:8080/feedComment", data1, {withCredentials: true})
+                .then((response) => {
+                    console.log("서버 응답: ", response.data);
+                })
+                .catch((error) => {
+                    console.log("에러 발생: ", error);
+                });
+            })
+        })
+
         //부모 자식 위치
         feedbody.appendChild(content_feed2);
         content_feed2.appendChild(content_feedheader);

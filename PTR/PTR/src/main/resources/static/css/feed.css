@@ -118,8 +118,8 @@
 }
 /*댓글*/
 .content_feedcommentbox{
-    /*display: none;*/
     position: fixed;
+    top: 150px;
     right: 0;
     width: 25%;
     height: 450px;
@@ -161,10 +161,49 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: relative;
 }
-/* .content_feedcomment
-.content_feedcomment_UserPhoto
-.content_feedcomment_UserId
-.content_feedcomment_text */
+.content_feedcomment{
+    display: grid;
+    width: 95%;
+    height: auto;
+    grid-template-columns: 1fr 8fr 1fr;
+    gap: 10px;
+}
+.content_feedcomment_userPhoto{
+    width: 35px;
+    height: 35px;
+    background-color: gray;
+    border: 1px solid gray;
+    border-radius: 50px;
+}
+.content_feedcomment_userId{
+    color: #000;
+    font-size: 0.8rem;
+}
+.content_feedcomment_text{
+    color: #000;
+}
+.content_feedcomment_right{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.content_feedcomment_likeBtn{
+    width: 20px;
+    height: 20px;
+}
+.content_feedcomment_likeBtn:hover{
+    cursor: pointer;
+}
+.content_feedcomment_like{
+    color: #000;
+}
+.content_feedcomment_deleteComment{
+    width: 20px;
+    height: 20px;
+}
+.content_feedcomment_deleteComment:hover{
+    cursor: pointer;
+}
 .content_feedcomment_footer{
     display: flex;
     align-items: center;

@@ -1,7 +1,9 @@
 package PTR.PTR.controller;
 
+import PTR.PTR.model.Feed;
 import PTR.PTR.model.FeedComment;
 import PTR.PTR.model.FeedCommentLike;
+import PTR.PTR.model.FeedLike;
 import PTR.PTR.service.FeedCommentLikeService;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,19 +16,29 @@ public class FeedCommentLikeController {
     public FeedCommentLikeController(FeedCommentLikeService feedCommentLikeService) {
         this.feedCommentLikeService = feedCommentLikeService;
     }
-
     @PostMapping("/feedCommentLike")
-    public FeedCommentLike feedCommentLike(@RequestBody FeedCommentLike feedCommentLike){
-        return feedCommentLikeService.feedCommentLike(feedCommentLike);
+    public String feedCommentLike(@RequestBody FeedCommentLike feedCommentLike){
+        feedCommentLikeService.feedCommentLike(feedCommentLike);
+        return "정상작동";
     }
 
     @DeleteMapping("/feedCommentLike")
-    public void deleteFeedCommnetLike(@RequestBody FeedCommentLike feedCommentLike){
+    public void deleteFeedCommentLike(@RequestBody FeedCommentLike feedCommentLike){
         feedCommentLikeService.deleteFeedCommentLike(feedCommentLike);
     }
 
-    @GetMapping("/feedCommentLike")
+    @PostMapping("/getFeedCommentLike")
     public List<FeedCommentLike> getFeedCommentLike(@RequestBody FeedComment feedComment){
         return feedCommentLikeService.getFeedCommentLike(feedComment);
+    }
+
+    @PostMapping("/checkFeedCommentLikeClick")
+    public boolean checkFeedCommentLikeClick(@RequestBody FeedCommentLike feedCommentLike){
+        return feedCommentLikeService.checkFeedCommentLikeClick(feedCommentLike);
+    }
+
+    @PostMapping("/numberOfFeedCommentLike")
+    public int getNumberOfFeedCommentLike(@RequestBody FeedComment feedComment){
+        return feedCommentLikeService.getNumberOfFeedCommentLike(feedComment);
     }
 }

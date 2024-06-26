@@ -16,14 +16,17 @@ public class FeedCommentController {
     }
 
     @PostMapping("/feedComment")
-    public FeedComment saveFeedComment(@RequestBody FeedComment feedComment){
-        return feedCommentService.saveFeedComment(feedComment);
+    public String saveFeedComment(@RequestBody FeedComment feedComment){
+        feedCommentService.saveFeedComment(feedComment);
+        return "정상";
     }
-    @GetMapping("/feedComment")
+    @PostMapping("/getFeedComment")
     public List<FeedComment> getFeedComment(@RequestBody Feed feed){
         return feedCommentService.getFeedComment(feed);
     }
-    @DeleteMapping("/feedComment")
+
+
+    @PostMapping("/deleteFeedComment")
     public void deleteFeedComment(@RequestBody FeedComment feedComment){
         feedCommentService.deleteFeedComment(feedComment);
     }

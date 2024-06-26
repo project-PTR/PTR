@@ -5,6 +5,7 @@ import PTR.PTR.model.Feed;
 import PTR.PTR.model.FeedComment;
 import PTR.PTR.repository.FeedCommentRepository;
 import PTR.PTR.repository.FeedRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
