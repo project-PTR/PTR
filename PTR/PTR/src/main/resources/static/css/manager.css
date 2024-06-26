@@ -1,11 +1,177 @@
-.content_body_manager{
+.content_menu_bold{
+    font-weight: bold;
+}
+
+.content_menu>div{
+    cursor: pointer;
+}
+
+.manager_home{
     width: 100%;
-    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.manager_home_grid{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 20px;
+}
+
+.manager_home_box{
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.manager_home_box:hover{
+    background-color: #FEC009;
+}
+
+.manager_home_box_flex{
+    display: flex;
+    gap: 10px;
+}
+
+.manager_home_box_flex>div{
+    background-color: #e0e0e0;
+    padding: 10px;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.manager_home_box_flex>div:hover{
+    background-color: #2C394A;
+    color: #FEC009;
+}
+
+.manager_home_box_title{
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.manager_home_box_num{
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+.manager_home_box_total{
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 10px;
 }
 
 
 
-.content_body_manager_user{
+
+
+
+.manager_user{
+    width: 100%;
+}
+
+.search_filter_section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search_filter_section input,
+.search_filter_section select,
+.search_filter_section button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.user_list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.user_item {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+}
+
+.user_item_flex{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.user_item_flex_detail{
+    display: flex;
+    gap: 30px;
+    margin-left: 5px;
+}
+
+.user_item_flex_detail div {
+    flex-shrink: 0;
+}
+
+.user_item:hover {
+    background-color: #e0e0e0;
+}
+
+.user_detail {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 100px;
+}
+
+.user_detail div {
+    margin-bottom: 10px;
+}
+
+.user_item_userId{
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.user_item_date{
+    font-size: 15px;
+    color: gray;
+}
+
+.user_detail_userId{
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.user_detail_box{
+    margin: 0 5px 0 5px;
+    background-color: #e0e0e0;
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.content_body_manager{
     width: 100%;
     margin-top: 50px;
 }

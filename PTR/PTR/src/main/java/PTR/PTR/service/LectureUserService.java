@@ -2,11 +2,13 @@ package PTR.PTR.service;
 
 import PTR.PTR.model.Lecture;
 import PTR.PTR.model.LectureUser;
+import PTR.PTR.model.Teacher;
 import PTR.PTR.model.User;
 import PTR.PTR.repository.LectureUserRepository;
 import PTR.PTR.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,10 +17,12 @@ import java.util.stream.Collectors;
 public class LectureUserService {
     LectureUserRepository lectureUserRepository;
     UserRepository userRepository;
+    LectureService lectureService;
 
-    public LectureUserService(LectureUserRepository lectureUserRepository, UserRepository userRepository) {
+    public LectureUserService(LectureUserRepository lectureUserRepository, UserRepository userRepository, LectureService lectureService) {
         this.lectureUserRepository = lectureUserRepository;
         this.userRepository = userRepository;
+        this.lectureService = lectureService;
     }
 
     public String buyLecture(LectureUser lectureUser){
@@ -73,5 +77,19 @@ public class LectureUserService {
 
     public List<LectureUser> findByLectureId(Lecture lecture){
         return lectureUserRepository.findByLecture(lecture).stream().toList();
+    }
+
+    public List<LectureUser> todayLectureUser(){
+        LocalDate localDate = LocalDate.now();
+        return lectureUserRepository.findAll().stream().filter(l->l.getCreatedAt().toLocalDate()==localDate).collect(Collectors.toList());
+    }
+
+    public List<LectureUser> AllLectureUser(){
+        return lectureUserRepository.findAll();
+    }
+
+    public List<LectureUser> findLectureUserByTeacher(Teacher teacher){
+        List<Lecture> lectures = lectureService.findTeacherLecture(teacher);
+        return lectureUserRepository.findAllByLectureIn(lectures);
     }
 }

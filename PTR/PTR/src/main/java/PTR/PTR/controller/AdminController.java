@@ -1,15 +1,18 @@
 package PTR.PTR.controller;
 
+import PTR.PTR.model.Admin;
 import PTR.PTR.model.Teacher;
 import PTR.PTR.model.User;
 import PTR.PTR.service.AdminService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -28,4 +31,23 @@ public class AdminController {
 
     }
 
+    @GetMapping("allUser")
+    public ResponseEntity<List<User>> allUser(){
+        return new ResponseEntity<>(adminService.allUser(),HttpStatus.OK);
+    }
+
+    @GetMapping("allAdmin")
+    public ResponseEntity<List<Admin>> allAdmin(){
+        return new ResponseEntity<>(adminService.allAdmin(),HttpStatus.OK);
+    }
+
+    @GetMapping("allTeacher")
+    public ResponseEntity<List<Teacher>> allTeacher(){
+        return new ResponseEntity<>(adminService.allTeacher(),HttpStatus.OK);
+    }
+
+    @GetMapping("onlyUsers")
+    public ResponseEntity<List<User>> onlyUsers(){
+        return new ResponseEntity<>(adminService.onlyUsers(),HttpStatus.OK);
+    }
 }

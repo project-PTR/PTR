@@ -35,6 +35,8 @@ public class InquiryController {
     public ResponseEntity<List<Inquiry>> myInquiry(@RequestBody User user){
         return new ResponseEntity<>(inquiryService.myInquiry(user), HttpStatus.OK);
     }
-
-
+    @GetMapping("findNotReply")
+    public ResponseEntity<List<Inquiry>> findNotReply(){
+        return new ResponseEntity<>(inquiryService.findNotReply(), HttpStatus.OK);
+    }
 }

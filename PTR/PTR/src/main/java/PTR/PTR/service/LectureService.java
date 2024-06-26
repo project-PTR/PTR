@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -86,5 +87,10 @@ public class LectureService {
 
     public Lecture getLectureById(long id) {
         return lectureRepository.findById(id).get();
+    }
+
+    public List<Lecture> todayLecture(){
+        LocalDate localDate = LocalDate.now();
+        return lectureRepository.findAll().stream().filter(l->l.getCreatedAt().toLocalDate()==localDate).collect(Collectors.toList());
     }
 }

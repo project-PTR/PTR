@@ -77,4 +77,9 @@ public class LectureController {
         return new ResponseEntity<>(lectureService.getLectureById(id),
                 HttpStatus.OK);
     }
+
+    @GetMapping("/todayLecture")
+    public ResponseEntity<List<Lecture>> todayLecture(){
+        return new ResponseEntity<>(lectureService.todayLecture(), HttpStatus.OK);
+    }
 }

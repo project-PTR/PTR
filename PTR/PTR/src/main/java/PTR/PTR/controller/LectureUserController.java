@@ -2,10 +2,12 @@ package PTR.PTR.controller;
 
 import PTR.PTR.model.Lecture;
 import PTR.PTR.model.LectureUser;
+import PTR.PTR.model.Teacher;
 import PTR.PTR.model.User;
 import PTR.PTR.service.LectureUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,4 +55,19 @@ public class LectureUserController {
     public ResponseEntity<List<LectureUser>> findByLectureId(@RequestBody Lecture lecture){
         return new ResponseEntity<>(lectureUserService.findByLectureId(lecture), HttpStatus.OK);
     }
+
+    @GetMapping("todayLectureUser")
+    public ResponseEntity<List<LectureUser>> todayLectureUser(){
+        return new ResponseEntity<>(lectureUserService.todayLectureUser(), HttpStatus.OK);
+    }
+
+    @GetMapping("AllLectureUser")
+    public ResponseEntity<List<LectureUser>> AllLectureUser(){
+        return new ResponseEntity<>(lectureUserService.AllLectureUser(), HttpStatus.OK);
+    }
+    @PostMapping("findLectureUserByTeacher")
+    public ResponseEntity<List<LectureUser>> findLectureUserByTeacher(@RequestBody Teacher teacher){
+        return new ResponseEntity<>(lectureUserService.findLectureUserByTeacher(teacher), HttpStatus.OK);
+    }
+
 }

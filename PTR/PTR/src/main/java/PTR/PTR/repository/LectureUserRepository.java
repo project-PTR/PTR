@@ -11,4 +11,5 @@ public interface LectureUserRepository extends JpaRepository<LectureUser,Long> {
     LectureUser findByUserAndLecture(User user, Lecture lecture);
     List<LectureUser> findByUser(User user);
     List<LectureUser> findByLecture(Lecture lecture);
+    List<LectureUser> findAllByLectureIn(List<Lecture> lectures);
 }

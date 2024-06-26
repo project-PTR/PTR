@@ -1,6 +1,15 @@
 const user = {
-    userId: "cake"
+    userId: "admin1",
+    authority: {authorityName: "ROLE_ADMIN"}
 }
+
+if(user.authority.authorityName == "ROLE_ADMIN"){
+    document.querySelector(".admin_page_move").classList.remove("hiden")
+    console.log("admin")
+}else{
+    console.log("none")
+}
+
 
 axios
 .post("http://localhost:8080/mySubscription", user)
