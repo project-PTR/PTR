@@ -43,7 +43,7 @@ public class FeedController {
         return feedService.getFeedByName(user);
     }
 
-    @DeleteMapping("/feed")
+    @PostMapping("/deleteFeed")
     public void deleteFeed(@RequestBody Feed feed){
         feedService.deleteFeed(feed);
     }
