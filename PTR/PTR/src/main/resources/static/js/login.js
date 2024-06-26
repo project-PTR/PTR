@@ -21,31 +21,24 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // 폼 데이터가 유효할 경우 서버로 전송하는 로직 추가
-    fetch("/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email: email, password: password }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          // 로그인 성공 시 동작
-          window.location.href = "/main.html";
+    axios
+      .post("http://localhost:8080/login", loginData)
+      .then((response) => {
+        if (response.status === 200) {
+          alert("로그인 성공!");
+          window.location.href = "/main"; // 로그인 성공 시 메인 페이지로 리디렉션
         } else {
-          // 로그인 실패 시 동작
-          alert("로그인 실패: " + data.message);
+          alert("로그인 실패. 다시 시도해 주세요.");
         }
       })
       .catch((error) => {
-        console.error("Error:", error);
+        console.error("에러발생: ", error);
         alert("로그인 중 오류가 발생했습니다.");
       });
   });
 
   signupButton.addEventListener("click", function () {
-    window.location.href = "/signUp.html";
+    window.location.href = "signUp.html";
   });
 
   function validateEmail(email) {

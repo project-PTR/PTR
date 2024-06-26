@@ -37,7 +37,11 @@ public class UserController {
     // 회원가입
     @PostMapping("signup")
     public ResponseEntity<String> signup(@RequestBody SignupDto signupDto){
-        return new ResponseEntity<>(userService.saveUser(signupDto), HttpStatus.CREATED);
+        String response = userService.saveUser(signupDto);
+        if ("이미 등록된 아이디입니다.".equals(response)) {
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>("회원가입이 완료되었습니다.", HttpStatus.CREATED);
     }
     // 로그인
     @PostMapping("user/login")

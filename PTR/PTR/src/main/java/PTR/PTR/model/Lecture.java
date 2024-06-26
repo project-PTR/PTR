@@ -30,16 +30,7 @@ public class Lecture {
     private String url;
     @Column(name = "price")
     private int price;
-    @Column(name="isPurchased")
-    private boolean isPurchased;
-    @Column(name="views")
-    private int views;
-    @Column(name="rating")
-    private double rating;
-    @Column(name="reviews")
-    private int reviews;
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
-    @Column(name="category")
-    private String category;
+
 }

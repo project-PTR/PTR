@@ -12,6 +12,7 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
 }
 
 .profile_image {
@@ -51,15 +52,19 @@
 .form_group label {
   width: 160px;
   margin-right: 10px;
+  text-align: left;
 }
 
 .form_group input[type="text"],
 .form_group input[type="email"],
-.form_group input[type="password"] {
+.form_group input[type="password"],
+.form_group input[type="date"] {
+  width: 100%;
   flex: 1;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  box-sizing: border-box;
 }
 
 .radio_group {
@@ -89,16 +94,6 @@
 .radio_group input[type="radio"] + label {
   background: #f9f9f9;
   color: #000;
-}
-
-input[type="date"] {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
 }
 
 .checkbox_label {

@@ -110,50 +110,6 @@ function allLecture(data) {
   });
 }
 
-document.getElementById("filterButton").addEventListener("click", function () {
-  const searchParams = {
-    searchType: document.querySelector("select[name='searchType']").value,
-    keyword: document.querySelector("input[name='keyword']").value,
-    categories: Array.from(
-      document.querySelectorAll("input[name='category']:checked")
-    ).map((el) => el.value),
-    uploadDate: document.querySelector("input[name='uploadDate']:checked")
-      .value,
-    startDate: document.querySelector("input[name='startDate']").value,
-    endDate: document.querySelector("input[name='endDate']").value,
-    buy: document.querySelector("input[name='buy']:checked").value,
-    price: document.querySelector("input[name='price']:checked").value,
-    order: document.querySelector("input[name='order']:checked").value,
-  };
-
-  axios
-    .post("http://localhost:8080/searchLecture", searchParams)
-    .then((response) => {
-      console.log("검색 결과: ", response.data);
-      const body = document.querySelector(".content_body_interestLecture");
-      body.innerHTML = ""; // 기존 내용을 지우고
-      allLecture(response.data); // 검색 결과를 표시
-    })
-    .catch((error) => {
-      console.log("에러: ", error);
-    });
-});
-
-// 초기 데이터 로드
-fetchData();
-
-function fetchData() {
-  axios
-    .get("http://localhost:8080/findAllLecture")
-    .then((response) => {
-      console.log("초기 데이터: ", response.data);
-      allLecture(response.data);
-    })
-    .catch((error) => {
-      console.log("에러: ", error);
-    });
-}
-
 // 맞춤 교육 영상 서비스
 // let userCategoryList = []
 

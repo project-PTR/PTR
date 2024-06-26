@@ -1,5 +1,6 @@
 package PTR.PTR.service;
 
+import PTR.PTR.dto.LoginDto;
 import PTR.PTR.dto.SignupDto;
 import PTR.PTR.model.Authority;
 import PTR.PTR.model.Category;
@@ -34,6 +35,7 @@ public class UserService {
         }
         Authority authority = new Authority();
         authority.setAuthorityName("ROLE_USER");
+
         User user = new User(
                 signupDto.getUserId(),
                 bCryptPasswordEncoder.encode(signupDto.getPassword()),
@@ -46,6 +48,15 @@ public class UserService {
                 0,
                 authority);
         return userRepository.save(user).getUserId();
+    }
+
+    public boolean authenticateUser(LoginDto loginDto) {
+        Optional<User> userOptional = userRepository.findByUserId(loginDto.getUserId());
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            return bCryptPasswordEncoder.matches(loginDto.getPassword(), user.getPassword());
+        }
+        return false;
     }
 
     public String saveUserCategory(List<UserCategory> userCategories){
