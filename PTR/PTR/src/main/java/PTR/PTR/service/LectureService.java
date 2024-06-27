@@ -95,5 +95,9 @@ public class LectureService {
         return lectureRepository.findAll().stream().filter(l->l.getCreatedAt().toLocalDate()==localDate).collect(Collectors.toList());
     }
 
-
+    public List<Lecture> searchLectureByTeacherName(String teacherName) {
+        return lectureRepository.findAll().stream()
+                .filter(l -> l.getTeacher() != null && l.getTeacher().getUser().getUserName().contains(teacherName))
+                .collect(Collectors.toList());
+    }
 }

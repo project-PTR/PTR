@@ -85,5 +85,10 @@ public class LectureController {
     public ResponseEntity<List<Lecture>> todayLecture(){
         return new ResponseEntity<>(lectureService.todayLecture(), HttpStatus.OK);
     }
-    
+
+    // 강사명 검색
+    @GetMapping("searchTeacher")
+    public List<Lecture> searchLecturesByTeacher(@RequestParam String teacherName) {
+        return lectureService.searchLectureByTeacherName(teacherName);
+    }
 }

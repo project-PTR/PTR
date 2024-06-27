@@ -109,7 +109,7 @@ function allLecture(data) {
     body.appendChild(box);
 
     box.addEventListener("click", () => {
-      window.location.href = "lecture.html?id=" + data.id;
+      window.location.href = "lectureView.html?id=" + data.id;
     });
   });
 
@@ -133,12 +133,22 @@ function allLecture(data) {
           console.error("검색 중 오류 발생: ", error);
         });
     } else if (searchType === "강사명") {
-      searchParams.teacherName = query;
+      searchParams = { teacherName: query };
+      axios
+        .get("http://localhost:8080/searchTeacher", {
+          params: searchParams,
+        })
+        .then((response) => {
+          console.log("검색 결과: ", response.data);
+          displaySearchResults(response.data);
+        })
+        .catch((error) => {
+          console.error("검색 중 오류 발생: ", error);
+        });
     }
 
     console.log("a", searchParams);
   });
-
   function getFilters() {
     const filters = {};
     const interests = Array.from(
