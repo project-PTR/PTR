@@ -15,7 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((response) => {
         if (response.status === 200) {
           alert("로그인 성공!");
-          window.location.href = "/ptr/main.html"; // 로그인 성공 시 메인 페이지로 리디렉션
+          // window.location.href = "/ptr/main.html"; // 로그인 성공 시 메인 페이지로 리디렉션
+          window.location.href = "/ptr/lecture.html";
         } else {
           alert("로그인 실패. 다시 시도해 주세요.");
         }
@@ -55,7 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
     .then((response) => {
       if (response.status === 200) {
         alert("로그아웃 성공!");
-        window.location.href = "/ptr/main.html"; // 로그인 성공 시 메인 페이지로 리디렉션
+        // window.location.href = "/ptr/main.html"; // 로그인 성공 시 메인 페이지로 리디렉션
+        window.location.href = "/ptr/lecture.html";
       } else {
         alert("로그아웃 실패. 다시 시도해 주세요.");
       }
