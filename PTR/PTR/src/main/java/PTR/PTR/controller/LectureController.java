@@ -34,7 +34,7 @@ public class LectureController {
     }
 
     // 강의 검색
-    @GetMapping("/searchLecture")
+    @GetMapping("searchLecture")
     public List<Lecture> searchLectures(@RequestParam String query) {
         return lectureService.searchLecture(query);
     }

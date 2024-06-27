@@ -36,8 +36,16 @@
               <option value="lecture1">강의명</option>
               <option value="lecture1">강사명</option>
             </select>
-            <input type="text" placeholder="검색어를 입력하세요" />
-            <button type="input-group-append btn btn-danger" id="search">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="검색어를 입력하세요"
+            />
+            <button
+              type="button"
+              class="input-group-append btn btn-danger"
+              id="search"
+            >
               🔍
             </button>
             <div class="cursor_pointer search_filter">필터</div>
@@ -100,7 +108,9 @@
               <input type="radio" name="order" value="리뷰" /> 리뷰수
               <input type="radio" name="order" value="가격" /> 낮은 가격순
             </div>
-            <div class="searchBtn cursor_pointer">검색</div>
+            <button class="searchBtn cursor_pointer" id="searchButton">
+              검색
+            </button>
           </div>
         </div>
         <div class="content_body">
@@ -154,11 +164,5 @@
       </div>
     </div>
     <script src="/js/lecture.js"></script>
-    <script>
-      $("#search").click(function () {
-        var input = $("#search-input").val();
-        window.location.replace("/search?value=" + input);
-      });
-    </script>
   </body>
 </html>

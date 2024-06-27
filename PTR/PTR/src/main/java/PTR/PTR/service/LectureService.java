@@ -46,7 +46,8 @@ public class LectureService {
 
     public List<Lecture> searchLecture(String search){
         return lectureRepository.findAll().stream()
-                .filter(l->l.getLectureName().contains(search) ||l.getDescription().contains(search)).collect(Collectors.toList());
+                .filter(l -> l.getLectureName().contains(search) || l.getDescription().contains(search))
+                .collect(Collectors.toList());
     }
 
     public List<Lecture> findPriceLecture(int minPrice, int maxPrice){
