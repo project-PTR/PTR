@@ -898,8 +898,8 @@ function displayScrap(data){
         })
         
         //부모 자식 위치
-        feedbody.appendChild(content_feed);
-        content_feed.appendChild(content_feedheader);
+        feedbody.appendChild(content_feed2);
+        content_feed2.appendChild(content_feedheader);
         content_feedheader.appendChild(content_feedheader_left);
         content_feedheader_left.appendChild(content_feedheader_userPhoto);
         content_feedheader_left.appendChild(content_feedheader_a);
@@ -1454,8 +1454,8 @@ function displayMyFeed(data){
         })
         
         //부모 자식 위치
-        feedbody.appendChild(content_feed);
-        content_feed.appendChild(content_feedheader);
+        feedbody.appendChild(content_feed2);
+        content_feed2.appendChild(content_feedheader);
         content_feedheader.appendChild(content_feedheader_left);
         content_feedheader_left.appendChild(content_feedheader_userPhoto);
         content_feedheader_left.appendChild(content_feedheader_a);
@@ -1747,18 +1747,6 @@ function displayFollowing(data){
 
 //프로필 이미지 누르면 otherFage, myFage로 이동
 
-content_feedcomment_userPhoto
-content_feedMore_like_userPhoto
-
-document.querySelector(".content_feedheader_userPhoto").addEventListener("click", ()=>{
-    document.querySelector(".content_feed").classList.remove("hiden");
-    document.querySelector(".content_feed2").classList.add("hiden");
-    document.querySelector(".content_createFeed").classList.add("hiden");
-    document.querySelector(".content_myFeed").classList.add("hiden");
-    document.querySelector(".content_scrapFeed").classList.add("hiden");
-    document.querySelector(".content_follower").classList.add("hiden");
-    document.querySelector(".content_following").classList.add("hiden");
-    document.querySelector(".content_feedMore").classList.add("hiden");
-    document.querySelector(".content_feedMore_likeList").classList.add("hiden");
-    document.querySelector(".content_updateFeed").classList.add("hiden");
-})
+// content_feedcomment_userPhoto
+// content_feedMore_like_userPhoto
+// content_feedheader_userPhoto
