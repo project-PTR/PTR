@@ -34,14 +34,11 @@ public class LectureController {
     }
 
     // 강의 검색
-//    @PostMapping("searchLecture")
-//    public ResponseEntity<List<Lecture>> searchLecture(@RequestBody Map<String, Object> searchRequest) {
-//        String query = (String) searchRequest.get("query");
-//        String searchType = (String) searchRequest.get("searchType"); // 추가된 부분
-//        Map<String, Object> filters = (Map<String, Object>) searchRequest.get("filters");
-//        List<Lecture> lectures = lectureService.searchLecture(query, searchType, filters); // 수정된 부분
-//        return new ResponseEntity<>(lectures, HttpStatus.OK);
-//    }
+    @GetMapping("/searchLecture")
+    public List<Lecture> searchLectures(@RequestParam String query) {
+        return lectureService.searchLecture(query);
+    }
+
     // 가격으로 강의 조회
     @PostMapping("findPriceLecture")
     public ResponseEntity<List<Lecture>> findPriceLecture(@RequestBody List<Integer> price){
