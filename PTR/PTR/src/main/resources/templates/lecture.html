@@ -37,7 +37,9 @@
               <option value="lecture1">강사명</option>
             </select>
             <input type="text" placeholder="검색어를 입력하세요" />
-            <button type="submit">🔍</button>
+            <button type="input-group-append btn btn-danger" id="search">
+              🔍
+            </button>
             <div class="cursor_pointer search_filter">필터</div>
             <div class="cursor_pointer search_filter_close hiden">필터</div>
           </div>
@@ -144,17 +146,19 @@
               </div>
             </div>
           </div>
-          <div class="related_videos_section">
+          <div class="related_videos_section" id="relatedVideos">
             <h2>관련 추천 영상</h2>
-            <div class="related_videos">
-              <div class="related_video"></div>
-              <div class="related_video"></div>
-              <div class="related_video"></div>
-            </div>
+            <div class="related_videos"></div>
           </div>
         </div>
       </div>
     </div>
     <script src="/js/lecture.js"></script>
+    <script>
+      $("#search").click(function () {
+        var input = $("#search-input").val();
+        window.location.replace("/search?value=" + input);
+      });
+    </script>
   </body>
 </html>
