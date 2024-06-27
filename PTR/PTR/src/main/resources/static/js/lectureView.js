@@ -329,38 +329,59 @@ function sessionCreateAll(user) {
     }
 
     // 일단 빼기
-    // const tbody = document.querySelector("tbody");
-    // lectureUser.forEach((lectureUser, index)=>{
-    //     if(lectureUser.teacherRating!=-1||lectureUser.teacherReview!=""){
-    //         const tr = document.createElement("tr")
-    //         const name = document.createElement("td")
-    //         const rating = document.createElement("td")
-    //         const review = document.createElement("td")
-    //         const date = document.createElement("td")
+    if (
+      lectureUser.filter((l) => l.user.userId === user.userId).length == 1
+    ) {
+      const reviews_btn = document.querySelector(".reviews_btn");
+      const data = lectureUser.filter((l) => l.user.userId === user.userId)[0];
+      if(data.teacherRating===-1 && (data.teacherReview==""||data.teacherReview==null||data.teacherReview==" ")){
+        const review_create_btn = document.createElement("div");
+        review_create_btn.textContent = "리뷰작성"
+        reviews_btn.appendChild(review_create_btn)
+        // review_create_btn.addEventListener("click", ()=>{
+          
+        // })
+      } else{
+        const review_edit_btn = document.createElement("div");
+        review_edit_btn.textContent = "리뷰수정"
+        reviews_btn.appendChild(review_edit_btn)
+        const review_delete_btn = document.createElement("div");
+        review_delete_btn.textContent = "리뷰삭제"
+        reviews_btn.appendChild(review_delete_btn)
+      }
+    }
+    const tbody = document.querySelector("tbody");
+    lectureUser.forEach((lectureUser, index)=>{
+        if(lectureUser.teacherRating!=-1||lectureUser.teacherReview!=""){
+            const tr = document.createElement("tr")
+            const name = document.createElement("td")
+            const rating = document.createElement("td")
+            const review = document.createElement("td")
+            const date = document.createElement("td")
 
-    //         name.textContent = lectureUser.user.userName
-    //         if(lectureUser.teacherRating!=-1){
-    //             rating.textContent = lectureUser.teacherRating
-    //         }else{
-    //             rating.textContent = "미작성"
-    //         }
+            name.textContent = lectureUser.user.userName
+            if(lectureUser.teacherRating!=-1){
+                rating.textContent = lectureUser.teacherRating
+            }else{
+                rating.textContent = "미작성"
+            }
 
-    //         if(lectureUser.teacherReview!=""){
-    //             review.textContent = lectureUser.teacherReview
-    //         }else{
-    //             review.textContent = "미작성"
-    //         }
+            if(lectureUser.teacherReview!=""){
+                review.textContent = lectureUser.teacherReview
+            }else{
+                review.textContent = "미작성"
+            }
 
-    //         const createdAt = new Date(lectureUser.createdAt);
-    //         date.textContent = `${createdAt.getFullYear()}년 ${createdAt.getMonth() + 1}월 ${createdAt.getDate()}일`;
+            const createdAt = new Date(lectureUser.createdAt);
+            date.textContent = `${createdAt.getFullYear()}년 ${createdAt.getMonth() + 1}월 ${createdAt.getDate()}일`;
 
-    //         tr.appendChild(name)
-    //         tr.appendChild(rating)
-    //         tr.appendChild(review)
-    //         tr.appendChild(date)
-    //         tbody.appendChild(tr)
-    //     }
-    // })
+            tr.appendChild(name)
+            tr.appendChild(rating)
+            tr.appendChild(review)
+            tr.appendChild(date)
+            tbody.appendChild(tr)
+        }
+    })
   }
 
   // 코인충전소

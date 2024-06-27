@@ -22,7 +22,7 @@ function sessionSubscription(user){
     .then((response)=>{
         console.log("데이터: ", response.data)
         createMyLecture(response.data) 
-        // createMyLectureReview(response.data)
+        createMyLectureReview(response.data)
     })
     .catch((error)=>{
         console.log("에러: ", error)
@@ -223,233 +223,233 @@ function createMyLecturescrap(data){
     })
 }
 
-// function createMyLectureReview(data){
-//     const body = document.querySelector(".content_body_review_box");
+function createMyLectureReview(data){
+    const body = document.querySelector(".content_body_review_box");
 
-//     data.forEach((data, index)=>{
-//         const box = document.createElement("div");
-//         box.classList.add("content_body_review");
+    data.forEach((data, index)=>{
+        const box = document.createElement("div");
+        box.classList.add("content_body_review");
 
-//         const image = document.createElement("div");
-//         const img = document.createElement("video");
-//         image.classList.add("review_img");
-//         img.src = data.lecture.url;
+        const image = document.createElement("div");
+        const img = document.createElement("video");
+        image.classList.add("review_img");
+        img.src = data.lecture.url;
 
-//         image.addEventListener("click",()=>{
-//             window.location.href = "lectureView.html?id=" + data.lecture.id
-//         })
+        image.addEventListener("click",()=>{
+            window.location.href = "lectureView.html?id=" + data.lecture.id
+        })
         
-//         const review_box = document.createElement("div");
-//         review_box.classList.add("review_box");
+        const review_box = document.createElement("div");
+        review_box.classList.add("review_box");
 
-//         const flex1 = document.createElement("div");
-//         flex1.classList.add("review_box_flex");
+        const flex1 = document.createElement("div");
+        flex1.classList.add("review_box_flex");
         
-//         const title1 = document.createElement("div");
-//         title1.classList.add("review_box_flex_title");
-//         title1.textContent = "제목: ";
+        const title1 = document.createElement("div");
+        title1.classList.add("review_box_flex_title");
+        title1.textContent = "제목: ";
 
-//         const value1 = document.createElement("div");
-//         value1.classList.add("review_box_flex_value");
-//         value1.textContent = data.lecture.lectureName;
+        const value1 = document.createElement("div");
+        value1.classList.add("review_box_flex_value");
+        value1.textContent = data.lecture.lectureName;
 
 
-//         const flex2 = document.createElement("div");
-//         flex2.classList.add("review_box_flex");
+        const flex2 = document.createElement("div");
+        flex2.classList.add("review_box_flex");
         
-//         const title2 = document.createElement("div");
-//         title2.classList.add("review_box_flex_title");
-//         title2.textContent = "별점: ";
+        const title2 = document.createElement("div");
+        title2.classList.add("review_box_flex_title");
+        title2.textContent = "별점: ";
 
-//         const value2 = document.createElement("div");
-//         if(data.teacherRating===-1){
-//             value2.classList.add("review_box_flex_value_none");
-//             value2.textContent = "아직 별점을 작성하지 않았습니다."
-//         } else{
-//             value2.classList.add("review_box_flex_value");
-//             value2.textContent = data.teacherRating;
-//         }
+        const value2 = document.createElement("div");
+        if(data.teacherRating===-1){
+            value2.classList.add("review_box_flex_value_none");
+            value2.textContent = "아직 별점을 작성하지 않았습니다."
+        } else{
+            value2.classList.add("review_box_flex_value");
+            value2.textContent = data.teacherRating;
+        }
 
-//         const flex3 = document.createElement("div");
-//         flex3.classList.add("review_box_flex");
+        const flex3 = document.createElement("div");
+        flex3.classList.add("review_box_flex");
         
-//         const title3 = document.createElement("div");
-//         title3.classList.add("review_box_flex_title");
-//         title3.textContent = "리뷰 내용: ";
+        const title3 = document.createElement("div");
+        title3.classList.add("review_box_flex_title");
+        title3.textContent = "리뷰 내용: ";
 
-//         const value3 = document.createElement("div");
-//         if(data.teacherReview==""||data.teacherReview==null||data.teacherReview==" "){
-//             value3.classList.add("review_box_flex_value_none");
-//             value3.textContent = "아직 리뷰를 작성하지 않았습니다."
-//         } else{
-//             value3.classList.add("review_box_flex_value");
-//             value3.textContent = data.teacherReview;
-//         }
+        const value3 = document.createElement("div");
+        if(data.teacherReview==""||data.teacherReview==null||data.teacherReview==" "){
+            value3.classList.add("review_box_flex_value_none");
+            value3.textContent = "아직 리뷰를 작성하지 않았습니다."
+        } else{
+            value3.classList.add("review_box_flex_value");
+            value3.textContent = data.teacherReview;
+        }
 
-//         const flex4 = document.createElement("div");
-//         flex4.classList.add("review_box_flex");
+        const flex4 = document.createElement("div");
+        flex4.classList.add("review_box_flex");
         
-//         const title4 = document.createElement("div");
-//         title4.classList.add("review_box_flex_title");
-//         title4.textContent = "구매일: ";
+        const title4 = document.createElement("div");
+        title4.classList.add("review_box_flex_title");
+        title4.textContent = "구매일: ";
 
-//         const value4 = document.createElement("div");
-//         value4.classList.add("review_box_flex_value");
-//         const createdAt = new Date(data.createdAt);
-//         value4.textContent =  `${createdAt.getFullYear()}년 ${createdAt.getMonth() + 1}월 ${createdAt.getDate()}일`;
+        const value4 = document.createElement("div");
+        value4.classList.add("review_box_flex_value");
+        const createdAt = new Date(data.createdAt);
+        value4.textContent =  `${createdAt.getFullYear()}년 ${createdAt.getMonth() + 1}월 ${createdAt.getDate()}일`;
 
-//         const review_btn_flex = document.createElement("div");
-//         review_btn_flex.classList.add("review_btn_flex");
+        const review_btn_flex = document.createElement("div");
+        review_btn_flex.classList.add("review_btn_flex");
 
-//         const btn1 = document.createElement("div");
-//         btn1.classList.add("review_btn");
-//         btn1.textContent = "수정";
+        const btn1 = document.createElement("div");
+        btn1.classList.add("review_btn");
+        btn1.textContent = "수정";
 
-//         const btn2 = document.createElement("div");
-//         btn2.classList.add("review_btn");
-//         btn2.textContent = "삭제";
+        const btn2 = document.createElement("div");
+        btn2.classList.add("review_btn");
+        btn2.textContent = "삭제";
 
-//         const btn11 = document.createElement("div");
-//         btn11.classList.add("review_btn");
-//         btn11.classList.add("hiden")
-//         btn11.textContent = "완료";
+        const btn11 = document.createElement("div");
+        btn11.classList.add("review_btn");
+        btn11.classList.add("hiden")
+        btn11.textContent = "완료";
         
-//         const btn21 = document.createElement("div");
-//         btn21.classList.add("review_btn");
-//         btn21.classList.add("hiden")
-//         btn21.textContent = "취소";
+        const btn21 = document.createElement("div");
+        btn21.classList.add("review_btn");
+        btn21.classList.add("hiden")
+        btn21.textContent = "취소";
 
-//         const inputValue2 = document.createElement("input");
-//         inputValue2.classList.add("rating_input")
-//         inputValue2.classList.add("hiden")
-//         inputValue2.type = "number"
-//         inputValue2.min = 0
-//         inputValue2.max = 10
+        const inputValue2 = document.createElement("input");
+        inputValue2.classList.add("rating_input")
+        inputValue2.classList.add("hiden")
+        inputValue2.type = "number"
+        inputValue2.min = 0
+        inputValue2.max = 10
         
-//         const inputValue3 = document.createElement("textarea");
-//         inputValue3.classList.add("review_input")
-//         inputValue3.classList.add("hiden")
-//         inputValue3.rows = 2
-//         inputValue3.min = 0
-//         inputValue3.max = 10
+        const inputValue3 = document.createElement("textarea");
+        inputValue3.classList.add("review_input")
+        inputValue3.classList.add("hiden")
+        inputValue3.rows = 2
+        inputValue3.min = 0
+        inputValue3.max = 10
         
         
-//         image.appendChild(img);
-//         review_btn_flex.appendChild(btn1);
-//         review_btn_flex.appendChild(btn2);
-//         review_btn_flex.appendChild(btn11);
-//         review_btn_flex.appendChild(btn21);
+        image.appendChild(img);
+        review_btn_flex.appendChild(btn1);
+        review_btn_flex.appendChild(btn2);
+        review_btn_flex.appendChild(btn11);
+        review_btn_flex.appendChild(btn21);
 
-//         flex1.appendChild(title1)
-//         flex1.appendChild(value1)
-//         flex2.appendChild(title2)
-//         flex2.appendChild(value2)
-//         flex3.appendChild(title3)
-//         flex3.appendChild(value3)
-//         flex4.appendChild(title4)
-//         flex4.appendChild(value4)
+        flex1.appendChild(title1)
+        flex1.appendChild(value1)
+        flex2.appendChild(title2)
+        flex2.appendChild(value2)
+        flex3.appendChild(title3)
+        flex3.appendChild(value3)
+        flex4.appendChild(title4)
+        flex4.appendChild(value4)
 
-//         flex2.appendChild(inputValue2)
-//         flex3.appendChild(inputValue3)
+        flex2.appendChild(inputValue2)
+        flex3.appendChild(inputValue3)
 
-//         review_box.appendChild(flex1);
-//         review_box.appendChild(flex4);
-//         review_box.appendChild(flex2);
-//         review_box.appendChild(flex3);
-//         review_box.appendChild(review_btn_flex)
+        review_box.appendChild(flex1);
+        review_box.appendChild(flex4);
+        review_box.appendChild(flex2);
+        review_box.appendChild(flex3);
+        review_box.appendChild(review_btn_flex)
 
-//         box.appendChild(image);
-//         box.appendChild(review_box)
+        box.appendChild(image);
+        box.appendChild(review_box)
 
-//         body.appendChild(box);
+        body.appendChild(box);
         
-//         title4.classList.add("review_box_flex_title");
-//         title4.textContent = "구매일: ";
+        title4.classList.add("review_box_flex_title");
+        title4.textContent = "구매일: ";
 
 
-//         btn1.addEventListener("click", ()=>{
-//             value2.classList.add("hiden")
-//             value3.classList.add("hiden")
-//             inputValue2.classList.remove("hiden")
-//             inputValue3.classList.remove("hiden")
+        btn1.addEventListener("click", ()=>{
+            value2.classList.add("hiden")
+            value3.classList.add("hiden")
+            inputValue2.classList.remove("hiden")
+            inputValue3.classList.remove("hiden")
 
-//             btn1.classList.add("hiden")
-//             btn2.classList.add("hiden")
-//             btn11.classList.remove("hiden")
-//             btn21.classList.remove("hiden")
-//         })
+            btn1.classList.add("hiden")
+            btn2.classList.add("hiden")
+            btn11.classList.remove("hiden")
+            btn21.classList.remove("hiden")
+        })
 
-//         btn2.addEventListener("click",()=>{
-//             const lectureUser = {
-//                 id: data.id,
-//                 teacherRating: -1,
-//                 teacherReview: ""
-//             }
-//             axios
-//             .post("http://localhost:8080/changeLectureUser", lectureUser)
-//             .then((response)=>{
-//                 console.log("데이터: ", response.data)
-//                 location.reload();
-//             })
-//             .catch((error)=>{
-//                 console.log("에러: ", error)
-//             })
-//         })
+        btn2.addEventListener("click",()=>{
+            const lectureUser = {
+                id: data.id,
+                teacherRating: -1,
+                teacherReview: ""
+            }
+            axios
+            .post("http://localhost:8080/changeLectureUser", lectureUser)
+            .then((response)=>{
+                console.log("데이터: ", response.data)
+                location.reload();
+            })
+            .catch((error)=>{
+                console.log("에러: ", error)
+            })
+        })
 
-//         let changeRating = -1
-//         let changeReview = ""
+        let changeRating = -1
+        let changeReview = ""
 
-//         document.querySelector(".rating_input").addEventListener("change",(e)=>{
-//             if(e.target.value < 0){
-//                 inputValue2.value = 0
-//                 changeRating = 0
-//             }else if(e.target.value > 10){
-//                 inputValue2.value = 10
-//                 changeRating = 10
-//             }else if(e.target.value>=0 && e.target.value<=10){
-//                 changeRating = e.target.value;
-//             }else{
-//                 changeRating = -1
-//             }
-//             console.log(changeRating)
-//         })
+        document.querySelector(".rating_input").addEventListener("change",(e)=>{
+            if(e.target.value < 0){
+                inputValue2.value = 0
+                changeRating = 0
+            }else if(e.target.value > 10){
+                inputValue2.value = 10
+                changeRating = 10
+            }else if(e.target.value>=0 && e.target.value<=10){
+                changeRating = e.target.value;
+            }else{
+                changeRating = -1
+            }
+            console.log(changeRating)
+        })
 
-//         document.querySelector(".review_input").addEventListener("change",(e)=>{
-//             changeReview = e.target.value;
-//             console.log(changeReview)
-//         })
+        document.querySelector(".review_input").addEventListener("change",(e)=>{
+            changeReview = e.target.value;
+            console.log(changeReview)
+        })
 
-//         btn11.addEventListener("click", ()=>{
-//             const lectureUser = {
-//                 id: data.id,
-//                 teacherRating: changeRating,
-//                 teacherReview: changeReview
-//             }
+        btn11.addEventListener("click", ()=>{
+            const lectureUser = {
+                id: data.id,
+                teacherRating: changeRating,
+                teacherReview: changeReview
+            }
 
-//             axios
-//             .post("http://localhost:8080/changeLectureUser", lectureUser)
-//             .then((response)=>{
-//                 console.log("데이터: ", response.data)
-//                 location.reload();
-//             })
-//             .catch((error)=>{
-//                 console.log("에러: ", error)
-//             })
-//         })
+            axios
+            .post("http://localhost:8080/changeLectureUser", lectureUser)
+            .then((response)=>{
+                console.log("데이터: ", response.data)
+                location.reload();
+            })
+            .catch((error)=>{
+                console.log("에러: ", error)
+            })
+        })
 
-//         btn21.addEventListener("click", ()=>{
-//             value2.classList.remove("hiden")
-//             value3.classList.remove("hiden")
-//             btn1.classList.remove("hiden")
-//             btn2.classList.remove("hiden")
+        btn21.addEventListener("click", ()=>{
+            value2.classList.remove("hiden")
+            value3.classList.remove("hiden")
+            btn1.classList.remove("hiden")
+            btn2.classList.remove("hiden")
 
-//             inputValue2.classList.add("hiden")
-//             inputValue3.classList.add("hiden")
-//             btn11.classList.add("hiden")
-//             btn21.classList.add("hiden")
-//         })
-//     })
-// }
+            inputValue2.classList.add("hiden")
+            inputValue3.classList.add("hiden")
+            btn11.classList.add("hiden")
+            btn21.classList.add("hiden")
+        })
+    })
+}
 
 // 1:1 트레이닝
 // function sessionTraning(user){
@@ -1313,7 +1313,7 @@ function profile_edit() {
     document.querySelector(".head_subscription").classList.add("hiden")
     document.querySelector(".head_subscription1").classList.add("hiden")
     document.querySelector(".head_subscription2").classList.add("hiden")
-    // document.querySelector(".head_subscription3").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 
     // document.querySelector(".content_body_traning").classList.add("hiden")
     // document.querySelector(".traning").classList.remove("content_menu_bold")
@@ -1348,7 +1348,7 @@ document.querySelector(".subscription").addEventListener("click", ()=>{
     document.querySelector(".content_body_myid").classList.add("hiden")
     document.querySelector(".head_subscription1").classList.add("hiden")
     document.querySelector(".head_subscription2").classList.add("hiden")
-    // document.querySelector(".head_subscription3").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
     
     document.querySelector(".subscription").classList.add("content_menu_bold")
     // document.querySelector(".traning").classList.remove("content_menu_bold")
@@ -1365,12 +1365,12 @@ document.querySelector(".subscription").addEventListener("click", ()=>{
     document.querySelector(".content_body_subscription_box1").classList.remove("hiden")
     document.querySelector(".content_body_subscription_box2").classList.add("hiden")
     document.querySelector(".content_body_subscription_box3").classList.add("hiden")
-    // document.querySelector(".content_body_subscription_box4").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box4").classList.add("hiden")
 
     document.querySelector(".content_body_subscription_menu1").classList.add("content_menu_bold")
     document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
-    // document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
 })
 
 // document.querySelector(".traning").addEventListener("click", ()=>{
@@ -1436,7 +1436,7 @@ document.querySelector(".cash").addEventListener("click", ()=>{
     document.querySelector(".head_myid").classList.add("hiden")
     document.querySelector(".head_subscription1").classList.add("hiden")
     document.querySelector(".head_subscription2").classList.add("hiden")
-    // document.querySelector(".head_subscription3").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 
     // document.querySelector(".content_body_traning").classList.add("hiden")
     // document.querySelector(".traning").classList.remove("content_menu_bold")
@@ -1459,7 +1459,7 @@ document.querySelector(".myid").addEventListener("click", ()=>{
     document.querySelector(".head_subscription").classList.add("hiden")
     document.querySelector(".head_subscription1").classList.add("hiden")
     document.querySelector(".head_subscription2").classList.add("hiden")
-    // document.querySelector(".head_subscription3").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 
     // document.querySelector(".content_body_traning").classList.add("hiden")
     // document.querySelector(".traning").classList.remove("content_menu_bold")
@@ -1533,69 +1533,69 @@ document.querySelector(".content_body_subscription_menu1").addEventListener("cli
     document.querySelector(".content_body_subscription_box1").classList.remove("hiden")
     document.querySelector(".content_body_subscription_box2").classList.add("hiden")
     document.querySelector(".content_body_subscription_box3").classList.add("hiden")
-    // document.querySelector(".content_body_subscription_box4").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box4").classList.add("hiden")
 
     document.querySelector(".content_body_subscription_menu1").classList.add("content_menu_bold")
     document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
-    // document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
 
     document.querySelector(".head_subscription").classList.remove("hiden")
     document.querySelector(".head_subscription1").classList.add("hiden")
     document.querySelector(".head_subscription2").classList.add("hiden")
-    // document.querySelector(".head_subscription3").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 })
 
 document.querySelector(".content_body_subscription_menu2").addEventListener("click", ()=>{
     document.querySelector(".content_body_subscription_box2").classList.remove("hiden")
     document.querySelector(".content_body_subscription_box1").classList.add("hiden")
     document.querySelector(".content_body_subscription_box3").classList.add("hiden")
-    // document.querySelector(".content_body_subscription_box4").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box4").classList.add("hiden")
 
     document.querySelector(".content_body_subscription_menu2").classList.add("content_menu_bold")
     document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
-    // document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
 
     document.querySelector(".head_subscription1").classList.remove("hiden")
     document.querySelector(".head_subscription").classList.add("hiden")
     document.querySelector(".head_subscription2").classList.add("hiden")
-    // document.querySelector(".head_subscription3").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 })
 
 document.querySelector(".content_body_subscription_menu3").addEventListener("click", ()=>{
     document.querySelector(".content_body_subscription_box3").classList.remove("hiden")
     document.querySelector(".content_body_subscription_box1").classList.add("hiden")
     document.querySelector(".content_body_subscription_box2").classList.add("hiden")
-    // document.querySelector(".content_body_subscription_box4").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box4").classList.add("hiden")
 
     document.querySelector(".content_body_subscription_menu3").classList.add("content_menu_bold")
     document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
     document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
-    // document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu4").classList.remove("content_menu_bold")
 
     document.querySelector(".head_subscription2").classList.remove("hiden")
     document.querySelector(".head_subscription").classList.add("hiden")
     document.querySelector(".head_subscription1").classList.add("hiden")
-    // document.querySelector(".head_subscription3").classList.add("hiden")
+    document.querySelector(".head_subscription3").classList.add("hiden")
 })
 
-// document.querySelector(".content_body_subscription_menu4").addEventListener("click", ()=>{
-//     document.querySelector(".content_body_subscription_box4").classList.remove("hiden")
-//     document.querySelector(".content_body_subscription_box1").classList.add("hiden")
-//     document.querySelector(".content_body_subscription_box2").classList.add("hiden")
-//     document.querySelector(".content_body_subscription_box3").classList.add("hiden")
+document.querySelector(".content_body_subscription_menu4").addEventListener("click", ()=>{
+    document.querySelector(".content_body_subscription_box4").classList.remove("hiden")
+    document.querySelector(".content_body_subscription_box1").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box2").classList.add("hiden")
+    document.querySelector(".content_body_subscription_box3").classList.add("hiden")
 
-//     document.querySelector(".content_body_subscription_menu4").classList.add("content_menu_bold")
-//     document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
-//     document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
-//     document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu4").classList.add("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu1").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu2").classList.remove("content_menu_bold")
+    document.querySelector(".content_body_subscription_menu3").classList.remove("content_menu_bold")
 
-//     document.querySelector(".head_subscription3").classList.remove("hiden")
-//     document.querySelector(".head_subscription").classList.add("hiden")
-//     document.querySelector(".head_subscription1").classList.add("hiden")
-//     document.querySelector(".head_subscription2").classList.add("hiden")
-// })
+    document.querySelector(".head_subscription3").classList.remove("hiden")
+    document.querySelector(".head_subscription").classList.add("hiden")
+    document.querySelector(".head_subscription1").classList.add("hiden")
+    document.querySelector(".head_subscription2").classList.add("hiden")
+})
 
 
 
