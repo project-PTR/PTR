@@ -481,8 +481,9 @@ function displayFeed(data){
                     .post("http://localhost:8080/getFeedLike", {id:feed.id}, {withCredentials:true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
-                        const likebody = document.querySelector(".content_feedMore_likeList")
+                        const likebody = document.querySelector(".content_feedMore_like")
                         response.data.forEach(like => {
+                        likebody.innerHTML = "";
                         // const likebody = document.querySelector(".content_feedMore_like");
                         
                         //태그 요소
@@ -500,9 +501,8 @@ function displayFeed(data){
                         content_feedMore_like_userId.textContent = like.user.userId;
 
                         //부모자식
-                        likebody.appendChild(content_feedMore_like);
-                        content_feedMore_like.appendChild(content_feedMore_like_userPhoto);
-                        content_feedMore_like.appendChild(content_feedMore_like_userId);
+                        likebody.appendChild(content_feedMore_like_userPhoto);
+                        likebody.appendChild(content_feedMore_like_userId);
 
                         });
                         
@@ -998,8 +998,9 @@ function displayScrap(data){
                     .post("http://localhost:8080/getFeedLike", {id:feed.id}, {withCredentials:true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
-                        const likebody = document.querySelector(".content_feedMore_likeList")
+                        const likebody = document.querySelector(".content_feedMore_like")
                         response.data.forEach(like => {
+                            likebody.innerHTML = "";
                         // const likebody = document.querySelector(".content_feedMore_like");
                         
                         //태그 요소
@@ -1017,9 +1018,8 @@ function displayScrap(data){
                         content_feedMore_like_userId.textContent = like.user.userId;
 
                         //부모자식
-                        likebody.appendChild(content_feedMore_like);
-                        content_feedMore_like.appendChild(content_feedMore_like_userPhoto);
-                        content_feedMore_like.appendChild(content_feedMore_like_userId);
+                        likebody.appendChild(content_feedMore_like_userPhoto);
+                        likebody.appendChild(content_feedMore_like_userId);
 
                         });
                         
@@ -1554,8 +1554,9 @@ function displayMyFeed(data){
                     .post("http://localhost:8080/getFeedLike", {id:feed.id}, {withCredentials:true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
-                        const likebody = document.querySelector(".content_feedMore_likeList")
+                        const likebody = document.querySelector(".content_feedMore_like")
                         response.data.forEach(like => {
+                        likebody.innerHTML = "";
                         // const likebody = document.querySelector(".content_feedMore_like");
                         
                         //태그 요소
@@ -1573,9 +1574,8 @@ function displayMyFeed(data){
                         content_feedMore_like_userId.textContent = like.user.userId;
 
                         //부모자식
-                        likebody.appendChild(content_feedMore_like);
-                        content_feedMore_like.appendChild(content_feedMore_like_userPhoto);
-                        content_feedMore_like.appendChild(content_feedMore_like_userId);
+                        likebody.appendChild(content_feedMore_like_userPhoto);
+                        likebody.appendChild(content_feedMore_like_userId);
 
                         });
                         
