@@ -103,10 +103,13 @@ function create_tatal_user(){
     create_user_detail()
 }
 
+let allLecture = []
+
 axios
 .get("http://localhost:8080/findAllLecture")
 .then((response)=>{
     console.log("데이터: ", response.data)
+    allLecture = allLecture.concat(response.data);
     create_tatal_lectures(response.data)   
 })
 .catch((error)=>{
@@ -139,6 +142,7 @@ function create_user_detail(){
     console.log("create_user_detail")
     create_user_detail_user()
     create_user_detail_user_taacher()
+    create_lecture_detail()
 }
 
 function create_user_detail_user(){
@@ -529,6 +533,398 @@ function showTeacherDetail(teacher){
 
 
 
+// manager_lecture 강의 정보
+
+function create_lecture_detail(){
+    create_lecture_detail_user()
+    create_lecture_detail_user_taacher()
+}
+
+function create_lecture_detail_user(){
+    const user_list_user_flex = document.querySelector(".lecture_list_user_flex");
+
+    onlyUsers.forEach((user, index)=>{
+        const user_item = document.createElement("div");
+        user_item.classList.add("lecture_item");
+        user_item.onclick = () => showLectureDetail(user);
+
+        const user_item_flex = document.createElement("div");
+        user_item_flex.classList.add("lecture_item_flex");
+
+        const user_item_userId = document.createElement("div");
+        user_item_userId.classList.add("lecture_item_userId");
+        user_item_userId.textContent = user.userId + "(유저)"
+
+        const user_item_date = document.createElement("div");
+        user_item_date.classList.add("lecture_item_date");
+        const createdAt = new Date(user.createdAt);
+        const formattedDateTime = `${createdAt.getFullYear()}-${createdAt.getMonth() + 1}-${createdAt.getDate()} ${createdAt.getHours()}:${createdAt.getMinutes()}:${createdAt.getSeconds()}`;
+        user_item_date.textContent = formattedDateTime + " 가입"
+
+
+        const user_item_flex_detail = document.createElement("div");
+        user_item_flex_detail.classList.add("lecture_item_flex_detail");
+
+        const user_item_cash = document.createElement("div");
+        user_item_cash.classList.add("lecture_item_cash");
+        user_item_cash.textContent = "단백질바: " + user.coin + "개"
+
+        const user_item_lecture = document.createElement("div");
+        user_item_lecture.classList.add("lecture_item_lecture");
+        const user_item_total = document.createElement("div");
+        user_item_total.classList.add("lecture_item_lecture");
+        
+        axios
+        .post("http://localhost:8080/myBuyLecture", {userId: user.userId})
+        .then((response)=>{
+            user_item_lecture.textContent = "영상 구매수: " + response.data.length + "개"
+            let total_price = 0;
+            response.data.forEach((lectureUser)=>{
+                total_price = total_price + lectureUser.lecture.price
+            })
+            user_item_total.textContent = "영상 구매금액: " + (total_price * 200) + "원"
+        })
+        .catch((error)=>{
+            console.log("에러: ", error)
+        })
+
+        const user_item_feed = document.createElement("div");
+        user_item_feed.classList.add("lecture_item_lecture");
+        user_item_feed.textContent = "피드 갯수: 10개(수정필요)"
+        
+        user_item_flex.appendChild(user_item_userId)
+        user_item_flex.appendChild(user_item_date)
+
+        user_item_flex_detail.appendChild(user_item_cash)
+        user_item_flex_detail.appendChild(user_item_lecture)
+        user_item_flex_detail.appendChild(user_item_total)
+        user_item_flex_detail.appendChild(user_item_feed)
+
+        user_item.appendChild(user_item_flex)
+        user_item.appendChild(user_item_flex_detail)
+    
+        user_list_user_flex.appendChild(user_item)    
+    })
+}
+
+function create_lecture_detail_user_taacher(){
+    console.log("create_lecture_detail_user_taacher")
+    const user_list_teacher_flex = document.querySelector(".lecture_list_teacher_flex");
+
+    allTeacher.forEach((teacher, index)=>{
+        const user_item = document.createElement("div");
+        user_item.classList.add("lecture_item");
+        user_item.onclick = () => showLecture2Detail(teacher);
+
+        const user_item_flex = document.createElement("div");
+        user_item_flex.classList.add("lecture_item_flex");
+
+        const user_item_userId = document.createElement("div");
+        user_item_userId.classList.add("lecture_item_userId");
+        user_item_userId.textContent = teacher.user.userId + "(강사)"
+
+        const user_item_date = document.createElement("div");
+        user_item_date.classList.add("lecture_item_date");
+        const createdAt = new Date(teacher.user.createdAt);
+        const formattedDateTime = `${createdAt.getFullYear()}-${createdAt.getMonth() + 1}-${createdAt.getDate()} ${createdAt.getHours()}:${createdAt.getMinutes()}:${createdAt.getSeconds()}`;
+        user_item_date.textContent = formattedDateTime + " 가입"
+
+        const user_item_flex_detail = document.createElement("div");
+        user_item_flex_detail.classList.add("lecture_item_flex_detail");
+
+        const user_item_cash = document.createElement("div");
+        user_item_cash.classList.add("lecture_item_cash");
+
+        axios
+        .post("http://localhost:8080/teacherSubscription", {id: teacher.id})
+        .then((response)=>{
+            user_item_cash.textContent = "구독자: " + response.data + "명"
+        })
+        .catch((error)=>{
+            console.log("에러: ", error)
+        })
+
+        const user_item_lecture = document.createElement("div");
+        user_item_lecture.classList.add("lecture_item_lecture");
+        const user_item_total = document.createElement("div");
+        user_item_total.classList.add("lecture_item_lecture");
+
+        axios
+        .post("http://localhost:8080/findTeacherLecture", {id: teacher.id})
+        .then((response)=>{
+            user_item_lecture.textContent = "영상 업로드 갯수: " + response.data.length + "개"
+        })
+        .catch((error)=>{
+            console.log("에러: ", error)
+        })
+
+        axios
+        .post("http://localhost:8080/findLectureUserByTeacher", {id: teacher.id})
+        .then((response)=>{
+            let total_price = 0
+            response.data.forEach((lectureUser)=>{
+                total_price = total_price + lectureUser.lecture.price
+            })
+            user_item_total.textContent = "영상 판매금액: " + (total_price * 200) + "원"
+        })
+        .catch((error)=>{
+            console.log("에러: ", error)
+        })
+
+        const user_item_feed = document.createElement("div");
+        user_item_feed.classList.add("lecture_item_lecture");
+        user_item_feed.textContent = "피드 갯수: 10개(수정필요)"
+        
+        user_item_flex.appendChild(user_item_userId)
+        user_item_flex.appendChild(user_item_date)
+
+        user_item_flex_detail.appendChild(user_item_cash)
+        user_item_flex_detail.appendChild(user_item_lecture)
+        user_item_flex_detail.appendChild(user_item_total)
+        user_item_flex_detail.appendChild(user_item_feed)
+
+        user_item.appendChild(user_item_flex)
+        user_item.appendChild(user_item_flex_detail)
+
+        user_list_teacher_flex.appendChild(user_item)    
+    })
+}
+
+function showLectureDetail(user){
+    console.log("showUserDetail")
+    let remove = document.querySelector(".lecture_detail");
+    let find = document.querySelector(".lecture_detail_userId");
+        
+    if (find) {
+        while (remove.firstChild) {
+            remove.removeChild(remove.firstChild);
+        }
+    }
+
+    const body = document.querySelector(".lecture_detail");
+    
+    const h3 = document.createElement("h3");
+    h3.textContent = "유저 세부 정보"
+
+    const user_detail_userId = document.createElement("div");
+    user_detail_userId.classList.add("lecture_detail_userId");
+    user_detail_userId.textContent = user.userId
+
+    const box1 = document.createElement("div");
+    box1.classList.add("lecture_detail_box");
+
+    const box1_div1 = document.createElement("div");
+    box1_div1.textContent = "이름: " + user.userName
+
+    const box1_div2 = document.createElement("div");
+    box1_div2.textContent = "이메일: " + user.email
+
+    const box1_div3 = document.createElement("div");
+    const birthday = new Date(user.birthday);
+    const birthdayData = `${birthday.getFullYear()}-${birthday.getMonth() + 1}-${birthday.getDate()}`;
+    box1_div3.textContent = "생일: " + birthdayData
+
+    const box1_div4 = document.createElement("div");
+    const createdAt = new Date(user.createdAt);
+    const createdAtData = `${createdAt.getFullYear()}-${createdAt.getMonth() + 1}-${createdAt.getDate()} ${createdAt.getHours()}:${createdAt.getMinutes()}:${createdAt.getSeconds()}`;
+    box1_div4.textContent = "등록 날짜: " + createdAtData
+
+    const box2 = document.createElement("div");
+    box2.classList.add("lecture_detail_box");
+
+    const box2_div1 = document.createElement("div");
+    box2_div1.textContent = "단백질바: " + user.coin + "개"
+
+    const box2_div2 = document.createElement("div");
+    const box2_div3 = document.createElement("div");
+
+    axios
+    .post("http://localhost:8080/myBuyLecture", {userId: user.userId})
+    .then((response)=>{
+        box2_div2.textContent = "영상 구매수: " + response.data.length + "개"
+        let total_price = 0;
+        response.data.forEach((lectureUser)=>{
+            total_price = total_price + lectureUser.lecture.price
+        })
+        box2_div3.textContent = "영상 구매금액: " + (total_price * 200) + "원"
+    })
+    .catch((error)=>{
+        console.log("에러: ", error)
+    })
+
+    const box3 = document.createElement("div");
+    box3.classList.add("lecture_detail_box");
+
+    const box3_div1 = document.createElement("div");
+    box3_div1.textContent = "피드 갯수: 10개(수정필요)"
+
+    const box3_div2 = document.createElement("div");
+    box3_div2.textContent = "팔로워수: 1명(수정필요)"
+
+    const box3_div3 = document.createElement("div");
+    box3_div3.textContent = "팔로잉수: 2명(수정필요)"
+
+    box1.appendChild(box1_div1)
+    box1.appendChild(box1_div2)
+    box1.appendChild(box1_div3)
+    box1.appendChild(box1_div4)
+
+    box2.appendChild(box2_div1)
+    box2.appendChild(box2_div2)
+    box2.appendChild(box2_div3)
+
+    box3.appendChild(box3_div1)
+    box3.appendChild(box3_div2)
+    box3.appendChild(box3_div3)
+
+    body.appendChild(h3)
+    body.appendChild(user_detail_userId)
+    body.appendChild(box1)
+    body.appendChild(box2)
+    body.appendChild(box3)
+}
+
+function showLecture2Detail(teacher){   
+    console.log("showTeacherDetail") 
+    let remove = document.querySelector(".lecture_detail");
+    let find = document.querySelector(".lecture_detail_userId");
+        
+    if (find) {
+        while (remove.firstChild) {
+            remove.removeChild(remove.firstChild);
+        }
+    }
+    
+    const body = document.querySelector(".lecture_detail");
+
+    const h3 = document.createElement("h3");
+    h3.textContent = "강사 세부 정보"
+
+    const user_detail_userId = document.createElement("div");
+    user_detail_userId.classList.add("lecture_detail_userId");
+    user_detail_userId.textContent = teacher.user.userId
+
+    const box1 = document.createElement("div");
+    box1.classList.add("lecture_detail_box");
+
+    const box1_div1 = document.createElement("div");
+    box1_div1.textContent = "이름: " + teacher.user.userName
+
+    const box1_div2 = document.createElement("div");
+    box1_div2.textContent = "이메일: " + teacher.user.email
+
+    const box1_div3 = document.createElement("div");
+    const birthday = new Date(teacher.user.birthday);
+    const birthdayData = `${birthday.getFullYear()}-${birthday.getMonth() + 1}-${birthday.getDate()}`;
+    box1_div3.textContent = "생일: " + birthdayData
+
+    const box1_div4 = document.createElement("div");
+    const createdAt = new Date(teacher.user.createdAt);
+    const createdAtData = `${createdAt.getFullYear()}-${createdAt.getMonth() + 1}-${createdAt.getDate()} ${createdAt.getHours()}:${createdAt.getMinutes()}:${createdAt.getSeconds()}`;
+    box1_div4.textContent = "등록 날짜: " + createdAtData
+
+    const box2 = document.createElement("div");
+    box2.classList.add("lecture_detail_box");
+
+    const box2_div1 = document.createElement("div");
+    box2_div1.textContent = "단백질바: " + teacher.user.coin + "개"
+
+    const box2_div2 = document.createElement("div");
+    const box2_div3 = document.createElement("div");
+
+    axios
+    .post("http://localhost:8080/myBuyLecture", {userId: teacher.user.userId})
+    .then((response)=>{
+        box2_div2.textContent = "영상 구매수: " + response.data.length + "개"
+        let total_price = 0;
+        response.data.forEach((lectureUser)=>{
+            total_price = total_price + lectureUser.lecture.price
+        })
+        box2_div3.textContent = "영상 구매금액: " + (total_price * 200) + "원"
+    })
+    .catch((error)=>{
+        console.log("에러: ", error)
+    })
+
+    const box3 = document.createElement("div");
+    box3.classList.add("lecture_detail_box");
+
+    const box3_div1 = document.createElement("div");
+    box3_div1.textContent = "피드 갯수: 10개(수정필요)"
+
+    const box3_div2 = document.createElement("div");
+    box3_div2.textContent = "팔로워수: 1명(수정필요)"
+
+    const box3_div3 = document.createElement("div");
+    box3_div3.textContent = "팔로잉수: 2명(수정필요)"
+
+    const box4 = document.createElement("div");
+    box4.classList.add("lecture_detail_box");
+
+    const box4_div1 = document.createElement("div");
+    axios
+    .post("http://localhost:8080/teacherSubscription", {id: teacher.id})
+    .then((response)=>{
+        box4_div1.textContent = "구독자: " + response.data + "명"
+    })
+    .catch((error)=>{
+        console.log("에러: ", error)
+    })
+
+    const box4_div2 = document.createElement("div");
+    axios
+    .post("http://localhost:8080/findTeacherLecture", {id: teacher.id})
+    .then((response)=>{
+        box4_div2.textContent = "영상 업로드 갯수: " + response.data.length + "개"
+    })
+    .catch((error)=>{
+        console.log("에러: ", error)
+    })
+
+    const box4_div3 = document.createElement("div");
+    const box4_div4 = document.createElement("div");
+    axios
+    .post("http://localhost:8080/findLectureUserByTeacher", {id: teacher.id})
+    .then((response)=>{
+        box4_div3.textContent = "판매건수: " + response.data.length + "건"
+        let total_price = 0
+        response.data.forEach((lectureUser)=>{
+            total_price = total_price + lectureUser.lecture.price
+        })
+        box4_div4.textContent = "영상 판매금액: " + (total_price * 200) + "원"
+    })
+    .catch((error)=>{
+        console.log("에러: ", error)
+    })
+
+    box1.appendChild(box1_div1)
+    box1.appendChild(box1_div2)
+    box1.appendChild(box1_div3)
+    box1.appendChild(box1_div4)
+
+    box2.appendChild(box2_div1)
+    box2.appendChild(box2_div2)
+    box2.appendChild(box2_div3)
+
+    box3.appendChild(box3_div1)
+    box3.appendChild(box3_div2)
+    box3.appendChild(box3_div3)
+
+    box4.appendChild(box4_div1)
+    box4.appendChild(box4_div2)
+    box4.appendChild(box4_div3)
+    box4.appendChild(box4_div4)
+
+    body.appendChild(h3)
+    body.appendChild(user_detail_userId)
+    body.appendChild(box1)
+    body.appendChild(box2)
+    body.appendChild(box3)
+    body.appendChild(box4)
+}
+
+
+
 
 
 
@@ -558,6 +954,7 @@ document.querySelector(".content_menu_manager_home").addEventListener("click", (
 
     document.querySelector(".manager_home").classList.remove("hiden")
     document.querySelector(".manager_user").classList.add("hiden")
+    document.querySelector(".manager_lecture").classList.add("hiden")
 })
 
 document.querySelector(".content_menu_manager_user").addEventListener("click", ()=>{
@@ -567,10 +964,21 @@ document.querySelector(".content_menu_manager_user").addEventListener("click", (
 
     document.querySelector(".manager_user").classList.remove("hiden")
     document.querySelector(".manager_home").classList.add("hiden")
+    document.querySelector(".manager_lecture").classList.add("hiden")
+})
+
+document.querySelector(".content_menu_manager_lecture").addEventListener("click", ()=>{
+    document.querySelector(".content_menu_manager_lecture").classList.add("content_menu_bold")
+    document.querySelector(".content_menu_manager_home").classList.remove("content_menu_bold")
+    document.querySelector(".content_menu_manager_user").classList.remove("content_menu_bold")
+
+    document.querySelector(".manager_lecture").classList.remove("hiden")
+    document.querySelector(".manager_home").classList.add("hiden")
+    document.querySelector(".manager_user").classList.add("hiden")
 })
 
 
-
+// 홈페이지의 유저관리 버튼
 
 document.querySelector(".box_tatal_user").addEventListener("click", ()=>{
     console.log("전체")
@@ -580,6 +988,7 @@ document.querySelector(".box_tatal_user").addEventListener("click", ()=>{
 
     document.querySelector(".manager_user").classList.remove("hiden")
     document.querySelector(".manager_home").classList.add("hiden")
+    document.querySelector(".manager_lecture").classList.add("hiden")
 
     console.log(document.querySelector(".user_list_user"))
     document.querySelector(".user_list_user").classList.remove("hiden")
@@ -599,6 +1008,7 @@ document.querySelector(".tatal_user_user").addEventListener("click", (event) => 
 
     document.querySelector(".manager_user").classList.remove("hiden")
     document.querySelector(".manager_home").classList.add("hiden")
+    document.querySelector(".manager_lecture").classList.add("hiden")
 
     document.querySelector(".user_list_user").classList.remove("hiden")
     document.querySelector(".user_list_teacher").classList.add("hiden")
@@ -617,6 +1027,7 @@ document.querySelector(".tatal_user_teacher").addEventListener("click", (event) 
 
     document.querySelector(".manager_user").classList.remove("hiden")
     document.querySelector(".manager_home").classList.add("hiden")
+    document.querySelector(".manager_lecture").classList.add("hiden")
 
     document.querySelector(".user_list_teacher").classList.remove("hiden")
     document.querySelector(".user_list_user").classList.add("hiden")
@@ -626,6 +1037,7 @@ document.querySelector(".tatal_user_teacher").addEventListener("click", (event) 
     document.querySelector(".manager_user_userBtn").id = ""
 });
 
+// 유저관리의 버튼
 document.querySelector(".manager_user_allBtn").addEventListener("click", ()=>{
     document.querySelector(".user_list_user").classList.remove("hiden")
     document.querySelector(".user_list_teacher").classList.remove("hiden")

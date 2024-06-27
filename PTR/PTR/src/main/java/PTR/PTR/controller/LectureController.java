@@ -34,14 +34,14 @@ public class LectureController {
     }
 
     // 강의 검색
-    @PostMapping("searchLecture")
-    public ResponseEntity<List<Lecture>> searchLecture(@RequestBody Map<String, Object> searchRequest) {
-        String query = (String) searchRequest.get("query");
-        String searchType = (String) searchRequest.get("searchType"); // 추가된 부분
-        Map<String, Object> filters = (Map<String, Object>) searchRequest.get("filters");
-        List<Lecture> lectures = lectureService.searchLecture(query, searchType, filters); // 수정된 부분
-        return new ResponseEntity<>(lectures, HttpStatus.OK);
-    }
+//    @PostMapping("searchLecture")
+//    public ResponseEntity<List<Lecture>> searchLecture(@RequestBody Map<String, Object> searchRequest) {
+//        String query = (String) searchRequest.get("query");
+//        String searchType = (String) searchRequest.get("searchType"); // 추가된 부분
+//        Map<String, Object> filters = (Map<String, Object>) searchRequest.get("filters");
+//        List<Lecture> lectures = lectureService.searchLecture(query, searchType, filters); // 수정된 부분
+//        return new ResponseEntity<>(lectures, HttpStatus.OK);
+//    }
     // 가격으로 강의 조회
     @PostMapping("findPriceLecture")
     public ResponseEntity<List<Lecture>> findPriceLecture(@RequestBody List<Integer> price){
@@ -89,18 +89,18 @@ public class LectureController {
         return new ResponseEntity<>(lectureService.todayLecture(), HttpStatus.OK);
     }
 
-    @GetMapping("/lectures")
-    public List<Lecture> getLectures(@RequestParam(required = false) String query,
-                                     @RequestParam(required = false) String uploadDate,
-                                     @RequestParam(required = false) String startDate,
-                                     @RequestParam(required = false) String endDate,
-                                     @RequestParam(required = false) Boolean buy,
-                                     @RequestParam(required = false) Integer price,
-                                     @RequestParam(required = false) String order) {
-        LocalDateTime uploadDateTime = uploadDate != null ? LocalDateTime.parse(uploadDate) : null;
-        LocalDateTime startDateTime = startDate != null ? LocalDateTime.parse(startDate) : null;
-        LocalDateTime endDateTime = endDate != null ? LocalDateTime.parse(endDate) : null;
-
-        return lectureService.getFilteredLectures(query, uploadDateTime, startDateTime, endDateTime, buy, price, order);
-    }
+//    @GetMapping("/lectures")
+//    public List<Lecture> getLectures(@RequestParam(required = false) String query,
+//                                     @RequestParam(required = false) String uploadDate,
+//                                     @RequestParam(required = false) String startDate,
+//                                     @RequestParam(required = false) String endDate,
+//                                     @RequestParam(required = false) Boolean buy,
+//                                     @RequestParam(required = false) Integer price,
+//                                     @RequestParam(required = false) String order) {
+//        LocalDateTime uploadDateTime = uploadDate != null ? LocalDateTime.parse(uploadDate) : null;
+//        LocalDateTime startDateTime = startDate != null ? LocalDateTime.parse(startDate) : null;
+//        LocalDateTime endDateTime = endDate != null ? LocalDateTime.parse(endDate) : null;
+//
+//        return lectureService.getFilteredLectures(query, uploadDateTime, startDateTime, endDateTime, buy, price, order);
+//    }
 }

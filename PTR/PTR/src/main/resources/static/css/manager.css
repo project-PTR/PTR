@@ -177,6 +177,119 @@
 }
 
 
+/* 영상 관리 */
+
+.manager_lecture{
+    width: 100%;
+}
+
+.manager_lecture_btn_flex{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.manager_lecture_btn_flex > div{
+    background-color: #e0e0e0;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.manager_lecture_btn_flex > div:hover{
+    background-color: #FEC009;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+#manager_user_btn_flex_hiden{
+    background-color: #FEC009;
+}
+
+.lecture_list_user_flex{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.lecture_list_teacher_flex{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.lecture_item {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+}
+
+.lecture_item_flex{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.lecture_item_flex_detail{
+    display: flex;
+    gap: 30px;
+    margin-left: 5px;
+}
+
+.lecture_item_flex_detail div {
+    flex-shrink: 0;
+}
+
+.lecture_item:hover {
+    background-color: #e0e0e0;
+}
+
+.lecture_detail {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 100px;
+}
+
+.lecture_detail div {
+    margin-bottom: 10px;
+}
+
+.lecture_item_userId{
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.lecture_item_date{
+    font-size: 15px;
+    color: gray;
+}
+
+.lecture_detail_userId{
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.lecture_detail_box{
+    margin: 0 5px 0 5px;
+    background-color: #e0e0e0;
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+}
+
+
 
 
 
