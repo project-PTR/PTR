@@ -81,7 +81,7 @@ public class LectureUserService {
 
     public List<LectureUser> todayLectureUser(){
         LocalDate localDate = LocalDate.now();
-        return lectureUserRepository.findAll().stream().filter(l->l.getCreatedAt().toLocalDate()==localDate).collect(Collectors.toList());
+        return lectureUserRepository.findAll().stream().filter(l->l.getCreatedAt().toLocalDate().equals(localDate)).collect(Collectors.toList());
     }
 
     public List<LectureUser> AllLectureUser(){

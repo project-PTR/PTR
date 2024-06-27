@@ -119,6 +119,8 @@ public class UserController {
     public ResponseEntity<User> sendUser(@RequestBody User user){
         return new ResponseEntity<>(userService.sendUser(user), HttpStatus.OK);
     }
+
+
     @PostMapping("changeUserName")
     public ResponseEntity<User> changeUserName(@RequestBody User user){
         return new ResponseEntity<>(userService.changeUserName(user), HttpStatus.OK);

@@ -92,12 +92,15 @@ public class LectureService {
 
     public List<Lecture> todayLecture(){
         LocalDate localDate = LocalDate.now();
-        return lectureRepository.findAll().stream().filter(l->l.getCreatedAt().toLocalDate()==localDate).collect(Collectors.toList());
+        return lectureRepository.findAll().stream().filter(l->l.getCreatedAt().toLocalDate().equals(localDate)).collect(Collectors.toList());
     }
+<<<<<<< Updated upstream
 
     public List<Lecture> searchLectureByTeacherName(String teacherName) {
         return lectureRepository.findAll().stream()
                 .filter(l -> l.getTeacher() != null && l.getTeacher().getUser().getUserName().contains(teacherName))
                 .collect(Collectors.toList());
     }
+=======
+>>>>>>> Stashed changes
 }

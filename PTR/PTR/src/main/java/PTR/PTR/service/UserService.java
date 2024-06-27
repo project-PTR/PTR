@@ -96,7 +96,7 @@ public class UserService {
     }
 
     public int findCoin(User user){
-        return userRepository.findById(user.getUserId()).get().getCoin();
+        return userRepository.findByUserId(user.getUserId()).get().getCoin();
     }
 
     public User changeCoin(User user){
@@ -106,7 +106,7 @@ public class UserService {
     }
 
     public User sendUser(User user){
-        return userRepository.findById(user.getUserId()).get();
+        return userRepository.findByUserId(user.getUserId()).get();
     }
 
     public User changeUserName(User user){
