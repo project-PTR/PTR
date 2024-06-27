@@ -85,19 +85,5 @@ public class LectureController {
     public ResponseEntity<List<Lecture>> todayLecture(){
         return new ResponseEntity<>(lectureService.todayLecture(), HttpStatus.OK);
     }
-
-//    @GetMapping("/lectures")
-//    public List<Lecture> getLectures(@RequestParam(required = false) String query,
-//                                     @RequestParam(required = false) String uploadDate,
-//                                     @RequestParam(required = false) String startDate,
-//                                     @RequestParam(required = false) String endDate,
-//                                     @RequestParam(required = false) Boolean buy,
-//                                     @RequestParam(required = false) Integer price,
-//                                     @RequestParam(required = false) String order) {
-//        LocalDateTime uploadDateTime = uploadDate != null ? LocalDateTime.parse(uploadDate) : null;
-//        LocalDateTime startDateTime = startDate != null ? LocalDateTime.parse(startDate) : null;
-//        LocalDateTime endDateTime = endDate != null ? LocalDateTime.parse(endDate) : null;
-//
-//        return lectureService.getFilteredLectures(query, uploadDateTime, startDateTime, endDateTime, buy, price, order);
-//    }
+    
 }
