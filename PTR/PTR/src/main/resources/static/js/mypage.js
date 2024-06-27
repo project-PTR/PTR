@@ -1270,7 +1270,30 @@ document.querySelector(".myid_tap3_butten").addEventListener("click", ()=>{
     // };
 
     // reader.readAsDataURL(file);
+    // const myid_tap3_value = document.querySelector(".myid_tap3_value");
+    // file = myid_tap3_value.files[0];
+    // axios
+    // .post("http://localhost:8080/changeProfileImg", file)
+    // .then((response)=>{
+    //     console.log("데이터: ", response.data)
+    // })
+    // .catch((error)=>{
+    //     console.log("에러: ", error)
+    // })
 
+    // const fileInput = document.querySelector(".myid_tap3_value");
+    // const file = fileInput.files[0];
+    
+    // if (file) {
+    //     const reader = new FileReader();
+    //     reader.onloadend = function() {
+    //         const base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+    //         console.log(base64String);
+    //     };
+    //     reader.readAsDataURL(file);
+    // } else {
+    //     alert('Please select a file.');
+    // }
 })
 
 

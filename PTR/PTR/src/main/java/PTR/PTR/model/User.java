@@ -35,7 +35,7 @@ public class User implements UserDetails {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
     @Column(name = "profile_img")
-    private String profileImg;
+    private String profileImg = "https://cdn.pixabay.com/photo/2017/03/21/02/00/user-2160923_1280.png";
     @Column(name = "profile_text")
     private String profileText;
     @Column
