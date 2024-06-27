@@ -104,6 +104,8 @@ document.querySelector(".content_createFeed_createBtn").addEventListener("click"
     .then((response) => {
         console.log("서버 응답: ", response.data);
         alert("성공적으로 전송되었습니다.");
+        location.reload();
+
     })
     .catch((error) => {
         console.log("에러 발생: ", error);
