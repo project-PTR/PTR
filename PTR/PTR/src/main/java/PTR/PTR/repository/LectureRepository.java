@@ -11,10 +11,4 @@ import java.util.List;
 
 public interface LectureRepository extends JpaRepository<Lecture, Long> {
     List<Lecture> findByTeacher(Teacher teacher);
-
-    List<Lecture> findByLectureNameContainingOrTeacher_User_UserNameContaining(Object o, String query);
-
-    List<Lecture> findByLectureNameContaining(String query);
-
-    List<Lecture> findByTeacher_User_UserNameContaining(String query);
 }

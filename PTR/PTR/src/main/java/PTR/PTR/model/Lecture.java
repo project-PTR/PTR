@@ -24,7 +24,6 @@ public class Lecture {
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
-
     @Column(name = "description")
     private String description;
     @Column(name = "url")
@@ -33,14 +32,14 @@ public class Lecture {
     private int price;
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
-    @Column(name = "buy")
-    private Boolean buy;
-    @Column(name = "views")
-    private Integer views;
-    @Column(name = "rating")
-    private Double rating;
-    @Column(name = "reviews")
-    private Integer reviews;
+//    @Column(name = "buy")
+//    private Boolean buy;
+//    @Column(name = "views")
+//    private Integer views;
+//    @Column(name = "rating")
+//    private Double rating;
+//    @Column(name = "reviews")
+//    private Integer reviews;
 
 
 }
