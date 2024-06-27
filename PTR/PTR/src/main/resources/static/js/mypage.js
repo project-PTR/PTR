@@ -1296,7 +1296,40 @@ document.querySelector(".myid_tap3_butten").addEventListener("click", ()=>{
     // }
 })
 
+function profile_edit() {
+    document.querySelector(".content_body_myid").classList.remove("hiden")
+    // document.querySelector(".content_body_myrecord").classList.add("hiden")
+    document.querySelector(".content_body_cash").classList.add("hiden")
+    document.querySelector(".content_body_subscription").classList.add("hiden")
+    
+    document.querySelector(".myid").classList.add("content_menu_bold")
+    // document.querySelector(".myrecord").classList.remove("content_menu_bold")
+    document.querySelector(".cash").classList.remove("content_menu_bold")
+    document.querySelector(".subscription").classList.remove("content_menu_bold")
 
+    document.querySelector(".head_myid").classList.remove("hiden")
+    // document.querySelector(".head_myrecord").classList.add("hiden")
+    document.querySelector(".head_cash").classList.add("hiden")
+    document.querySelector(".head_subscription").classList.add("hiden")
+    document.querySelector(".head_subscription1").classList.add("hiden")
+    document.querySelector(".head_subscription2").classList.add("hiden")
+    // document.querySelector(".head_subscription3").classList.add("hiden")
+
+    // document.querySelector(".content_body_traning").classList.add("hiden")
+    // document.querySelector(".traning").classList.remove("content_menu_bold")
+    // document.querySelector(".head_traning").classList.add("hiden")
+
+    document.querySelector(".content_body_myid_tap3").classList.remove("hiden")
+    document.querySelector(".content_body_myid_tap1").classList.add("hiden")
+    document.querySelector(".content_body_myid_tap2").classList.add("hiden")
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (sessionStorage.getItem('profile_edit') === 'true') {
+        profile_edit();
+        sessionStorage.removeItem('profile_edit'); // 실행 후 항목 제거
+    }
+});
 
 
 

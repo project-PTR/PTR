@@ -8,6 +8,11 @@ function sessionCreateAll(user){
         }
     }
 
+    document.querySelector(".profile_edit_btn").addEventListener("click", ()=>{
+        sessionStorage.setItem('profile_edit', 'true');
+        window.location.href = 'mypage.html';
+    })
+
 document.querySelector(".footer_feedMenu_feedHomeBtn").addEventListener("click", ()=>{
     document.querySelector(".content_feed").classList.remove("hiden");
     document.querySelector(".content_feed2").classList.add("hiden");
