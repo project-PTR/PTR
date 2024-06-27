@@ -109,32 +109,34 @@ function allLecture(data) {
     body.appendChild(box);
 
     box.addEventListener("click", () => {
-      window.location.href = "lectureView.html?id=" + data.id;
+      window.location.href = "lecture.html?id=" + data.id;
     });
   });
 
   searchButton.addEventListener("click", function () {
     const query = searchInput.value;
+    searchTypeSelect = document.querySelector(".searchTypeSelect");
     const searchType = searchTypeSelect.value;
 
-    let searchParams = {};
+    let searchParams = "";
     if (searchType === "강의명") {
-      searchParams.lectureName = query;
+      searchParams = { query: query };
+      axios
+        .get("http://localhost:8080/searchLecture", {
+          params: searchParams,
+        })
+        .then((response) => {
+          console.log("검색 결과: ", response.data);
+          displaySearchResults(response.data);
+        })
+        .catch((error) => {
+          console.error("검색 중 오류 발생: ", error);
+        });
     } else if (searchType === "강사명") {
       searchParams.teacherName = query;
     }
 
-    axios
-      .get("http://localhost:8080/searchLecture", {
-        params: searchParams,
-      })
-      .then((response) => {
-        console.log("검색 결과: ", response.data);
-        displaySearchResults(response.data);
-      })
-      .catch((error) => {
-        console.error("검색 중 오류 발생: ", error);
-      });
+    console.log("a", searchParams);
   });
 
   function getFilters() {
