@@ -1,8 +1,16 @@
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
+  font-family: Poppins, GmarketSansMedium;
   color: inherit;
 }
 .container {
@@ -14,18 +22,18 @@
   height: 70px;
   background-color: #fec009;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding: 30px;
 }
 .top_menu {
   color: white;
   display: flex;
-  justify-content: space-around;
+  margin: auto;
   align-items: center;
 }
 .top_menu div {
-  width: 130px;
+  margin: 0 50px;
   text-align: center;
   font-size: 1.2rem;
 }

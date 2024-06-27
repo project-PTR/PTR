@@ -1,4 +1,4 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -27,7 +27,7 @@
   width: 130px;
   text-align: center;
   font-size: 1.2rem;
-}
+} */
 .heading {
   width: 100%;
   height: 300px;
