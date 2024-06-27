@@ -94,4 +94,6 @@ public class LectureService {
         LocalDate localDate = LocalDate.now();
         return lectureRepository.findAll().stream().filter(l->l.getCreatedAt().toLocalDate()==localDate).collect(Collectors.toList());
     }
+
+
 }

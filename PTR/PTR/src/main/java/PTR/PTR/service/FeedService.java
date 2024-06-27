@@ -32,6 +32,11 @@ public class FeedService {
         return feedRepository.findAll();
     }
 
+    //최근 피드 읽기
+    public List<Feed> getRecentFeed(){
+        return feedRepository.findAll().reversed();
+    }
+
     // 유저 아이디로 피드 읽기
     public List<Feed> getFeedById(User user){
         return feedRepository.findByUser(user);

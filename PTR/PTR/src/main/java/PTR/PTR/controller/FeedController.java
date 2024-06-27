@@ -32,6 +32,10 @@ public class FeedController {
     public Optional<Feed> getFeedByFeedId(@RequestBody Feed feed){
         return feedService.getFeedByFeedId(feed);
     }
+    @GetMapping("/getRecentFeed")
+    public List<Feed> getRecentFeed(){
+        return feedService.getRecentFeed();
+    }
 
     @PostMapping("/feed/id")
     public List<Feed> getFeedById(@RequestBody User user){
