@@ -1,6 +1,7 @@
 package PTR.PTR.controller;
 
 import PTR.PTR.model.Feed;
+import PTR.PTR.model.FeedComment;
 import PTR.PTR.model.FeedLike;
 import PTR.PTR.service.FeedLikeService;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,10 @@ public class FeedLikeController {
     @DeleteMapping("/feedLike")
     public void deleteFeedLike(@RequestBody FeedLike feedLike){
         feedLikeService.deleteFeedLike(feedLike);
+    }
+    @PostMapping("/deleteFeedLikeByFeed")
+    public void deleteFeedLikeByFeed(@RequestBody Feed feed){
+        feedLikeService.deleteFeedLikeByFeed(feed);
     }
 
     @PostMapping("/getFeedLike")

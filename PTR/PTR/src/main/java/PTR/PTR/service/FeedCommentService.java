@@ -56,4 +56,9 @@ public class FeedCommentService {
     public int getNumberOfFeedComment(Feed feed){
         return feedCommentRepository.findByFeed(feed).size();
     }
+
+    @Transactional
+    public void deleteFeedCommentByFeed(Feed feed) {
+        feedCommentRepository.deleteByFeed(feed);
+    }
 }

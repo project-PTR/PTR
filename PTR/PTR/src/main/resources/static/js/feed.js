@@ -644,19 +644,56 @@ function displayFeed(data){
                     
 
                 })
-
+                
+                //피드 삭제
                 const content_feedMore_delete = document.querySelector(".content_feedMore_delete");
                 content_feedMore_delete.addEventListener("click", () => {
+
                     axios
-                    .post("http://localhost:8080/deleteFeed", { id: feed.id }, { withCredentials: true })
+                    .post("http://localhost:8080/deleteFeedScrapByFeed", {id: feed.id}, {withCredentials:true})
                     .then((response) => {
                         console.log("데이터: ", response.data);
-                        location.reload();
+                        axios
+                        .post("http://localhost:8080/deleteFeedLikeByFeed", {id: feed.id}, {withCredentials:true})
+                        .then((response)=>{
+                            console.log("데이터: ", response.data);
+                            axios
+                            .post("http://localhost:8080/deleteFeedCommentLikeByFeed", {id: feed.id}, {withCredentials:true})
+                            .then((response)=>{
+                                console.log("데이터: ",response.data);
+                                axios
+                                .post("http://localhost:8080/deleteFeedCommentByFeed", {id: feed.id}, {withCredentials:true})
+                                .then((response)=>{
+                                    console.log("데이터: ", response.data);
+                                    axios
+                                    .post("http://localhost:8080/deleteFeed", { id: feed.id }, { withCredentials: true })
+                                    .then((response) => {
+                                        console.log("데이터: ", response.data);
+                                        location.reload();
+                                    })
+                                    .catch((error) => {
+                                        console.log("에러: ", error);
+                                    });
+                                })
+                                .catch((error) => {
+                                    console.log("에러: ", error);
+                                });
+                            })
+                            .catch((error) => {
+                                console.log("에러: ", error);
+                            });
+                            
+                        })
+                        .catch((error) => {
+                            console.log("에러: ", error);
+                        });
                     })
                     .catch((error) => {
                         console.log("에러: ", error);
                     });
                 });
+
+                //좋아요 확인
                 const content_feedMore_likeCheck = document.querySelector(".content_feedMore_likeCheck");
                 content_feedMore_likeCheck.addEventListener("click",()=>{
                     document.querySelector(".content_feedMore_likeList").classList.remove("hiden");

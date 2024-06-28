@@ -1,6 +1,7 @@
 package PTR.PTR.service;
 
 import PTR.PTR.model.Feed;
+import PTR.PTR.model.FeedComment;
 import PTR.PTR.model.FeedLike;
 import PTR.PTR.repository.FeedLikeRepository;
 import PTR.PTR.repository.FeedRepository;
@@ -30,6 +31,10 @@ public class FeedLikeService {
     @Transactional
     public void deleteFeedLike(FeedLike feedLike){
         feedLikeRepository.deleteByFeedAndUser(feedLike.getFeed(), feedLike.getUser());
+    }
+    @Transactional
+    public void deleteFeedLikeByFeed(Feed feed) {
+        feedLikeRepository.deleteByFeed(feed);
     }
 
     //좋아요 확인

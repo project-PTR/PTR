@@ -1,9 +1,6 @@
 package PTR.PTR.service;
 
-import PTR.PTR.model.Feed;
-import PTR.PTR.model.FeedLike;
-import PTR.PTR.model.FeedScrap;
-import PTR.PTR.model.User;
+import PTR.PTR.model.*;
 import PTR.PTR.repository.FeedRepository;
 import PTR.PTR.repository.FeedScrapRepository;
 import PTR.PTR.repository.UserRepository;
@@ -49,5 +46,9 @@ public class FeedScrapService {
     //유저가 피드 좋아요 눌렀는지 확인
     public boolean checkFeedScrapClick(FeedScrap feedScrap){
         return feedScrapRepository.findByFeedAndUser(feedScrap.getFeed(), feedScrap.getUser()) != null;
+    }
+    @Transactional
+    public void deleteFeedScrapByFeed(Feed feed) {
+        feedScrapRepository.deleteByFeed(feed);
     }
 }

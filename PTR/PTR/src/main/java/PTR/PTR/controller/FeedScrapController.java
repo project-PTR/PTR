@@ -1,9 +1,6 @@
 package PTR.PTR.controller;
 
-import PTR.PTR.model.Feed;
-import PTR.PTR.model.FeedLike;
-import PTR.PTR.model.FeedScrap;
-import PTR.PTR.model.User;
+import PTR.PTR.model.*;
 import PTR.PTR.service.FeedScrapService;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,6 +39,11 @@ public class FeedScrapController {
     @PostMapping("/checkFeedScrapClick")
     public boolean checkFeedScrapClick(@RequestBody FeedScrap feedScrap){
         return feedScrapService.checkFeedScrapClick(feedScrap);
+    }
+
+    @PostMapping("/deleteFeedScrapByFeed")
+    public void deleteFeedScrapByFeed(@RequestBody Feed feed){
+        feedScrapService.deleteFeedScrapByFeed(feed);
     }
 
 }

@@ -6,6 +6,7 @@ import PTR.PTR.model.FeedCommentLike;
 import PTR.PTR.model.FeedLike;
 import PTR.PTR.repository.FeedCommentLikeRepository;
 import PTR.PTR.repository.FeedCommentRepository;
+import PTR.PTR.repository.FeedRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.List;
 public class FeedCommentLikeService {
     FeedCommentLikeRepository feedCommentLikeRepository;
     FeedCommentRepository feedCommentRepository;
+    FeedRepository feedRepository;
 
     public FeedCommentLikeService(FeedCommentLikeRepository feedCommentLikeRepository, FeedCommentRepository feedCommentRepository) {
         this.feedCommentLikeRepository = feedCommentLikeRepository;
@@ -32,6 +34,14 @@ public class FeedCommentLikeService {
     public void deleteFeedCommentLike(FeedCommentLike feedCommentLike){
         feedCommentLikeRepository.deleteByFeedCommentAndUser(feedCommentLike.getFeedComment(), feedCommentLike.getUser());
     }
+    @Transactional
+    public void deleteFeedCommentLikeByFeedComment(FeedComment feedComment) {
+        feedCommentLikeRepository.deleteByFeedComment(feedComment);
+    }
+    @Transactional
+    public void deleteFeedCommentLikeByFeed(Feed feed){
+        feedCommentRepository.deleteByFeed(feed);
+    }
 
     //좋아요 확인
     public List<FeedCommentLike> getFeedCommentLike(FeedComment feedComment){
@@ -47,8 +57,5 @@ public class FeedCommentLikeService {
     public int getNumberOfFeedCommentLike(FeedComment feedComment){
         return feedCommentLikeRepository.findByFeedComment(feedComment).size();
     }
-    @Transactional
-    public void deleteFeedCommentLikeByFeedComment(FeedComment feedComment) {
-        feedCommentLikeRepository.deleteByFeedComment(feedComment);
-    }
+
 }

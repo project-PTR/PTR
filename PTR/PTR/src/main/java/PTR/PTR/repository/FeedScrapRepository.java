@@ -17,4 +17,6 @@ public interface FeedScrapRepository extends JpaRepository<FeedScrap,Long> {
 
 
     void deleteByFeedAndUser(Feed feed, User user);
+
+    void deleteByFeed(Feed feed);
 }

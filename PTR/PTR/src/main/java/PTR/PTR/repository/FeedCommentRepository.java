@@ -10,5 +10,5 @@ public interface FeedCommentRepository extends JpaRepository<FeedComment,Long> {
     List<FeedComment> findByFeed(Feed feed);
 
 
-
+    void deleteByFeed(Feed feed);
 }
