@@ -40,7 +40,9 @@ public class FeedCommentLikeService {
     }
     @Transactional
     public void deleteFeedCommentLikeByFeed(Feed feed){
-        feedCommentRepository.deleteByFeed(feed);
+        List<FeedComment> feedComments = feedCommentRepository.findByFeed(feed);
+        List<FeedCommentLike> removes = feedCommentLikeRepository.findAllByFeedCommentIn(feedComments);
+        feedCommentLikeRepository.deleteAll(removes);
     }
 
     //좋아요 확인
