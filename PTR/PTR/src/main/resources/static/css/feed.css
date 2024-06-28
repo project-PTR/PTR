@@ -365,14 +365,16 @@
 } */
 .content_updateFeed_inputBox{
     width: 70%;
-    aspect-ratio: 5 / 1;
+    /* aspect-ratio: 5 / 1; */
+    height: 200px;
     border: 1px solid rgba(0, 0, 0, 0.5);
     text-align: center;
-    line-height: 10;
+    /* line-height: 10; */
+    padding: 20px;
 }
 .input-large2 {
     width: 80%;
-    aspect-ratio: 5 / 1;
+    height: 160px;
     border: 1px solid rgba(0, 0, 0, 0.5);
     padding: 15px;
 }
@@ -444,14 +446,16 @@
 } */
 .content_createFeed_inputBox{
     width: 70%;
-    aspect-ratio: 5 / 1;
+    /* aspect-ratio: 5 / 1; */
+    height: 200px;
     border: 1px solid rgba(0, 0, 0, 0.5);
     text-align: center;
-    line-height: 10;
+    /* line-height: 10; */
+    padding: 20px;
 }
 .input-large {
     width: 80%;
-    aspect-ratio: 5 / 1;
+    height: 160px;
     border: 1px solid rgba(0, 0, 0, 0.5);
     padding: 15px;
 }
