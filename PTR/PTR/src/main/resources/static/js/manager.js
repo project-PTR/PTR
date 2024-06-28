@@ -399,9 +399,10 @@ function showTeacherDetail(teacher, user_item){
     if (remove) {
         remove.remove();
     }
-    
-    const body = document.querySelector(".user_detail");
 
+    const body = document.createElement("div");
+    body.classList.add("user_detail");
+    
     const h3 = document.createElement("h3");
     h3.textContent = "강사 세부 정보"
 
@@ -547,7 +548,7 @@ function create_lecture_detail_all(){
     allLecture.forEach((lecture, index)=>{
         const user_item = document.createElement("div");
         user_item.classList.add("lecture_item");
-        user_item.onclick = () => showLectureDetail(lecture);
+        user_item.onclick = () => showLectureDetail(lecture, user_item);
 
         const user_item_flex = document.createElement("div");
         user_item_flex.classList.add("lecture_item_flex");
@@ -611,7 +612,7 @@ function create_lecture_detail_teacher(){
     todayLectures.forEach((lecture, index)=>{
         const user_item = document.createElement("div");
         user_item.classList.add("lecture_item");
-        user_item.onclick = () => showLectureDetailToday(lecture);
+        user_item.onclick = () => showLectureDetailToday(lecture, user_item);
 
         const user_item_flex = document.createElement("div");
         user_item_flex.classList.add("lecture_item_flex");
@@ -760,18 +761,17 @@ function create_lecture_detail_teacher(){
 //     })
 // }
 
-function showLectureDetail(lecture){
+function showLectureDetail(lecture, user_item){
+    console.log("showUserDetail")
     let remove = document.querySelector(".lecture_detail");
-    let find = document.querySelector(".lecture_detail_userId");
-        
-    if (find) {
-        while (remove.firstChild) {
-            remove.removeChild(remove.firstChild);
-        }
+
+    if (remove) {
+        remove.remove();
     }
 
-    const body = document.querySelector(".lecture_detail");
-    
+    const body = document.createElement("div");
+    body.classList.add("lecture_detail");
+
     const h3 = document.createElement("h3");
     h3.textContent = "영상 세부 정보"
 
@@ -899,6 +899,7 @@ function showLectureDetail(lecture){
     body.appendChild(box1)
     body.appendChild(box2)
     // body.appendChild(box3)
+    user_item.appendChild(body)
 }
 
 // function showLecture2Detail(teacher){   
@@ -1040,17 +1041,16 @@ function showLectureDetail(lecture){
 //     body.appendChild(box4)
 // }
 
-function showLectureDetailToday(lecture){
+function showLectureDetailToday(lecture, user_item){
+    console.log("showUserDetail")
     let remove = document.querySelector(".lecture_detail");
-    let find = document.querySelector(".lecture_detail_userId");
-        
-    if (find) {
-        while (remove.firstChild) {
-            remove.removeChild(remove.firstChild);
-        }
+
+    if (remove) {
+        remove.remove();
     }
 
-    const body = document.querySelector(".lecture_detail");
+    const body = document.createElement("div");
+    body.classList.add("lecture_detail");
     
     const h3 = document.createElement("h3");
     h3.textContent = "영상 세부 정보"
@@ -1179,6 +1179,8 @@ function showLectureDetailToday(lecture){
     body.appendChild(box1)
     body.appendChild(box2)
     // body.appendChild(box3)
+
+    user_item.appendChild(body)
 }
 
 
