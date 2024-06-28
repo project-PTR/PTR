@@ -43,7 +43,7 @@ public class UserService {
                 signupDto.getUserEmail(),
                 signupDto.getBirthday(),
                 LocalDateTime.now(),
-                "",
+                "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzEwMDZfNTYg%2FMDAxNjk2NTkwNTMzMDAw.5EbiBwYZ9wWxrN831q0z4AC92SmxB6lE4i4nja-qzDkg.Nx6ER8bleU0SDZJc7s6SM5ITsJv9GP_WUa-RW_cwGuog.JPEG.tmvldkrk%2F105.jpg&type=sc960_832",
                 "",
                 0,
                 authority);
