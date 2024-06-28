@@ -11,4 +11,6 @@ public interface FeedCommentLikeRepository extends JpaRepository<FeedCommentLike
     FeedCommentLike findByFeedCommentAndUser(FeedComment feedComment, User user);
 
     void deleteByFeedCommentAndUser(FeedComment feedComment, User user);
+
+    void deleteByFeedComment(FeedComment feedComment);
 }

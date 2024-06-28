@@ -26,6 +26,10 @@ public class FeedCommentLikeController {
     public void deleteFeedCommentLike(@RequestBody FeedCommentLike feedCommentLike){
         feedCommentLikeService.deleteFeedCommentLike(feedCommentLike);
     }
+    @PostMapping("/feedCommentLikeByFeedComment")
+    public void deleteFeedCommentLikeByFeedComment(@RequestBody FeedComment feedComment){
+        feedCommentLikeService.deleteFeedCommentLikeByFeedComment(feedComment);
+    }
 
     @PostMapping("/getFeedCommentLike")
     public List<FeedCommentLike> getFeedCommentLike(@RequestBody FeedComment feedComment){

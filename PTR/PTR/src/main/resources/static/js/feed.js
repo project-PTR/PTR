@@ -454,6 +454,9 @@ function displayFeed(data){
                                 .delete("http://localhost:8080/feedCommentLike", {data:{feedComment:{id:comment.id },user:{userId:user.userId }}, withCredentials: true})
                                 .then((response)=>{
                                     console.log("데이터: ", response.data);
+                                    location.reload();
+
+
                                 })
                                 .catch((error)=>{
                                     console.log("에러발생: ", error);
@@ -467,6 +470,8 @@ function displayFeed(data){
                                 .post("http://localhost:8080/feedCommentLike", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
                                 .then((response)=>{
                                     console.log("데이터: ", response.data);
+                                    location.reload();
+
                                 })
                                 .catch((error)=>{
                                     console.log("에러발생: ", error);
@@ -499,13 +504,23 @@ function displayFeed(data){
                         //댓글 삭제버튼
                         content_feedcomment_deleteComment.addEventListener("click",()=>{
                             axios
-                            .post("http://localhost:8080/deleteFeedComment", {id:comment.id}, {withCredentials: true})
-                            .then((response)=>{
+                            .post("http://localhost:8080/feedCommentLikeByFeedComment", {id:comment.id}, {withCredentials:true})
+                            .then((response)=> {
                                 console.log("데이터: ", response.data);
+                                axios
+                                .post("http://localhost:8080/deleteFeedComment", {id:comment.id}, {withCredentials: true})
+                                .then((response)=>{
+                                    console.log("데이터: ", response.data);
+                                    location.reload();
+                                })
+                                .catch((error)=>{
+                                    console.log("에러발생: ", error);
+                                })
                             })
                             .catch((error)=>{
-                                console.log("에러발생: ", error);
+                                console.log("에러발생: ", error)
                             })
+                            
                         })
                     }
                 })
@@ -618,6 +633,7 @@ function displayFeed(data){
                     .post("http://localhost:8080/deleteFeed", { id: feed.id }, { withCredentials: true })
                     .then((response) => {
                         console.log("데이터: ", response.data);
+                        location.reload();
                     })
                     .catch((error) => {
                         console.log("에러: ", error);
@@ -934,6 +950,7 @@ function displayScrap(data){
                                 .delete("http://localhost:8080/feedCommentLike", {data:{feedComment:{id:comment.id },user:{userId:user.userId }}, withCredentials: true})
                                 .then((response)=>{
                                     console.log("데이터: ", response.data);
+                                    location.reload();
                                 })
                                 .catch((error)=>{
                                     console.log("에러발생: ", error);
@@ -947,6 +964,7 @@ function displayScrap(data){
                                 .post("http://localhost:8080/feedCommentLike", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
                                 .then((response)=>{
                                     console.log("데이터: ", response.data);
+                                    location.reload();
                                 })
                                 .catch((error)=>{
                                     console.log("에러발생: ", error);
@@ -979,13 +997,23 @@ function displayScrap(data){
                         //댓글 삭제버튼
                         content_feedcomment_deleteComment.addEventListener("click",()=>{
                             axios
-                            .post("http://localhost:8080/deleteFeedComment", {id:comment.id}, {withCredentials: true})
-                            .then((response)=>{
+                            .post("http://localhost:8080/feedCommentLikeByFeedComment", {id:comment.id}, {withCredentials:true})
+                            .then((response)=> {
                                 console.log("데이터: ", response.data);
+                                axios
+                                .post("http://localhost:8080/deleteFeedComment", {id:comment.id}, {withCredentials: true})
+                                .then((response)=>{
+                                    console.log("데이터: ", response.data);
+                                    location.reload();
+                                })
+                                .catch((error)=>{
+                                    console.log("에러발생: ", error);
+                                })
                             })
                             .catch((error)=>{
-                                console.log("에러발생: ", error);
+                                console.log("에러발생: ", error)
                             })
+                            
                         })
                     }
                 })
@@ -1098,6 +1126,7 @@ function displayScrap(data){
                     .post("http://localhost:8080/deleteFeed", { id: feed.id }, { withCredentials: true })
                     .then((response) => {
                         console.log("데이터: ", response.data);
+                        location.reload();
                     })
                     .catch((error) => {
                         console.log("에러: ", error);
@@ -1425,6 +1454,7 @@ function displayMyFeed(data){
                                 .delete("http://localhost:8080/feedCommentLike", {data:{feedComment:{id:comment.id },user:{userId:user.userId }}, withCredentials: true})
                                 .then((response)=>{
                                     console.log("데이터: ", response.data);
+                                    location.reload();
                                 })
                                 .catch((error)=>{
                                     console.log("에러발생: ", error);
@@ -1438,6 +1468,7 @@ function displayMyFeed(data){
                                 .post("http://localhost:8080/feedCommentLike", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
                                 .then((response)=>{
                                     console.log("데이터: ", response.data);
+                                    location.reload();
                                 })
                                 .catch((error)=>{
                                     console.log("에러발생: ", error);
@@ -1470,13 +1501,23 @@ function displayMyFeed(data){
                         //댓글 삭제버튼
                         content_feedcomment_deleteComment.addEventListener("click",()=>{
                             axios
-                            .post("http://localhost:8080/deleteFeedComment", {id:comment.id}, {withCredentials: true})
-                            .then((response)=>{
+                            .post("http://localhost:8080/feedCommentLikeByFeedComment", {id:comment.id}, {withCredentials:true})
+                            .then((response)=> {
                                 console.log("데이터: ", response.data);
+                                axios
+                                .post("http://localhost:8080/deleteFeedComment", {id:comment.id}, {withCredentials: true})
+                                .then((response)=>{
+                                    console.log("데이터: ", response.data);
+                                    location.reload();
+                                })
+                                .catch((error)=>{
+                                    console.log("에러발생: ", error);
+                                })
                             })
                             .catch((error)=>{
-                                console.log("에러발생: ", error);
+                                console.log("에러발생: ", error)
                             })
+                            
                         })
                     }
                 })
@@ -1589,6 +1630,7 @@ function displayMyFeed(data){
                     .post("http://localhost:8080/deleteFeed", { id: feed.id }, { withCredentials: true })
                     .then((response) => {
                         console.log("데이터: ", response.data);
+                        location.reload();
                     })
                     .catch((error) => {
                         console.log("에러: ", error);
@@ -1745,6 +1787,7 @@ function displayFollowing(data){
             .delete("/userFollow", {data:{ id: follow.id }}, {withCredentials: true})
             .then((response) => {
                 console.log("데이터: ", response.data);
+                
 
             })
             .catch((error)=>{
@@ -1786,12 +1829,12 @@ function sessionCurrent(){
             sessionCreateAll(user)
             console.log("유저 정보: ", user);
 
-            if(user.authority.authorityName == "ROLE_ADMIN"){
-                document.querySelector(".admin_page_move").classList.remove("hiden")
-                console.log("admin")
-            }else{
-                console.log("none")
-            }
+            // if(user.authority.authorityName == "ROLE_ADMIN"){
+            //     document.querySelector(".admin_page_move").classList.remove("hiden")
+            //     console.log("admin")
+            // }else{
+            //     console.log("none")
+            // }
         }
     })
     .catch((error)=>{

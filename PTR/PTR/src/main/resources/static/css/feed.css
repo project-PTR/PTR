@@ -357,15 +357,22 @@
     background-color: #fec009;
     color: #2c394a;
 }
-.content_updateFeed_body{
+/* .content_updateFeed_body{
     width: 70%;
     aspect-ratio: 5 / 4;
     border: 1px solid rgba(0, 0, 0, 0.5);
     padding: 15px;
+} */
+.content_updateFeed_inputBox{
+    width: 70%;
+    aspect-ratio: 5 / 1;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    text-align: center;
+    line-height: 10;
 }
 .input-large2 {
-    width: 70%;
-    aspect-ratio: 5 / 4;
+    width: 80%;
+    aspect-ratio: 5 / 1;
     border: 1px solid rgba(0, 0, 0, 0.5);
     padding: 15px;
 }
@@ -429,15 +436,22 @@
     background-color: #fec009;
     color: #2c394a;
 }
-.content_createFeed_body{
+/* .content_createFeed_body{
     width: 70%;
     aspect-ratio: 5 / 4;
     border: 1px solid rgba(0, 0, 0, 0.5);
     padding: 15px;
+} */
+.content_createFeed_inputBox{
+    width: 70%;
+    aspect-ratio: 5 / 1;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    text-align: center;
+    line-height: 10;
 }
 .input-large {
-    width: 70%;
-    aspect-ratio: 5 / 4;
+    width: 80%;
+    aspect-ratio: 5 / 1;
     border: 1px solid rgba(0, 0, 0, 0.5);
     padding: 15px;
 }
