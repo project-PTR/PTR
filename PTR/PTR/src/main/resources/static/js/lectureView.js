@@ -665,13 +665,6 @@ function sessionCurrent() {
 
         sessionCreateAll(user);
         console.log("유저 정보: ", user);
-
-        if (user.authority.authorityName == "ROLE_ADMIN") {
-          document.querySelector(".admin_page_move").classList.remove("hiden");
-          console.log("admin");
-        } else {
-          console.log("none");
-        }
       }
     })
     .catch((error) => {
