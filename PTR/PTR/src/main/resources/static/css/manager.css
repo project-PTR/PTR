@@ -130,7 +130,7 @@
   display: flex;
   gap: 30px;
   margin-left: 5px;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 
 .user_item_flex_detail div {
@@ -151,6 +151,7 @@
   border-radius: 5px;
   margin-bottom: 20px;
   background-color: #fff;
+  margin-top: 30px;
 }
 
 .user_detail div {
@@ -236,6 +237,7 @@
   border-radius: 5px;
   cursor: pointer;
   background-color: #f9f9f9;
+  margin-bottom: 10px;
 }
 
 .lecture_item_flex {
@@ -248,8 +250,8 @@
   display: flex;
   gap: 30px;
   margin-left: 5px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  /* margin-top: 30px;
+  margin-bottom: 20px; */
 }
 
 .lecture_item_flex_detail div {
@@ -268,6 +270,7 @@
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  margin-top: 20px;
   margin-bottom: 20px;
   background-color: #fff;
 }
