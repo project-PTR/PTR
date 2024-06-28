@@ -120,10 +120,6 @@
   background-color: #f9f9f9;
 }
 
-.user_item.no-hover:hover {
-  background-color: initial;
-}
-
 .user_item_flex {
   display: flex;
   align-items: center;
@@ -145,11 +141,16 @@
   background-color: #e0e0e0;
 }
 
+.user_item:active {
+  background-color: #d0d0d0;
+}
+
 .user_detail {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 20px;
+  background-color: #fff;
 }
 
 .user_detail div {
@@ -247,6 +248,8 @@
   display: flex;
   gap: 30px;
   margin-left: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .lecture_item_flex_detail div {
@@ -257,11 +260,16 @@
   background-color: #e0e0e0;
 }
 
+.lecture_item:active {
+  background-color: #d0d0d0;
+}
+
 .lecture_detail {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
+  background-color: #fff;
 }
 
 .lecture_detail div {
