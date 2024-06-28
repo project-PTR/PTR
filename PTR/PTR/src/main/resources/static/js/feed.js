@@ -195,7 +195,6 @@ axios
 })
 
 
-//메서드
 //팔로워 조회
 document.querySelector(".content_myFeed_profile_box_numberOfFollower").addEventListener("click",()=>{
     document.querySelector(".content_myFeed").classList.add("hiden");
@@ -325,6 +324,7 @@ function displayFeed(data){
                 content_feedfooter_likeBtn.src = "/img/heart.png";
                 //조아요
                 content_feedfooter_likeBtn.addEventListener("click", ()=>{
+                    checkLogin(user);
                     axios
                     .post("http://localhost:8080/feedLike", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
                     .then((response)=>{
@@ -362,6 +362,7 @@ function displayFeed(data){
             }else{
                 content_feedfooter_scrapBtn.src = "/img/bookmark.png";
                 content_feedfooter_scrapBtn.addEventListener("click",()=>{
+                    checkLogin(user);
                     axios
                     .post("http://localhost:8080/feedScrap", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
                     .then((response)=>{
@@ -466,6 +467,7 @@ function displayFeed(data){
                             content_feedcomment_likeBtn.src = "/img/heart.png";
                             //조아요
                             content_feedcomment_likeBtn.addEventListener("click", ()=>{
+                                checkLogin(user);
                                 axios
                                 .post("http://localhost:8080/feedCommentLike", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
                                 .then((response)=>{
@@ -531,6 +533,7 @@ function displayFeed(data){
             })
             
             document.querySelector(".content_feedcomment_forwardBtn").addEventListener("click",()=>{
+                checkLogin(user);
                 const data1 = {
                     user : {
                         userId: user.userId
