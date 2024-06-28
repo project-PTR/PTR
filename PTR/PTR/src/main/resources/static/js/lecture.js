@@ -95,6 +95,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const searchTypeSelect = document.querySelector(".searchTypeSelect");
     const searchType = searchTypeSelect.value;
 
+    if (query.trim() === "") {
+      alert("검색어를 입력해 주세요.");
+      return;
+    }
+
     let searchParams = {};
     if (searchType === "강의명") {
       searchParams = { query: query };
@@ -113,6 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch((error) => {
           console.error("검색 중 오류 발생: ", error);
+          alert("검색 중 오류가 발생했습니다.");
           interestLectureTitle.textContent = "맞춤 교육 영상";
           loadInterestLectures();
         });
@@ -133,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch((error) => {
           console.error("검색 중 오류 발생: ", error);
-          alert("검색 중 오류가 발생했습니다.");
+          alert("검색 중 오류가 발생했습니다. ");
           interestLectureTitle.textContent = "맞춤 교육 영상";
           loadInterestLectures();
         });
