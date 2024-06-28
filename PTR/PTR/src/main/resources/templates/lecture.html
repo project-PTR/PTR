@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/lecture.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/axios.min.js"></script>
     <title>Personal Training</title>
@@ -111,8 +111,8 @@
           </div>
         </div>
         <div class="content_body">
-          <div class="interest_lecture">
-            <h2>맞춤 교육 영상</h2>
+          <div class="interest_lecture" id="interestLectureSection">
+            <h2 class="interestLectureTitle">맞춤 교육 영상</h2>
             <div class="content_body_interestLecture"></div>
           </div>
           <!-- <div class="instructor_section">
@@ -153,12 +153,9 @@
               </div>
             </div>
           </div> -->
-          <div class="related_videos_section" id="relatedVideos">
+          <div class="related_videos_section hidden" id="relatedVideosSection">
             <!-- <h2>관련 추천 영상</h2> -->
             <div class="related_videos"></div>
-            <div>
-              <span id="result"></span>
-            </div>
           </div>
         </div>
       </div>
