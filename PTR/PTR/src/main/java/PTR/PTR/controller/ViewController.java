@@ -71,6 +71,6 @@ public class ViewController {
     }
     @GetMapping("/index.html")
     public String index(){
-        return "lecture";
+        return "index";
     }
 }
