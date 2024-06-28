@@ -328,19 +328,105 @@ function sessionCreateAll(user) {
         });
     }
 
-    // 일단 빼기
     if (
       lectureUser.filter((l) => l.user.userId === user.userId).length == 1
     ) {
       const reviews_btn = document.querySelector(".reviews_btn");
       const data = lectureUser.filter((l) => l.user.userId === user.userId)[0];
+      const inputValue2 = document.createElement("input");
+      inputValue2.classList.add("rating_input")
+      inputValue2.type = "number"
+      inputValue2.min = 0
+      inputValue2.max = 10
+      
+      const inputValue3 = document.createElement("textarea");
+      inputValue3.classList.add("review_input")
+      inputValue3.rows = 2
+      inputValue3.min = 0
+      inputValue3.max = 10
+      const review_input = document.querySelector(".reviews_input");
+
+      let changeRating = -1
+      let changeReview = ""
+
+      const input2 = document.createElement("div");
+      input2.classList.add("input2")
+      input2.textContent = "별점"
+
+      const input3 = document.createElement("div");
+      input3.classList.add("input3")
+      input3.textContent = "리뷰"
+
+      const reviews_box = document.querySelector(".reviews_box");
+      
+      review_input.appendChild(input2)
+      review_input.appendChild(inputValue2)
+      review_input.appendChild(input3)
+      review_input.appendChild(inputValue3)
+      review_input.classList.add("hiden")
+
       if(data.teacherRating===-1 && (data.teacherReview==""||data.teacherReview==null||data.teacherReview==" ")){
         const review_create_btn = document.createElement("div");
         review_create_btn.textContent = "리뷰작성"
         reviews_btn.appendChild(review_create_btn)
-        // review_create_btn.addEventListener("click", ()=>{
-          
-        // })
+        
+        review_create_btn.addEventListener("click", ()=>{
+          review_input.classList.remove("hiden")
+          reviews_box.classList.add("review_box_style")
+
+          review_create_btn.classList.add("hiden")
+          const review_back = document.createElement("div");
+
+          document.querySelector(".rating_input").addEventListener("change",(e)=>{
+            if(e.target.value < 0){
+                inputValue2.value = 0
+                changeRating = 0
+            }else if(e.target.value > 10){
+                inputValue2.value = 10
+                changeRating = 10
+            }else if(e.target.value>=0 && e.target.value<=10){
+                changeRating = e.target.value;
+            }else{
+                changeRating = -1
+            }
+            console.log(changeRating)
+          })
+    
+          document.querySelector(".review_input").addEventListener("change",(e)=>{
+            changeReview = e.target.value;
+            console.log(changeReview)
+          })
+
+          review_back.textContent = "취소"
+          reviews_btn.appendChild(review_back)
+          review_back.addEventListener("click", ()=>{
+            review_input.classList.add("hiden")
+            reviews_box.classList.remove("review_box_style")
+            review_back.classList.add("hiden")
+            review_create_btn.classList.remove("hiden")
+            review_ok.remove("hiden")
+          })
+          const review_ok = document.createElement("div");
+          review_ok.textContent = "완료"
+          reviews_btn.appendChild(review_ok)
+          review_ok.addEventListener("click", ()=>{
+            const lectureUser = {
+              id: data.id,
+              teacherRating: changeRating,
+              teacherReview: changeReview
+            }
+
+            axios
+            .post("http://localhost:8080/changeLectureUser", lectureUser)
+            .then((response)=>{
+                console.log("데이터: ", response.data)
+                location.reload();
+            })
+            .catch((error)=>{
+                console.log("에러: ", error)
+            })
+          })
+        })
       } else{
         const review_edit_btn = document.createElement("div");
         review_edit_btn.textContent = "리뷰수정"
@@ -348,6 +434,82 @@ function sessionCreateAll(user) {
         const review_delete_btn = document.createElement("div");
         review_delete_btn.textContent = "리뷰삭제"
         reviews_btn.appendChild(review_delete_btn)
+
+        review_edit_btn.addEventListener("click", ()=>{
+          review_input.classList.remove("hiden")
+          reviews_box.classList.add("review_box_style")
+          review_edit_btn.classList.add("hiden")
+          review_delete_btn.classList.add("hiden")
+
+          const review_back = document.createElement("div");
+
+          document.querySelector(".rating_input").addEventListener("change",(e)=>{
+            if(e.target.value < 0){
+                inputValue2.value = 0
+                changeRating = 0
+            }else if(e.target.value > 10){
+                inputValue2.value = 10
+                changeRating = 10
+            }else if(e.target.value>=0 && e.target.value<=10){
+                changeRating = e.target.value;
+            }else{
+                changeRating = -1
+            }
+            console.log(changeRating)
+          })
+    
+          document.querySelector(".review_input").addEventListener("change",(e)=>{
+            changeReview = e.target.value;
+            console.log(changeReview)
+          })
+
+          review_back.textContent = "취소"
+          reviews_btn.appendChild(review_back)
+          review_back.addEventListener("click", ()=>{
+            review_input.classList.add("hiden")
+            reviews_box.classList.remove("review_box_style")
+            review_back.classList.add("hiden")
+            review_edit_btn.classList.remove("hiden")
+            review_delete_btn.classList.remove("hiden")
+            review_ok.remove("hiden")
+          })
+          const review_ok = document.createElement("div");
+          review_ok.textContent = "완료"
+          reviews_btn.appendChild(review_ok)
+          review_ok.addEventListener("click", ()=>{
+            const lectureUser = {
+              id: data.id,
+              teacherRating: changeRating,
+              teacherReview: changeReview
+            }
+
+            axios
+            .post("http://localhost:8080/changeLectureUser", lectureUser)
+            .then((response)=>{
+                console.log("데이터: ", response.data)
+                location.reload();
+            })
+            .catch((error)=>{
+                console.log("에러: ", error)
+            })
+          })
+        })
+        review_delete_btn.addEventListener("click", ()=>{
+          const lectureUser = {
+            id: data.id,
+            teacherRating: -1,
+            teacherReview: ""
+          }
+          axios
+          .post("http://localhost:8080/changeLectureUser", lectureUser)
+          .then((response)=>{
+              console.log("데이터: ", response.data)
+              location.reload();
+          })
+          .catch((error)=>{
+              console.log("에러: ", error)
+          })
+        })
       }
     }
     const tbody = document.querySelector("tbody");

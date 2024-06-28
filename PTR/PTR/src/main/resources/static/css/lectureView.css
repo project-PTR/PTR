@@ -144,7 +144,7 @@
 .lecture_reviews_table th,
 .lecture_reviews_table td {
   border: 1px solid #b4b4b4;
-  padding: 10px 20px;
+  padding: 10px 30px;
 }
 
 .caption {
@@ -256,9 +256,6 @@
   cursor: pointer;
 }
 
-.hiden {
-  display: none;
-}
 .fullscreen_container {
   position: fixed;
   top: 0;
@@ -281,6 +278,7 @@
 .reviews_btn {
   display: flex;
   justify-content: end;
+  margin-bottom: 20px;
 }
 
 .reviews_btn > div {
@@ -297,9 +295,30 @@
   color: #fec009;
 }
 
+.reviews_input{
+  display: flex;
+  gap: 10px;
+  height: 30x;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
 
+.review_box_style{
+  background-color: #dadada;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
 
+.review_input{
+  width: 300px;
+}
 
 .hidden {
+  display: none;
+}
+
+.hiden {
   display: none;
 }

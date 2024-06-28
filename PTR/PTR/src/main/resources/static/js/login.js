@@ -94,11 +94,14 @@ function sessionCurrent(){
             authority: {authorityName: authority}
         }
 
+        const checkLogin = document.querySelector(".checkLogin");
         if (user.userId === "anonymousUser") {
+          checkLogin.textContent = "로그인"
           document.querySelector("#loginForm").classList.remove("hidden")
           document.querySelector("#signupButton").classList.remove("hidden")
           document.querySelector("#logoutButton").classList.add("hidden")
         }else{
+          checkLogin.textContent = "로그아웃"
           document.querySelector("#loginForm").classList.add("hidden")
           document.querySelector("#signupButton").classList.add("hidden")
           document.querySelector("#logoutButton").classList.remove("hidden")

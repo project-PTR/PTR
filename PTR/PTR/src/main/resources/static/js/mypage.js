@@ -335,10 +335,10 @@ function createMyLectureReview(data){
         
         
         image.appendChild(img);
-        review_btn_flex.appendChild(btn1);
-        review_btn_flex.appendChild(btn2);
-        review_btn_flex.appendChild(btn11);
-        review_btn_flex.appendChild(btn21);
+        review_btn_flex.appendChild(btn1); // 수정
+        review_btn_flex.appendChild(btn2); // 삭제
+        review_btn_flex.appendChild(btn11); // 완료
+        review_btn_flex.appendChild(btn21); // 취소
 
         flex1.appendChild(title1)
         flex1.appendChild(value1)
@@ -399,7 +399,7 @@ function createMyLectureReview(data){
         let changeRating = -1
         let changeReview = ""
 
-        document.querySelector(".rating_input").addEventListener("change",(e)=>{
+        inputValue2.addEventListener("change",(e)=>{
             if(e.target.value < 0){
                 inputValue2.value = 0
                 changeRating = 0
@@ -414,7 +414,7 @@ function createMyLectureReview(data){
             console.log(changeRating)
         })
 
-        document.querySelector(".review_input").addEventListener("change",(e)=>{
+        inputValue3.addEventListener("change",(e)=>{
             changeReview = e.target.value;
             console.log(changeReview)
         })

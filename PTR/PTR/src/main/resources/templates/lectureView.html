@@ -22,7 +22,7 @@
           <div><a href="feed.html">피드</a></div>
           <div><a href="mypage.html">마이페이지</a></div>
           <div><a href="customerService.html">고객센터</a></div>
-          <div><a href="login.html">로그인</a></div>
+          <div><a href="login.html" class="checkLogin"></a></div>
         </div>
         <!-- <div class="login_box">로그인 / 회원가입</div> -->
       </div>
@@ -126,8 +126,11 @@
             <div class="lecture_description">영상 내용</div>
                 <div class="lecture_description_value"></div>
             <div class="lecture_reviews">
-              <!-- 일단 빼기 -->
-               <div class="reviews_btn"></div>
+              <div class="reviews_box">
+                <div class="reviews_input hiden"></div>
+                <div class="reviews_btn"></div>
+              </div>
+              
               <table class="lecture_reviews_table">
                 <caption class="caption"></caption>
                 <thead>
@@ -145,6 +148,7 @@
         </div>
       </div>
     </div>
+    <script src="/js/checkLogin.js"></script>
     <script src="/js/lectureView.js"></script>
   </body>
 </html>

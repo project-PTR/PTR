@@ -69,4 +69,8 @@ public class ViewController {
     public String teacherView(){
         return "teacherView";
     }
+    @GetMapping("/index.html")
+    public String index(){
+        return "lecture";
+    }
 }
