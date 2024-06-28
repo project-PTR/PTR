@@ -400,6 +400,20 @@ function displayFeed(data){
             })
 
             function displayComments(data){
+                const commentFooter = document.querySelector(".content_feedcomment_footer");
+                commentFooter.innerHTML = ''
+
+                const commentText = document.createElement("textarea");
+                commentText.id = "commentText"
+                commentText.placeholder = "댓글을 작성하세요"
+
+                const content_feedcomment_forwardBtn = document.createElement("div");
+                content_feedcomment_forwardBtn.classList.add("content_feedcomment_forwardBtn")
+                content_feedcomment_forwardBtn.textContent = "댓글달기"
+
+                commentFooter.appendChild(commentText);
+                commentFooter.appendChild(content_feedcomment_forwardBtn);
+
                 const commentBody = document.querySelector(".content_feedcomment_body");
                 commentBody.innerHTML = ''; // 기존 댓글 초기화
                 data.forEach((comment)=>{
@@ -526,32 +540,33 @@ function displayFeed(data){
                         })
                     }
                 })
-            }
-            document.querySelector("#commentText").addEventListener("change",(e)=>{
-                console.log(e.target.value);
-                text = e.target.value;
-            })
-            
-            document.querySelector(".content_feedcomment_forwardBtn").addEventListener("click",()=>{
-                checkLogin(user);
-                const data1 = {
-                    user : {
-                        userId: user.userId
-                    },
-                    text:text,
-                    feed : {
-                        id:feed.id
-                    }
-                }
-                axios
-                .post("http://localhost:8080/feedComment", data1, {withCredentials: true})
-                .then((response) => {
-                    console.log("서버 응답: ", response.data);
+                document.querySelector("#commentText").addEventListener("change",(e)=>{
+                    console.log(e.target.value);
+                    text = e.target.value;
                 })
-                .catch((error) => {
-                    console.log("에러 발생: ", error);
-                });
-            })
+                
+                document.querySelector(".content_feedcomment_forwardBtn").addEventListener("click",()=>{
+                    checkLogin(user);
+                    const data1 = {
+                        user : {
+                            userId: user.userId
+                        },
+                        text:text,
+                        feed : {
+                            id:feed.id
+                        }
+                    }
+                    axios
+                    .post("http://localhost:8080/feedComment", data1, {withCredentials: true})
+                    .then((response) => {
+                        console.log("서버 응답: ", response.data);
+                    })
+                    .catch((error) => {
+                        console.log("에러 발생: ", error);
+                    });
+                })
+            }
+            
         })
         
         //부모 자식 위치
@@ -898,6 +913,20 @@ function displayScrap(data){
             })
 
             function displayComments(data){
+                const commentFooter = document.querySelector(".content_feedcomment_footer");
+                commentFooter.innerHTML = ''
+
+                const commentText = document.createElement("textarea");
+                commentText.id = "commentText"
+                commentText.placeholder = "댓글을 작성하세요"
+
+                const content_feedcomment_forwardBtn = document.createElement("div");
+                content_feedcomment_forwardBtn.classList.add("content_feedcomment_forwardBtn")
+                content_feedcomment_forwardBtn.textContent = "댓글달기"
+
+                commentFooter.appendChild(commentText);
+                commentFooter.appendChild(content_feedcomment_forwardBtn);
+
                 const commentBody = document.querySelector(".content_feedcomment_body");
                 commentBody.innerHTML = ''; // 기존 댓글 초기화
                 data.forEach((comment)=>{
@@ -1020,31 +1049,31 @@ function displayScrap(data){
                         })
                     }
                 })
-            }
-            document.querySelector("#commentText").addEventListener("change",(e)=>{
-                console.log(e.target.value);
-                text = e.target.value;
-            })
-            
-            document.querySelector(".content_feedcomment_forwardBtn").addEventListener("click",()=>{
-                const data1 = {
-                    user : {
-                        userId: user.userId
-                    },
-                    text:text,
-                    feed : {
-                        id:feed.id
-                    }
-                }
-                axios
-                .post("http://localhost:8080/feedComment", data1, {withCredentials: true})
-                .then((response) => {
-                    console.log("서버 응답: ", response.data);
+                document.querySelector("#commentText").addEventListener("change",(e)=>{
+                    console.log(e.target.value);
+                    text = e.target.value;
                 })
-                .catch((error) => {
-                    console.log("에러 발생: ", error);
-                });
-            })
+                
+                document.querySelector(".content_feedcomment_forwardBtn").addEventListener("click",()=>{
+                    const data1 = {
+                        user : {
+                            userId: user.userId
+                        },
+                        text:text,
+                        feed : {
+                            id:feed.id
+                        }
+                    }
+                    axios
+                    .post("http://localhost:8080/feedComment", data1, {withCredentials: true})
+                    .then((response) => {
+                        console.log("서버 응답: ", response.data);
+                    })
+                    .catch((error) => {
+                        console.log("에러 발생: ", error);
+                    });
+                })
+            }
         })
         
         //부모 자식 위치
@@ -1402,6 +1431,21 @@ function displayMyFeed(data){
             })
 
             function displayComments(data){
+                const commentFooter = document.querySelector(".content_feedcomment_footer");
+                commentFooter.innerHTML = ''
+
+                const commentText = document.createElement("textarea");
+                commentText.id = "commentText"
+                commentText.placeholder = "댓글을 작성하세요"
+
+                const content_feedcomment_forwardBtn = document.createElement("div");
+                content_feedcomment_forwardBtn.classList.add("content_feedcomment_forwardBtn")
+                content_feedcomment_forwardBtn.textContent = "댓글달기"
+
+                commentFooter.appendChild(commentText);
+                commentFooter.appendChild(content_feedcomment_forwardBtn);
+                
+
                 const commentBody = document.querySelector(".content_feedcomment_body");
                 commentBody.innerHTML = ''; // 기존 댓글 초기화
                 data.forEach((comment)=>{
@@ -1524,31 +1568,31 @@ function displayMyFeed(data){
                         })
                     }
                 })
-            }
-            document.querySelector("#commentText").addEventListener("change",(e)=>{
-                console.log(e.target.value);
-                text = e.target.value;
-            })
-            
-            document.querySelector(".content_feedcomment_forwardBtn").addEventListener("click",()=>{
-                const data1 = {
-                    user : {
-                        userId: user.userId
-                    },
-                    text:text,
-                    feed : {
-                        id:feed.id
-                    }
-                }
-                axios
-                .post("http://localhost:8080/feedComment", data1, {withCredentials: true})
-                .then((response) => {
-                    console.log("서버 응답: ", response.data);
+                document.querySelector("#commentText").addEventListener("change",(e)=>{
+                    console.log(e.target.value);
+                    text = e.target.value;
                 })
-                .catch((error) => {
-                    console.log("에러 발생: ", error);
-                });
-            })
+                
+                document.querySelector(".content_feedcomment_forwardBtn").addEventListener("click",()=>{
+                    const data1 = {
+                        user : {
+                            userId: user.userId
+                        },
+                        text:text,
+                        feed : {
+                            id:feed.id
+                        }
+                    }
+                    axios
+                    .post("http://localhost:8080/feedComment", data1, {withCredentials: true})
+                    .then((response) => {
+                        console.log("서버 응답: ", response.data);
+                    })
+                    .catch((error) => {
+                        console.log("에러 발생: ", error);
+                    });
+                })
+            }
         })
         
         //부모 자식 위치

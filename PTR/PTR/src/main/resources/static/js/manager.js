@@ -154,7 +154,7 @@ function create_user_detail_user(){
     onlyUsers.forEach((user, index)=>{
         const user_item = document.createElement("div");
         user_item.classList.add("user_item");
-        user_item.onclick = () => showUserDetail(user);
+        user_item.onclick = () => showUserDetail(user, user_item);
 
         const user_item_flex = document.createElement("div");
         user_item_flex.classList.add("user_item_flex");
@@ -222,7 +222,7 @@ function create_user_detail_user_taacher(){
     allTeacher.forEach((teacher, index)=>{
         const user_item = document.createElement("div");
         user_item.classList.add("user_item");
-        user_item.onclick = () => showTeacherDetail(teacher);
+        user_item.onclick = () => showTeacherDetail(teacher, user_item);
 
         const user_item_flex = document.createElement("div");
         user_item_flex.classList.add("user_item_flex");
@@ -298,19 +298,17 @@ function create_user_detail_user_taacher(){
     })
 }
 
-function showUserDetail(user){
+function showUserDetail(user, user_item){
     console.log("showUserDetail")
     let remove = document.querySelector(".user_detail");
-    let find = document.querySelector(".user_detail_userId");
-        
-    if (find) {
-        while (remove.firstChild) {
-            remove.removeChild(remove.firstChild);
-        }
+
+    if (remove) {
+        remove.remove();
     }
 
-    const body = document.querySelector(".user_detail");
-    
+    const body = document.createElement("div");
+    body.classList.add("user_detail");
+
     const h3 = document.createElement("h3");
     h3.textContent = "유저 세부 정보"
 
@@ -390,17 +388,16 @@ function showUserDetail(user){
     body.appendChild(box1)
     body.appendChild(box2)
     body.appendChild(box3)
+
+    user_item.appendChild(body)
 }
 
-function showTeacherDetail(teacher){   
-    console.log("showTeacherDetail") 
+function showTeacherDetail(teacher, user_item){  
+    console.log("showUserDetail")
     let remove = document.querySelector(".user_detail");
-    let find = document.querySelector(".user_detail_userId");
-        
-    if (find) {
-        while (remove.firstChild) {
-            remove.removeChild(remove.firstChild);
-        }
+
+    if (remove) {
+        remove.remove();
     }
     
     const body = document.querySelector(".user_detail");
@@ -529,6 +526,8 @@ function showTeacherDetail(teacher){
     body.appendChild(box2)
     body.appendChild(box3)
     body.appendChild(box4)
+
+    user_item.appendChild(body)
 }
 
 

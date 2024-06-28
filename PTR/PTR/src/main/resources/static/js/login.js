@@ -95,13 +95,16 @@ function sessionCurrent(){
         }
 
         const checkLogin = document.querySelector(".checkLogin");
+        const head_subtitle = document.querySelector(".head_subtitle");
         if (user.userId === "anonymousUser") {
           checkLogin.textContent = "로그인"
+          head_subtitle.textContent = "홈 > 로그인"
           document.querySelector("#loginForm").classList.remove("hidden")
           document.querySelector("#signupButton").classList.remove("hidden")
           document.querySelector("#logoutButton").classList.add("hidden")
         }else{
           checkLogin.textContent = "로그아웃"
+          head_subtitle.textContent = "홈 > 로그아웃"
           document.querySelector("#loginForm").classList.add("hidden")
           document.querySelector("#signupButton").classList.add("hidden")
           document.querySelector("#logoutButton").classList.remove("hidden")
